@@ -145,7 +145,13 @@ a { color: inherit; text-decoration: none; }
 }
 
 @media (min-width: 641px) {
-  .show-mobile { display: none !important; }
+}
+
+@media (max-width: 640px) {
+  body { cursor: auto; font-size: 14px; }
+}
+
+@media (max-width: 480px) {
 }
 
 /* ── MDX Content Styles ───────────────────────────────────────────────────── */
