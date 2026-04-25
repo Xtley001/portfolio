@@ -1,0 +1,18 @@
+---
+name: "Osprey"
+slug: "osprey"
+tagline: "Hyperliquid funding rate trading system"
+year: 2026
+status: "active"
+tech: ["Python", "Hyperliquid SDK", "FastAPI"]
+github: "https://github.com/Xtley001/osprey"
+live: "https://osprey-three.vercel.app/"
+image: ""
+featured: true
+---
+
+Delta-neutral funding rate capture on Hyperliquid perpetuals. Automated position sizing, hedge rebalancing, and PnL tracking.
+
+Built to capture persistent funding rate differentials between spot and perp markets while remaining directionally neutral. The system continuously monitors open interest imbalances and adjusts hedge ratios in real time.
+
+**Core mechanics**: long spot + short perp when funding is positive, inverted when negative. Position sizing respects max drawdown constraints per epoch.

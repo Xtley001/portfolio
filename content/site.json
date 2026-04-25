@@ -1,0 +1,98 @@
+{
+  "hero": {
+    "firstName": "CHRISTLEY",
+    "lastName": "OLUBELA",
+    "tagline": "I build systems that exploit microstructural\ninefficiencies in DeFi markets.",
+    "available": true,
+    "location": "Nigeria",
+    "handle": "@Xtley001",
+    "avatar": "/images/avatar.png"
+  },
+  "stack": [
+    {
+      "category": "Languages",
+      "items": ["Rust", "Python", "TypeScript", "Solidity"]
+    },
+    {
+      "category": "Chains & Protocols",
+      "items": ["Ethereum", "Solana", "Hyperliquid", "Uniswap V3", "Aave"]
+    },
+    {
+      "category": "Infrastructure",
+      "items": ["FastAPI", "Docker", "PostgreSQL", "Redis", "WebSockets"]
+    },
+    {
+      "category": "Quant & Math",
+      "items": ["Game Theory", "Stochastic Calculus", "Statistical Arbitrage", "Monte Carlo"]
+    }
+  ],
+  "stats": [],
+  "focus": [
+    {
+      "area": "Delta-Neutral DeFi",
+      "subs": ["Funding Rate Arbitrage", "Vault Architecture", "Hedge Rebalancing"]
+    },
+    {
+      "area": "Flash Loan Systems",
+      "subs": ["Atomic Arbitrage", "Liquidation Capture", "MEV Extraction"]
+    },
+    {
+      "area": "AMM Market Making",
+      "subs": ["Liquidity Provision", "IL Mitigation", "Fee Optimization"]
+    },
+    {
+      "area": "On-Chain Microstructure",
+      "subs": ["Order Flow Analysis", "Mempool Monitoring", "Price Impact Modeling"]
+    }
+  ],
+  "experience": [
+    {
+      "year": "2026 →",
+      "role": "Quantitative Trader",
+      "org": "Algorealm Inc.",
+      "note": "Iowa City · Hybrid"
+    },
+    {
+      "year": "2025 → 2026",
+      "role": "Backend Engineer Intern",
+      "org": "Beetle",
+      "note": "AI & trading infrastructure"
+    }
+  ],
+  "education": [
+    {
+      "year": "Ongoing",
+      "role": "B.Sc. Computer Science",
+      "org": "University of Ibadan",
+      "note": ""
+    }
+  ],
+  "persona": {
+    "mind": {
+      "body": "My greatest edge is not what I know — it is how quickly I absorb, discard, and rebuild mental models. Markets change. Frameworks that worked last cycle become liabilities. I learn fast, unlearn faster.",
+      "interests": []
+    },
+    "research": [
+      "MEV-adjacent flash loan execution flows",
+      "Cross-exchange funding rate divergence",
+      "AMM liquidity dynamics and IL models",
+      "On-chain order flow microstructure"
+    ],
+    "outside": [
+      { "label": "Swimming", "note": "" },
+      { "label": "Reading", "note": "" },
+      { "label": "Movies", "note": "" },
+      { "label": "Recipes", "note": "" }
+    ]
+  },
+  "timeline": [],
+  "contact": {
+    "email": "olubelachristley@gmail.com",
+    "twitter": "https://x.com/Xtley001",
+    "github": "https://github.com/Xtley001",
+    "telegram": "",
+    "linkedin": "https://www.linkedin.com/in/christley-olubela/",
+    "goodreads": "",
+    "note": "Open to quant roles, DeFi collaborations, and building together on on-chain systems."
+  }
+}
