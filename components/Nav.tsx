@@ -2,18 +2,25 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 
-export default function Nav({ githubUrl = 'https://github.com/Xtley001', logoText = 'XTLEY001' }: { githubUrl?: string; logoText?: string }) {
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(false)
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 640px)')
+    setIsMobile(mq.matches)
+    const handler = (e) => setIsMobile(e.matches)
+    mq.addEventListener('change', handler)
+    return () => mq.removeEventListener('change', handler)
+  }, [])
+  return isMobile
+}
+
+export default function Nav({ githubUrl = 'https://github.com/Xtley001', logoText = 'XTLEY001' }) {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
-  const [isMobile, setIsMobile] = useState(false)
+  const [mounted, setMounted] = useState(false)
+  const isMobile = useIsMobile()
 
-  useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth <= 640)
-    checkMobile()
-    window.addEventListener('resize', checkMobile)
-    return () => window.removeEventListener('resize', checkMobile)
-  }, [])
-
+  useEffect(() => { setMounted(true) }, [])
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40)
     window.addEventListener('scroll', onScroll)
@@ -41,10 +48,11 @@ export default function Nav({ githubUrl = 'https://github.com/Xtley001', logoTex
           {logoText}
         </Link>
 
-        {!isMobile && (
+        {mounted && !isMobile && (
           <div style={{ display: 'flex', gap: '32px', alignItems: 'center' }}>
             {links.map(l => (
-              <a key={l.label} href={l.href} style={{ fontFamily: 'var(--font-dm-mono)', fontSize: '11px', color: 'var(--text-dim)', letterSpacing: '0.1em', transition: 'color 0.2s' }}
+              <a key={l.label} href={l.href}
+                style={{ fontFamily: 'var(--font-dm-mono)', fontSize: '11px', color: 'var(--text-dim)', letterSpacing: '0.1em', transition: 'color 0.2s' }}
                 onMouseEnter={e => (e.currentTarget.style.color = 'var(--text)')}
                 onMouseLeave={e => (e.currentTarget.style.color = 'var(--text-dim)')}>
                 {l.label}
@@ -56,22 +64,22 @@ export default function Nav({ githubUrl = 'https://github.com/Xtley001', logoTex
               onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = 'var(--accent)' }}>
               github ↗
             </a>
-            <a href="/admin" style={{ fontFamily: 'var(--font-dm-mono)', fontSize: '11px', color: 'var(--text-faint)', letterSpacing: '0.1em', padding: '4px 8px', transition: 'color 0.2s' }}>⚙</a>
+            <a href="/admin" style={{ fontFamily: 'var(--font-dm-mono)', fontSize: '11px', color: 'var(--text-faint)', padding: '4px 8px' }}>⚙</a>
           </div>
         )}
 
-        {isMobile && (
+        {mounted && isMobile && (
           <button onClick={() => setOpen(!open)}
-            style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '4px' }}
+            style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '8px' }}
             aria-label="Menu">
-            <div style={{ width: '18px', height: '1px', background: 'var(--text)', marginBottom: '5px', transition: 'all 0.2s', transform: open ? 'rotate(45deg) translate(4px, 4px)' : 'none' }} />
-            <div style={{ width: '18px', height: '1px', background: 'var(--text)', transition: 'all 0.2s', opacity: open ? 0 : 1 }} />
-            <div style={{ width: '18px', height: '1px', background: 'var(--text)', marginTop: '5px', transition: 'all 0.2s', transform: open ? 'rotate(-45deg) translate(4px, -4px)' : 'none' }} />
+            <div style={{ width: '22px', height: '1px', background: 'var(--text)', marginBottom: '6px', transition: 'all 0.2s', transform: open ? 'rotate(45deg) translate(4px, 4px)' : 'none' }} />
+            <div style={{ width: '22px', height: '1px', background: 'var(--text)', transition: 'all 0.2s', opacity: open ? 0 : 1 }} />
+            <div style={{ width: '22px', height: '1px', background: 'var(--text)', marginTop: '6px', transition: 'all 0.2s', transform: open ? 'rotate(-45deg) translate(4px, -4px)' : 'none' }} />
           </button>
         )}
       </nav>
 
-      {isMobile && open && (
+      {mounted && isMobile && open && (
         <div style={{
           position: 'fixed', inset: 0, zIndex: 99,
           background: 'var(--bg)',

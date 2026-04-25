@@ -45,7 +45,7 @@ export default function Hero({ hero }: { hero: SiteData['hero'] }) {
               letterSpacing: '-0.02em',
               color: 'var(--text)',
               display: 'block',
-              whiteSpace: 'nowrap',
+              
               paddingBottom: '0.08em',
             }}
           >
@@ -61,7 +61,7 @@ export default function Hero({ hero }: { hero: SiteData['hero'] }) {
               letterSpacing: '-0.02em',
               color: 'var(--accent)',
               display: 'block',
-              whiteSpace: 'nowrap',
+              
               paddingBottom: '0.08em',
             }}
           >
