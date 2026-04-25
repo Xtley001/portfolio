@@ -39,7 +39,7 @@ export default function Nav({ githubUrl = 'https://github.com/Xtley001', logoTex
         </Link>
 
         {/* Desktop links */}
-        <div className="hidden-mobile" style={{ display: 'flex', gap: '32px', alignItems: 'center' }}>
+        <div className="hidden-mobile" style={{ gap: '32px', alignItems: 'center' }}>
           {links.map(l => (
             <a key={l.label} href={l.href} style={{ fontFamily: 'var(--font-dm-mono)', fontSize: '11px', color: 'var(--text-dim)', letterSpacing: '0.1em', transition: 'color 0.2s' }}
               onMouseEnter={e => (e.currentTarget.style.color = 'var(--text)')}
