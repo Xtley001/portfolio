@@ -86,7 +86,7 @@ export default function Hero({ hero }: { hero: SiteData['hero'] }) {
               </span>
             )}
             <span style={{ fontFamily: 'var(--font-dm-mono)', fontSize: '12px', color: 'var(--text-faint)', letterSpacing: '0.1em' }}>
-              {hero.location} · {hero.handle}
+              {hero.location}
             </span>
           </div>
         </div>
