@@ -40,13 +40,13 @@ export default function Hero({ hero }: { hero: SiteData['hero'] }) {
             style={{
               fontFamily: 'var(--font-syne)',
               fontWeight: 800,
-              fontSize: 'clamp(2.8rem, 12vw, 8.5rem)',
+              fontSize: 'clamp(2rem, 8.5vw, 6.5rem)',
               lineHeight: 1,
               letterSpacing: '-0.02em',
               color: 'var(--text)',
               display: 'block',
               paddingBottom: '0.08em',
-              wordBreak: 'break-word',
+              whiteSpace: 'nowrap',
             }}
           >
             {hero.firstName}
@@ -56,13 +56,13 @@ export default function Hero({ hero }: { hero: SiteData['hero'] }) {
             style={{
               fontFamily: 'var(--font-syne)',
               fontWeight: 800,
-              fontSize: 'clamp(2.8rem, 12vw, 8.5rem)',
+              fontSize: 'clamp(2rem, 8.5vw, 6.5rem)',
               lineHeight: 1,
               letterSpacing: '-0.02em',
               color: 'var(--accent)',
               display: 'block',
               paddingBottom: '0.08em',
-              wordBreak: 'break-word',
+              whiteSpace: 'nowrap',
             }}
           >
             {hero.lastName}
