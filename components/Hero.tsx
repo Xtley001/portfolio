@@ -29,24 +29,24 @@ export default function Hero({ hero }: { hero: SiteData['hero'] }) {
 
       <div style={{ position: 'relative', zIndex: 10, width: '100%', maxWidth: '1200px' }}>
         {/* Index number */}
-        <div className="animate-fade-in delay-100" style={{ fontFamily: 'var(--font-dm-mono)', fontSize: '12px', color: 'var(--text-faint)', letterSpacing: '0.2em', marginBottom: 'clamp(24px, 4vw, 48px)' }}>
+        <div className="animate-fade-in delay-100" style={{ fontFamily: 'var(--font-dm-mono)', fontSize: '12px', color: 'var(--text-faint)', letterSpacing: '0.2em', marginBottom: 'clamp(20px, 4vw, 48px)' }}>
           001
         </div>
 
         {/* Name */}
-        <div style={{ marginBottom: '28px', paddingBottom: '4px' }}>
+        <div style={{ marginBottom: '24px', paddingBottom: '4px' }}>
           <h1
             className="animate-fade-up delay-100 hero-name"
             style={{
               fontFamily: 'var(--font-syne)',
               fontWeight: 800,
-              fontSize: 'clamp(3rem, 9.5vw, 8.5rem)',
+              fontSize: 'clamp(2.8rem, 12vw, 8.5rem)',
               lineHeight: 1,
               letterSpacing: '-0.02em',
               color: 'var(--text)',
               display: 'block',
-              
               paddingBottom: '0.08em',
+              wordBreak: 'break-word',
             }}
           >
             {hero.firstName}
@@ -56,24 +56,27 @@ export default function Hero({ hero }: { hero: SiteData['hero'] }) {
             style={{
               fontFamily: 'var(--font-syne)',
               fontWeight: 800,
-              fontSize: 'clamp(3rem, 9.5vw, 8.5rem)',
+              fontSize: 'clamp(2.8rem, 12vw, 8.5rem)',
               lineHeight: 1,
               letterSpacing: '-0.02em',
               color: 'var(--accent)',
               display: 'block',
-              
               paddingBottom: '0.08em',
+              wordBreak: 'break-word',
             }}
           >
             {hero.lastName}
           </h1>
         </div>
 
-        <div className="draw-line" style={{ marginBottom: '32px' }} />
+        <div className="draw-line" style={{ marginBottom: '28px' }} />
 
-        {/* Tagline + availability */}
-        <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'flex-end', justifyContent: 'space-between', gap: '24px' }} className="animate-fade-up delay-400">
-          <p style={{ fontFamily: 'var(--font-dm-mono)', fontSize: 'clamp(0.85rem, 1.5vw, 1rem)', color: 'var(--text-dim)', maxWidth: '500px', lineHeight: 1.9, whiteSpace: 'pre-line' }}>
+        {/* Tagline + availability — stacks on mobile */}
+        <div
+          style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'flex-end', justifyContent: 'space-between', gap: '20px' }}
+          className="animate-fade-up delay-400"
+        >
+          <p style={{ fontFamily: 'var(--font-dm-mono)', fontSize: 'clamp(0.78rem, 2vw, 1rem)', color: 'var(--text-dim)', maxWidth: '500px', lineHeight: 1.9, whiteSpace: 'pre-line' }}>
             {hero.tagline}
           </p>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '4px' }}>
@@ -88,7 +91,7 @@ export default function Hero({ hero }: { hero: SiteData['hero'] }) {
           </div>
         </div>
 
-        <div className="animate-fade-in delay-700" style={{ marginTop: '48px', fontFamily: 'var(--font-dm-mono)', fontSize: '11px', color: 'var(--text-faint)', letterSpacing: '0.2em', display: 'flex', alignItems: 'center', gap: '12px' }}>
+        <div className="animate-fade-in delay-700" style={{ marginTop: '40px', fontFamily: 'var(--font-dm-mono)', fontSize: '11px', color: 'var(--text-faint)', letterSpacing: '0.2em', display: 'flex', alignItems: 'center', gap: '12px' }}>
           <span style={{ width: '24px', height: '1px', background: 'var(--text-faint)', display: 'inline-block' }} />
           SCROLL
         </div>

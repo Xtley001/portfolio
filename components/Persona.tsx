@@ -34,7 +34,7 @@ export default function Persona({ persona, goodreads }: { persona: SiteData['per
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
               {persona.research.map(s => (
-                <span key={s} style={{ fontFamily: 'var(--font-dm-mono)', fontSize: '14px', color: 'var(--text-dim)', lineHeight: 1.7 }}>
+                <span key={s} style={{ fontFamily: 'var(--font-dm-mono)', fontSize: '13px', color: 'var(--text-dim)', lineHeight: 1.7, wordBreak: 'break-word' }}>
                   → {s}
                 </span>
               ))}
@@ -51,21 +51,25 @@ export default function Persona({ persona, goodreads }: { persona: SiteData['per
               {persona.outside.map(item => {
                 const isReading = item.label.toLowerCase() === 'reading'
                 return (
-                  <div key={item.label} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', borderBottom: '1px solid var(--border)', padding: '12px 0' }}>
-                    <span style={{ fontFamily: 'var(--font-dm-mono)', fontSize: '14px', color: 'var(--text)' }}>{item.label}</span>
+                  <div key={item.label} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', borderBottom: '1px solid var(--border)', padding: '12px 0', gap: '12px', minWidth: 0 }}>
+                    <span style={{ fontFamily: 'var(--font-dm-mono)', fontSize: '14px', color: 'var(--text)', flexShrink: 0 }}>{item.label}</span>
                     {isReading ? (
                       <a
                         href={GOODREADS_URL}
                         target="_blank"
                         rel="noopener noreferrer"
-                        style={{ fontFamily: 'var(--font-dm-mono)', fontSize: '12px', color: 'var(--text-faint)', letterSpacing: '0.08em', transition: 'color 0.15s' }}
+                        style={{ fontFamily: 'var(--font-dm-mono)', fontSize: '12px', color: 'var(--text-faint)', letterSpacing: '0.08em', transition: 'color 0.15s', WebkitTapHighlightColor: 'transparent', flexShrink: 0 }}
                         onMouseEnter={e => (e.currentTarget.style.color = 'var(--accent)')}
                         onMouseLeave={e => (e.currentTarget.style.color = 'var(--text-faint)')}
                       >
                         goodreads ↗
                       </a>
                     ) : (
-                      item.note && <span style={{ fontFamily: 'var(--font-dm-mono)', fontSize: '12px', color: 'var(--text-faint)' }}>{item.note}</span>
+                      item.note && (
+                        <span style={{ fontFamily: 'var(--font-dm-mono)', fontSize: '12px', color: 'var(--text-faint)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', minWidth: 0 }}>
+                          {item.note}
+                        </span>
+                      )
                     )}
                   </div>
                 )

@@ -27,20 +27,22 @@ export default function Timeline({ experience, education, timeline }: { experien
         </span>
       </div>
 
+      {/* timeline-grid CSS class collapses to 1fr on mobile */}
       <div className="timeline-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '60px' }}>
         {experience.length > 0 && (
           <div>
             <div style={{ fontFamily: 'var(--font-dm-mono)', fontSize: '10px', color: 'var(--text-faint)', letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: '28px' }}>
               Experience
             </div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '28px' }}>
               {experience.map((e, i) => (
-                <div key={i} className="reveal" style={{ display: 'grid', gridTemplateColumns: 'minmax(100px, 130px) 1fr', gap: '16px', alignItems: 'start' }}>
-                  <span style={{ fontFamily: 'var(--font-dm-mono)', fontSize: '12px', color: 'var(--accent)', letterSpacing: '0.06em', paddingTop: '2px' }}>{e.year}</span>
+                <div key={i} className="reveal" style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                  {/* Year on its own line — no fixed-width column that can squeeze */}
+                  <span style={{ fontFamily: 'var(--font-dm-mono)', fontSize: '11px', color: 'var(--accent)', letterSpacing: '0.08em' }}>{e.year}</span>
                   <div>
-                    <div style={{ fontFamily: 'var(--font-dm-mono)', fontSize: '14px', color: 'var(--text)', marginBottom: '4px', fontWeight: 500 }}>{e.role}</div>
+                    <div style={{ fontFamily: 'var(--font-dm-mono)', fontSize: '14px', color: 'var(--text)', marginBottom: '2px', fontWeight: 500 }}>{e.role}</div>
                     <div style={{ fontFamily: 'var(--font-dm-mono)', fontSize: '13px', color: 'var(--text-dim)' }}>{e.org}</div>
-                    {e.note && <div style={{ fontFamily: 'var(--font-dm-mono)', fontSize: '12px', color: 'var(--text-faint)', marginTop: '3px' }}>{e.note}</div>}
+                    {e.note && <div style={{ fontFamily: 'var(--font-dm-mono)', fontSize: '12px', color: 'var(--text-faint)', marginTop: '2px' }}>{e.note}</div>}
                   </div>
                 </div>
               ))}
@@ -53,14 +55,14 @@ export default function Timeline({ experience, education, timeline }: { experien
             <div style={{ fontFamily: 'var(--font-dm-mono)', fontSize: '10px', color: 'var(--text-faint)', letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: '28px' }}>
               Education
             </div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '28px' }}>
               {education.map((e, i) => (
-                <div key={i} className="reveal" style={{ display: 'grid', gridTemplateColumns: 'minmax(100px, 130px) 1fr', gap: '16px', alignItems: 'start' }}>
-                  <span style={{ fontFamily: 'var(--font-dm-mono)', fontSize: '12px', color: 'var(--accent)', letterSpacing: '0.06em', paddingTop: '2px' }}>{e.year}</span>
+                <div key={i} className="reveal" style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                  <span style={{ fontFamily: 'var(--font-dm-mono)', fontSize: '11px', color: 'var(--accent)', letterSpacing: '0.08em' }}>{e.year}</span>
                   <div>
-                    <div style={{ fontFamily: 'var(--font-dm-mono)', fontSize: '14px', color: 'var(--text)', marginBottom: '4px', fontWeight: 500 }}>{e.role}</div>
+                    <div style={{ fontFamily: 'var(--font-dm-mono)', fontSize: '14px', color: 'var(--text)', marginBottom: '2px', fontWeight: 500 }}>{e.role}</div>
                     <div style={{ fontFamily: 'var(--font-dm-mono)', fontSize: '13px', color: 'var(--text-dim)' }}>{e.org}</div>
-                    {e.note && <div style={{ fontFamily: 'var(--font-dm-mono)', fontSize: '12px', color: 'var(--text-faint)', marginTop: '3px' }}>{e.note}</div>}
+                    {e.note && <div style={{ fontFamily: 'var(--font-dm-mono)', fontSize: '12px', color: 'var(--text-faint)', marginTop: '2px' }}>{e.note}</div>}
                   </div>
                 </div>
               ))}
@@ -76,8 +78,8 @@ export default function Timeline({ experience, education, timeline }: { experien
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0' }}>
             {timeline!.map((entry, i) => (
-              <div key={i} className="reveal" style={{ display: 'grid', gridTemplateColumns: 'minmax(100px, 130px) 1fr', gap: '16px', padding: '16px 0', borderBottom: '1px solid var(--border)', alignItems: 'center' }}>
-                <span style={{ fontFamily: 'var(--font-dm-mono)', fontSize: '12px', color: 'var(--accent)', letterSpacing: '0.06em' }}>{entry.year}</span>
+              <div key={i} className="reveal" style={{ display: 'flex', flexDirection: 'column', gap: '4px', padding: '14px 0', borderBottom: '1px solid var(--border)' }}>
+                <span style={{ fontFamily: 'var(--font-dm-mono)', fontSize: '11px', color: 'var(--accent)', letterSpacing: '0.08em' }}>{entry.year}</span>
                 <span style={{ fontFamily: 'var(--font-dm-mono)', fontSize: '13px', color: 'var(--text-dim)', lineHeight: 1.6 }}>{entry.event}</span>
               </div>
             ))}
