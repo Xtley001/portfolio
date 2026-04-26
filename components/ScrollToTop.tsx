@@ -10,10 +10,9 @@ export default function ScrollToTop() {
       const scrolled = window.scrollY
       const total = document.body.scrollHeight - window.innerHeight
       if (total <= 0) return
-      const progress = scrolled / total           // 0 → 1
+      const progress = scrolled / total
       const show = scrolled > 300
       setVisible(show)
-      // opacity ramps from 0.25 at 300px to 1.0 at 60% scroll
       setOpacity(show ? Math.min(1, 0.25 + progress * 1.25) : 0)
     }
     window.addEventListener('scroll', onScroll, { passive: true })
@@ -58,17 +57,9 @@ export default function ScrollToTop() {
         el.style.color = 'var(--accent)'
       }}
     >
-      {/* Minimal upward arrow — matches the project's mono aesthetic */}
-      <svg
-        width="14"
-        height="14"
-        viewBox="0 0 14 14"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
+        stroke="currentColor" strokeWidth="1.5"
+        strokeLinecap="round" strokeLinejoin="round">
         <line x1="7" y1="12" x2="7" y2="2" />
         <polyline points="3,6 7,2 11,6" />
       </svg>

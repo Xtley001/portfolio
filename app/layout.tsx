@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import '../styles/globals.css'
+import ScrollToTop from '../components/ScrollToTop'
 import Nav from '../components/Nav'
 import Cursor from '../components/Cursor'
 import { getSiteData } from '../lib/site'
@@ -49,6 +50,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Cursor />
         <Nav githubUrl={githubUrl} logoText={logoText} />
         {children}
+        <ScrollToTop />
       </body>
     </html>
   )
