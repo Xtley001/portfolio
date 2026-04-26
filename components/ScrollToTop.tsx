@@ -25,29 +25,28 @@ export default function ScrollToTop() {
       aria-label='Back to top'
       style={{
         position: 'fixed',
-        bottom: 'clamp(20px, 5vw, 36px)',
-        right: 'clamp(16px, 4vw, 32px)',
-        zIndex: 9000,
-        background: 'transparent',
-        border: '1px solid var(--accent-dim)',
+        bottom: '28px',
+        right: '20px',
+        zIndex: 9999,
+        background: 'none',
+        border: 'none',
+        padding: '8px',
+        margin: '-8px',
+        cursor: 'pointer',
+        opacity: opacity,
         color: 'var(--accent)',
-        width: '44px',
-        height: '44px',
+        transition: 'opacity 0.3s ease',
+        WebkitTapHighlightColor: 'transparent',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        cursor: 'pointer',
-        opacity: opacity,
-        borderRadius: '2px',
-        transition: 'opacity 0.3s ease',
-        WebkitTapHighlightColor: 'transparent',
       }}
     >
-      <svg width='14' height='14' viewBox='0 0 14 14' fill='none'
-        stroke='currentColor' strokeWidth='1.5'
+      <svg width='18' height='18' viewBox='0 0 18 18' fill='none'
+        stroke='currentColor' strokeWidth='1.8'
         strokeLinecap='round' strokeLinejoin='round'>
-        <line x1='7' y1='12' x2='7' y2='2' />
-        <polyline points='3,6 7,2 11,6' />
+        <polyline points='3,13 9,4 15,13' />
+        <line x1='9' y1='4' x2='9' y2='16' />
       </svg>
     </button>
   )
