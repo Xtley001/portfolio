@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
 import '../styles/globals.css'
-import ScrollToTop from '../components/ScrollToTop'
 import Nav from '../components/Nav'
 import Cursor from '../components/Cursor'
+import ScrollToTop from '../components/ScrollToTop'
 import { getSiteData } from '../lib/site'
 
 export async function generateMetadata(): Promise<Metadata> {
