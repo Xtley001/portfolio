@@ -46,7 +46,7 @@ export default function Hero({ hero }: { hero: SiteData['hero'] }) {
               color: 'var(--text)',
               display: 'block',
               paddingBottom: '0.08em',
-              wordBreak: 'break-word',
+              whiteSpace: 'nowrap',
             }}
           >
             {hero.firstName}
@@ -62,7 +62,7 @@ export default function Hero({ hero }: { hero: SiteData['hero'] }) {
               color: 'var(--accent)',
               display: 'block',
               paddingBottom: '0.08em',
-              wordBreak: 'break-word',
+              whiteSpace: 'nowrap',
             }}
           >
             {hero.lastName}
