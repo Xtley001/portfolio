@@ -25,7 +25,6 @@ html {
   scroll-behavior: smooth;
   overflow-x: hidden;
   max-width: 100vw;
-  /* Prevent layout shifts from scrollbar appearing */
   scrollbar-gutter: stable;
 }
 
@@ -42,7 +41,6 @@ body {
   max-width: 100vw;
 }
 
-/* Custom cursor — desktop only */
 .cursor {
   position: fixed; width: 8px; height: 8px;
   background: var(--accent); border-radius: 50%;
@@ -120,7 +118,6 @@ hr { border: none; border-top: 1px solid var(--border); margin: 0; }
 a { color: inherit; text-decoration: none; }
 *:focus-visible { outline: 1px solid var(--accent); outline-offset: 2px; }
 
-/* ── MDX Content Styles ───────────────────────────────────────────────────── */
 .mdx-content {
   font-family: var(--font-dm-mono);
   font-size: 13px;
@@ -173,51 +170,51 @@ a { color: inherit; text-decoration: none; }
 
 /* ── RESPONSIVE ─────────────────────────────────────────────────────────── */
 
-/* Tablet — 2-col projects */
 @media (max-width: 900px) {
   .projects-grid { grid-template-columns: repeat(2, 1fr) !important; }
 }
 
-/* Tablet — collapse 2-col layouts */
 @media (max-width: 768px) {
   .timeline-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
   .contact-grid  { grid-template-columns: 1fr !important; }
 }
 
-/* Mobile — full single-column overrides */
 @media (max-width: 640px) {
-  /* Restore cursor for touch */
   body { cursor: auto; font-size: 14px; }
   .cursor, .cursor-ring { display: none !important; }
 
-  /* Grid collapses */
+  /* Fix: IntersectionObserver is unreliable on mobile — show everything immediately */
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .animate-fade-up,
+  .animate-fade-in {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
   .projects-grid { grid-template-columns: 1fr !important; }
   .timeline-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
   .contact-grid  { grid-template-columns: 1fr !important; gap: 36px !important; }
   .stack-grid    { grid-template-columns: 1fr 1fr !important; }
   .focus-grid    { grid-template-columns: 1fr 1fr !important; }
 
-  /* Hero name sizes */
   .hero-name { font-size: clamp(2.4rem, 13vw, 5rem) !important; white-space: normal !important; }
 
-  /* Ensure nothing bleeds out */
   img, video, iframe { max-width: 100% !important; }
-
-  /* Prevent horizontal scroll from any absolute elements */
   section, article { overflow-x: hidden; }
 }
 
-/* Small mobile */
 @media (max-width: 480px) {
   .hero-name { font-size: clamp(2rem, 12vw, 4rem) !important; }
   .focus-grid { grid-template-columns: 1fr !important; }
   .stack-grid { grid-template-columns: 1fr !important; }
-
-  /* MDX content slightly smaller */
   .mdx-content { font-size: 12px; }
 }
 
-/* Touch — remove hover effects that feel broken on mobile */
 @media (hover: none) {
   .cursor, .cursor-ring { display: none !important; }
   body { cursor: auto !important; }
