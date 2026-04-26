@@ -1,7 +1,7 @@
 export default function Footer({ copyright, domain }: { copyright?: string; domain?: string }) {
   const year = new Date().getFullYear()
-  const copyrightText = copyright || `© ${year} XTLEY001`
-  const domainText = domain || 'xtley001.com'
+  const copyrightText = copyright || `© ${year} Xtley001`
+  const domainText = domain || 'olubelachristley@gmail.com'
   return (
     <footer style={{
       borderTop: '1px solid var(--border)',
