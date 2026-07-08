@@ -78,6 +78,7 @@ a { color: inherit; text-decoration: none; }
   .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
   .animate-fade-up, .animate-fade-in { animation: none !important; opacity: 1 !important; transform: none !important; }
   .hero-name { font-size: 8.5vw !important; white-space: nowrap !important; word-break: keep-all !important; overflow: hidden !important; }
+  .hero-avatar { display: none !important; }
   .projects-grid { grid-template-columns: 1fr !important; }
   .timeline-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
   .contact-grid { grid-template-columns: 1fr !important; gap: 36px !important; }
