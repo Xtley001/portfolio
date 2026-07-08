@@ -78,6 +78,7 @@ export default function Hero({ hero }: { hero: SiteData['hero'] }) {
               width: 'clamp(180px, 24vw, 360px)',
               height: 'auto',
               flexShrink: 0,
+              marginRight: 'clamp(8px, 3vw, 32px)',
               maskImage: 'linear-gradient(black 82%, transparent 100%)',
               WebkitMaskImage: 'linear-gradient(black 82%, transparent 100%)',
             }}
