@@ -55,6 +55,8 @@ export default function WelcomeScreen({ onStart }: { onStart: () => void }) {
           textTransform: 'uppercase',
           cursor: 'pointer',
           minHeight: '44px',
+          touchAction: 'manipulation',
+          WebkitTapHighlightColor: 'transparent',
         }}
       >
         Get My Free Business Assessment →

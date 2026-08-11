@@ -172,18 +172,19 @@ export default function AssessmentWizard() {
   }
 
   const wrapperStyle: React.CSSProperties = {
-    minHeight: '100vh',
+    minHeight: '100svh',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
     padding: 'clamp(24px, 6vw, 40px) clamp(16px, 4vw, 24px) 60px',
     background: 'var(--bg)',
+    overflowY: 'auto',
   }
 
   if (state.step === 'welcome') {
     return (
-      <div style={wrapperStyle}>
+      <div style={wrapperStyle} className="assessment-wrapper">
         <WelcomeScreen onStart={() => dispatch({ type: 'START' })} />
       </div>
     )
@@ -194,7 +195,7 @@ export default function AssessmentWizard() {
     const question = QUESTIONS[scoredIdx]
     const answer = state.answers.find(a => a.questionId === question.id)
     return (
-      <div style={wrapperStyle}>
+      <div style={wrapperStyle} className="assessment-wrapper">
         <div style={{ width: '100%', maxWidth: '560px' }}>
           <ProgressBar current={scoredIdx + 1} total={QUESTIONS.length} />
           <QuestionStep
@@ -215,7 +216,7 @@ export default function AssessmentWizard() {
 
   if (state.step === 'intent') {
     return (
-      <div style={wrapperStyle}>
+      <div style={wrapperStyle} className="assessment-wrapper">
         <QuestionStep
           question={INTENT_QUESTION}
           selectedOptionId={state.intentAnswer || undefined}
@@ -229,7 +230,7 @@ export default function AssessmentWizard() {
 
   if (state.step === 'reveal') {
     return (
-      <div style={wrapperStyle}>
+      <div style={wrapperStyle} className="assessment-wrapper">
         <RevealGateStep
           contact={state.contact}
           honeypot={state.honeypot}
@@ -246,7 +247,7 @@ export default function AssessmentWizard() {
 
   if (state.step === 'results' && state.result) {
     return (
-      <div style={wrapperStyle}>
+      <div style={wrapperStyle} className="assessment-wrapper">
         <ResultsScreen
           name={state.contact.name}
           resultCopy={state.result.resultCopy}
@@ -257,5 +258,5 @@ export default function AssessmentWizard() {
     )
   }
 
-  return <div style={wrapperStyle} />
+  return <div style={wrapperStyle} className="assessment-wrapper" />
 }
