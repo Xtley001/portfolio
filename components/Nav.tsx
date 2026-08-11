@@ -69,6 +69,12 @@ export default function Nav({ githubUrl = 'https://github.com/Xtley001', logoTex
                 {l.label}
               </a>
             ))}
+            <Link href="/assessment"
+              style={{ fontFamily: 'var(--font-dm-mono)', fontSize: '11px', color: 'var(--accent-dim)', letterSpacing: '0.1em', transition: 'color 0.2s' }}
+              onMouseEnter={e => (e.currentTarget.style.color = 'var(--accent)')}
+              onMouseLeave={e => (e.currentTarget.style.color = 'var(--accent-dim)')}>
+              free assessment
+            </Link>
             <a href={githubUrl} target="_blank" rel="noopener noreferrer"
               style={{ fontFamily: 'var(--font-dm-mono)', fontSize: '11px', color: 'var(--accent)', letterSpacing: '0.1em', border: '1px solid var(--accent-dim)', padding: '4px 12px', transition: 'all 0.2s' }}
               onMouseEnter={e => { e.currentTarget.style.background = 'var(--accent)'; e.currentTarget.style.color = 'var(--bg)' }}
@@ -114,6 +120,10 @@ export default function Nav({ githubUrl = 'https://github.com/Xtley001', logoTex
             style={{ fontFamily: 'var(--font-dm-mono)', fontSize: '13px', color: 'var(--accent)', WebkitTapHighlightColor: 'transparent', padding: '8px 0' }}>
             github ↗
           </a>
+          <Link href="/assessment" onClick={() => setOpen(false)}
+            style={{ fontFamily: 'var(--font-dm-mono)', fontSize: '13px', color: 'var(--accent-dim)', WebkitTapHighlightColor: 'transparent', padding: '8px 0' }}>
+            free assessment
+          </Link>
         </div>
       )}
     </>

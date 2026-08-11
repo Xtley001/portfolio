@@ -122,6 +122,45 @@ Commit and push. Vercel deploys automatically.
 
 ---
 
+## Assessment Tool
+
+A lead-gen quiz at `/assessment` — 8 quick questions score a visitor's business across four
+dimensions (Foundation, Lead Gen, Conversion, Automation), then show a personalized result with
+a "Book a call" and "Message on WhatsApp" CTA. Every submission is emailed to the lead and to you,
+and stored in `content/leads/leads.jsonl` (viewable in `/admin` → **Leads**).
+
+```
+app/assessment/page.tsx                # route
+app/api/assessment/submit/route.ts     # scores server-side, saves lead, sends both emails
+app/api/admin/leads/route.ts           # admin-only: lists leads for the Leads tab
+components/assessment/*                # wizard UI
+lib/assessment/
+  questions.ts     # the 8 questions + point values (data only)
+  scoring.ts        # pure scoring function — no UI, no fetch
+  resultCopy.ts     # static per-outcome copy lookup
+  leads.ts          # append-only JSONL persistence + 24h dedupe
+  email.ts          # builds & sends both emails via Brevo
+content/leads/leads.jsonl              # created on first submission
+```
+
+### Env vars to set before going live
+
+```env
+BREVO_API_KEY=xkeysib-...
+BREVO_FROM_EMAIL=you@yourdomain.com
+BREVO_FROM_NAME=Business Growth Assessment
+LEAD_NOTIFY_EMAIL=you@yourdomain.com
+BOOKING_LINK=https://cal.com/your-handle
+OWNER_WHATSAPP=2348012345678
+```
+
+Same fallback pattern as the rest of the admin: without `GITHUB_TOKEN`/`GITHUB_OWNER`/`GITHUB_REPO`,
+leads are written to the local filesystem instead of committed to GitHub. Without `BREVO_API_KEY`,
+emails are logged to the server console instead of sent — the lead is still saved and the results
+screen still renders either way.
+
+---
+
 ## Local Development
 
 ```bash
