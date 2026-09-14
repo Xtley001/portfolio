@@ -98,6 +98,7 @@
     ]
   },
   "timeline": [
+    { "year": "2026", "event": "Released optimal-sizing: published multi-crate Rust workspace for provably optimal trade sizing across heterogeneous AMM curves." },
     { "year": "2026", "event": "Published Driftbrake crate on crates.io and docs.rs for simulation-to-reality drift detection." },
     { "year": "2026", "event": "Architected Corvus ($1.47M modeled net profit) and Goshawk ($15.9B debt coverage) liquidation engines." },
     { "year": "2026", "event": "Deployed Gyrfalcon Solana liquidation engine on Kamino Lend and HMBQT vault for Ranger Hackathon." },

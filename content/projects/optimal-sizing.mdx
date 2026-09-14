@@ -1,0 +1,69 @@
+---
+name: Optimal Sizing
+slug: optimal-sizing
+tagline: Published Rust workspace for profit-maximizing trade sizing across heterogeneous AMM liquidity curves
+year: 2026
+status: active
+tech:
+  - Rust
+  - Cargo Workspace
+  - CPMM / StableSwap / PMM
+  - Numerical Optimization
+  - Streaming Daemon (tokio)
+  - CLI, WASM & Python (PyO3)
+github: 'https://github.com/Xtley001/optimal-sizing'
+stats: 8 Crates · Provable Optimality · Zero-I/O Core
+ranking: 2
+category: Systems & Infrastructure
+featured: true
+---
+
+# Optimal Sizing: Published Rust Workspace for Profit-Maximizing Trade Sizing
+
+**optimal-sizing** is a high-performance, chain-agnostic Rust library and multi-crate workspace for profit-maximizing trade sizing against Constant Product Market Maker (CPMM), StableSwap, Proactive Market Maker (PMM), Concentrated Liquidity, Balancer, DODO, and CryptoSwap curves.
+
+## Core Problem & Engineering Philosophy
+
+Most trade sizing code in the wild relies on naive grid search or unexamined bisection loops, offering zero mathematical assurance of whether a computed size is actually optimal. `optimal-sizing` answers that directly by replacing heuristic guesswork with provable derivations:
+
+- **Constant-Product Sizing:** Solved in closed form and provably optimal (`ProvenOptimal`).
+- **StableSwap Sizing:** Solved via Newton's method with stated convergence conditions and invariant memoization (`NumericallyGuaranteed`).
+- **Proactive Market Maker (PMM) Sizing:** Golden-section search conditional on an active runtime unimodality check (`f''(Δ) <= 0`) rather than assumed curvature.
+- **Explicit Guarantee Tiers:** Every `SizingResult` carries a strongly-typed `GuaranteeTier` (`ProvenOptimal`, `NumericallyGuaranteed`, `EmpiricallyValidated`, or `ComposedFrom`), ensuring downstream execution engines never mistake heuristic estimates for proven mathematical bounds.
+
+## Multi-Crate Workspace Architecture
+
+The workspace generalizes trade-sizing logic into standalone, reusable infrastructure across 8 dedicated crates:
+
+```
+optimal-sizing/
+├── crates/
+│   ├── sizing-core/         # Pure mathematical optimization — zero I/O, zero chain dependencies
+│   ├── sizing-router/       # Multi-hop heterogeneous routing across arbitrary AMM curves
+│   ├── sizing-watch/        # Real-time streaming sizing daemon across DEX liquidity pools
+│   ├── sizing-cli/          # Command-line interface for standalone sizing and scripting
+│   ├── sizing-bench/        # Wall-clock latency and accuracy benchmarks vs. naive grid search
+│   ├── sizing-integration/  # Reference integration against live Ethereum mainnet state
+│   ├── sizing-wasm/         # WebAssembly boundary wrapper via wasm-bindgen
+│   └── sizing-py/           # PyO3 Python bindings verified in Python 3.12
+└── docs/
+    ├── whitepaper.md        # Full mathematical derivations, proofs, and convergence bounds
+    ├── ARCHITECTURE.md      # Module boundaries, data flow invariants, and non-goals
+    ├── API.md               # Public interface specifications and trait contracts
+    └── TESTING.md           # Testing contract and property-test suites
+```
+
+## Curve Implementations & Optimization Mechanics
+
+- **`Cpmm` (Constant Product / Uniswap v2):** Closed-form analytic solution with fixed gas and execution costs factored directly into the objective function.
+- **`StableSwap` (Curve Invariant):** Solves the implicit Curve invariant via Newton's method. Invariant $D$ is memoized per invocation to prevent redundant re-solves (~1.5x measured speedup), paired with a $\sqrt{\text{tolerance}}$ finite-difference derivative step to eliminate numerical cancellation against the convergence noise floor.
+- **`Pmm` (WooFi v2 Proactive Market Maker):** Golden-section search with dynamic unimodality checking that rejects non-concave intervals in the reverse regime. Search boundaries are dynamically derived from pool poles and quote-reserve capacity limits.
+- **`ConcentratedLiquidity` (Uniswap v3):** Single-tick range sizing utilizing virtual reserves to achieve closed-form optimality (`ProvenOptimal`), verified against CPMM baselines.
+- **`sizing-router` (Multi-Hop Heterogeneous Routing):** Joint multi-variable optimization over leg-1 input size across heterogeneous curves rather than post-facto per-leg composition. Reports `GuaranteeTier::ComposedFrom(Vec<GuaranteeTier>)`.
+
+## Performance, Tooling & Verification
+
+- **Live State Integration:** `sizing-integration` pulls live state from Uniswap v2 USDC/WETH and Curve 3pool on Ethereum mainnet, leveraging multicall batching to compress 10 RPC roundtrips down to 3.
+- **Real-Time Daemon:** `sizing-watch` continuously streams updates and re-evaluates optimal capital allocation over active DEX liquidity pools.
+- **Cross-Language Support:** First-class bindings for Python (PyO3) and WebAssembly (`wasm-bindgen`) enabling seamless execution in data pipelines and browser environments.
+- **Strict Verification Contract:** Property-tested with `proptest`, zero-I/O boundary enforced on `sizing-core` via `cargo tree` audit, and CI enforced on every commit with `cargo clippy --workspace --all-targets -- -D warnings`.
