@@ -26,12 +26,7 @@
       "items": ["GARCH", "Statistical Arbitrage", "Stochastic Volatility", "Monte Carlo", "Delta-Neutral Hedging", "Order Flow"]
     }
   ],
-  "stats": [
-    { "value": "$1.8M+", "label": "Modeled Net Capture" },
-    { "value": "crates.io", "label": "Published Rust Crate" },
-    { "value": "6", "label": "Lending Protocols Covered" },
-    { "value": "8", "label": "Chains Architected" }
-  ],
+  "stats": [],
   "focus": [
     {
       "area": "MEV & Liquidation Systems",
