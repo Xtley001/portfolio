@@ -1,0 +1,37 @@
+---
+name: Peregrine
+slug: peregrine
+tagline: Flash-loan MEV system for the Monad L1 (4 atomic strategies)
+year: 2026
+status: active
+tech:
+  - Rust
+  - Solidity/Foundry
+  - Monad IPC
+  - Morpho Vault
+  - Uniswap V4
+  - Pyth
+github: 'https://github.com/Xtley001/peregine'
+live: ''
+stats: ~500ms Block Loop · REVM Fork Simulation
+ranking: 13
+category: MEV & Liquidations
+featured: true
+---
+
+# Peregrine: Flash-Loan MEV System for Monad L1
+
+**Peregrine** is an atomic flash-loan MEV pipeline purpose-built for the ultra-high-throughput **Monad L1**, operating within Monad's ~500ms block loop.
+
+## Four High-Frequency Strategies
+
+1. **DIVE (Cross-Venue Arbitrage):** Resolves pricing misalignments between Monad AMM pools and on-chain central limit orderbooks (CLOBs).
+2. **MOLT (LST Depeg Arbitrage):** Captures Liquid Staking Token discounts (shMON, sMON, gMON) against true Net Asset Value (NAV).
+3. **STRIKE (Flash Liquidations):** Rapid liquidation capture across Monad lending markets (Neverland protocol).
+4. **PULSE (Oracle Backrunning):** Detects Pyth oracle update transactions in flight and atomically trades DEX price lag before subsequent blocks rebalance.
+
+## Execution Guardrails
+
+- **Forked REVM Pre-Simulation:** Simulates all transactions against local state within a strict 50ms timeout window.
+- **Phantom-Profit Protection:** Automatic emergency halt triggers if on-chain profit receipts diverge from pre-flight REVM forecasts.
+- **Dedicated Strategy EOAs:** Four separate signer wallets with distinct nonces to prevent pipeline stalls.

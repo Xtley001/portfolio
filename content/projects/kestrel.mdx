@@ -1,14 +1,43 @@
 ---
-name: "Kestrel"
-slug: "kestrel"
-tagline: "Multi-chain yield-bearing stablecoin spread arbitrage"
+name: Kestrel
+slug: kestrel
+tagline: >-
+  MEV arbitrage on yield-bearing stablecoin mispricings (Ethereum, Arbitrum,
+  Gnosis)
 year: 2026
-status: "active"
-tech: ["Rust", "Solidity", "Ethereum", "Arbitrum", "Gnosis"]
-github: "https://github.com/Xtley001/kestrel"
-live: ""
-image: ""
+status: active
+tech:
+  - Rust
+  - Solidity/Foundry
+  - Reth IPC
+  - revm
+  - SQLite
+  - WireGuard
+github: 'https://github.com/Xtley001/kestrel'
+live: ''
+stats: 5 Strategies Across 3 Chains
+ranking: 7
+category: MEV & Liquidations
 featured: true
 ---
 
-Five parallel flash loan strategies across Ethereum, Arbitrum, and Gnosis targeting sUSDS, sDAI, sUSDe, and sxDAI. Whale mempool detector. MakerDAO SSR rate monitor. Cascade model for follow-on imbalances. Multi-builder broadcast across six builders simultaneously.
+# Kestrel: Yield-Bearing Stablecoin MEV Arbitrage
+
+**Kestrel** is a multi-chain MEV searcher targeting discrepancies between secondary market DEX pool prices and the deterministic on-chain ERC-4626 redemption values of yield-bearing assets (sUSDS, sDAI, sUSDe, sxDAI).
+
+## Multi-Chain Strategy Matrix
+
+- **Cross-Chain Deployment:** Operates across **Ethereum Mainnet**, **Arbitrum One**, and **Gnosis Chain**.
+- **Five Specialized Strategies:**
+  - MakerDAO flash-mint redemption arbitrage.
+  - sUSDe cross-venue spread capture.
+  - ERC-4626 vault deposit/redemption rate parity backruns.
+  - Sky Savings Rate dynamic threshold execution.
+  - Whale-trade mempool detection with pre-computed optimal flash sizes.
+
+## Core Technical Features
+
+- **Local REVM Simulation:** Every identified arb opportunity is evaluated through an in-memory forked REVM state machine within a 50ms deadline prior to bundle construction.
+- **Bisection Size Optimization:** Golden-section and bisection numerical optimization to calculate mathematically optimal borrow sizes balancing fee drag against pool price impact.
+- **Multi-Builder Relays:** Real-time bundle broadcasting to major block builders with dynamic gas-ceiling kill switches and an embedded SQLite P&L audit ledger.
+- **Contract Security:** Solidity execution contracts incorporate Uniswap V4 hook compatibility and a 24-hour timelock controller on administrative functions.

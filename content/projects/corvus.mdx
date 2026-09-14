@@ -1,0 +1,47 @@
+---
+name: Corvus
+slug: corvus
+tagline: >-
+  Flash-loan MEV & liquidation system for Base (Morpho Blue) and Arbitrum (Aave
+  V3)
+year: 2026
+status: active
+tech:
+  - Rust
+  - Solidity 0.8.24
+  - Foundry
+  - op-geth IPC
+  - Prometheus
+github: 'https://github.com/Xtley001/corvus'
+live: ''
+stats: $1.47M Modeled Net Profit · 584 Annual Events
+ranking: 2
+category: MEV & Liquidations
+featured: true
+---
+
+# Corvus: Flash-Loan MEV & Multi-Protocol Liquidation System
+
+**Corvus** is a high-performance two-chain liquidation and arbitrage engine operating across **Base** and **Arbitrum One**, backed by rigorous protocol-level economic and microstructural research.
+
+## Core Target Markets & Protocol Coverage
+
+- **Base (Morpho Blue):** Targets Morpho Blue's **$1.89B** in active borrowed debt across the cbBTC/USDC, WETH/USDC, and weETH/WETH markets (86.0% to 91.5% LLTV, up to 1.16x liquidation bonus). Full contract registries mapped: core Morpho Blue contract, aToken/debt-token trackers, and Chainlink oracle aggregators.
+- **Arbitrum (Aave V3):** Targets Aave V3's WBTC reserve (73% LTV, 83% liquidation threshold, 8.5% liquidation bonus, 50% close factor, $250M supply cap). Includes clip-size-aware DEX routing (Uniswap V3/V4, Camelot, Curve, Balancer) modeled from $50k to $1M clips with slippage parameters ranging 0.012% to 4.15%.
+
+## Quantitative Economics & Modeling
+
+- **12-Month Liquidation Model:** Built on a comprehensive historical frequency and economics simulation:
+  - **584** combined annual liquidation events.
+  - **$90.01M** combined annual liquidated volume across both ecosystems.
+  - **$1,473,642 modeled net annual profit projection** (~$122,804/month) at a conservative 20% (Base) / 18% (Arbitrum) capture-rate assumption, strictly net of gas, DEX slippage, and MEV builder tips.
+
+## Execution Architecture
+
+- **Active Strategies:**
+  - **S1:** Cross-DEX arbitrage (Aerodrome vs. Uniswap V3).
+  - **S2:** Triangular multi-hop arbitrage (3-hop atomic cycles).
+  - **S3:** Protocol liquidations across Aave V3 and Morpho Blue.
+  - **S4:** Arbitrum WBTC liquidation path with dynamic multi-pool route splitting.
+- **On-Chain Security & Profit Guards:** `FlashExecutor.sol` contract enforces strict on-chain profit gates, protocol/router address whitelists, and automatic cold-wallet profit sweeps. Privileged administrative rights are locked behind an immutable Gnosis Safe.
+- **Co-Located Infrastructure:** Connects via IPC to local op-geth and Nitro nodes co-located in Frankfurt/Falkenstein (&lt;2.5ms sequencer ping) with dual submission via Flashbots Relay and Arbitrum Timeboost.

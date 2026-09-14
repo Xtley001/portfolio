@@ -1,0 +1,49 @@
+---
+name: Goshawk
+slug: goshawk
+tagline: >-
+  Multi-protocol liquidation engine for Ethereum Mainnet across 6 lending
+  protocols
+year: 2026
+status: active
+tech:
+  - Rust
+  - Solidity
+  - Foundry
+  - Reth IPC
+  - revm
+  - Prometheus
+github: 'https://github.com/Xtley001/goshawk'
+live: ''
+stats: $15.9B Active Borrowed Debt Covered
+ranking: 3
+category: MEV & Liquidations
+featured: true
+---
+
+# Goshawk: Multi-Protocol Liquidation Engine for Ethereum Mainnet
+
+**Goshawk** is a low-latency multi-protocol liquidation engine engineered for Ethereum Mainnet, monitoring and executing liquidations across six foundational lending protocols.
+
+## Market Scope ($15.9B Active Debt)
+
+Goshawk provides real-time state tracking across protocols representing **$15.9B in active borrowed debt** against **$27.2B in supplied TVL** (58.43% aggregate utilization):
+1. **Aave V3:** $10.18B active debt via `liquidationCall`
+2. **Morpho Blue:** $2.19B active debt via `liquidate`
+3. **Spark:** $2.10B active debt
+4. **Fluid:** $628M active debt via the Fluid Liquidity Layer
+5. **Compound V3:** $581M active debt via `absorb`
+6. **Euler V2:** $230M active debt via `liquidateVault`
+
+## Gas Break-Even Economics & Regime Modeling
+
+- **Dynamic Gas Regimes:** Operates adaptive minimum clip sizes based on network congestion regimes (Normal vs. Crash/Cascade Spike). During volatility spikes where gas costs range from $38.50 to $280 per tx, clip thresholds scale dynamically from $5,000 to $25,000.
+- **Protocol Clear Thresholds:**
+  - *Morpho Blue:* Clears at $900 debt (120k gas, 90% builder share, nets ~$396.40 on a $100k liquidation).
+  - *Aave V3:* Clears at $2,700 debt (360k gas, nets ~$389.20 on a $100k liquidation).
+
+## Liquidity Sourcing & MEV Pipeline
+
+- **Zero-Fee Capital Sourcing:** Sourced fee-free from Morpho Blue Flash Loans, Balancer V2, and Spark/Maker DSR Flash, with fallback to Aave V3 FlashLoanSimple.
+- **Oracle Pre-Filtering:** Chainlink price feeds (ETH/USD, BTC/USD, wstETH/ETH, USDC/USD, cbBTC/USD) monitored against deviation and heartbeat thresholds prior to block-level eligibility scans.
+- **Builder Infrastructure:** Bundles formatted and submitted directly through Flashbots Relay (88% builder market share) with redundant low-latency submissions to Titan Builder and Beaver Build.

@@ -1,16 +1,32 @@
 ---
-name: "HMBQT"
-slug: "hmbqt"
-tagline: "Quantitative strategy infrastructure"
+name: HMBQT
+slug: hmbqt
+tagline: >-
+  Hummingbird Quant v9 — Solana order-flow trading vault (Ranger Finance
+  Hackathon)
 year: 2026
-status: "stealth"
-tech: ["TypeScript", "Rust"]
-github: ""
-live: ""
-image: ""
+status: active
+tech:
+  - TypeScript
+  - Rust
+  - Drift Protocol SDK
+  - Helius RPC
+  - Ranger Earn
+github: 'https://github.com/Xtley001/hmbqt'
+live: ''
+stats: Ranger Finance Hackathon 2026 · 5 Strategies
+ranking: 11
+category: Quant & Machine Learning
 featured: true
 ---
 
-Quantitative strategy infrastructure layer. Stealth.
+# HMBQT: Hummingbird Quant v9 Solana Trading Vault
 
-*Details restricted.*
+**HMBQT** is a multi-strategy quantitative order-flow trading vault built on **Ranger Earn** (Solana) executing perpetual futures strategies against **Drift Protocol**, engineered for the official Ranger Finance "Build-A-Bear" Hackathon 2026.
+
+## Strategy Modules
+
+- **Five Integrated Strategies:** Deploys statistical arbitrage, order-flow imbalance scalping, funding rate capture, basis trading, and momentum filters across Solana perps.
+- **Real-Time Data Streaming:** Low-latency ingestion of L2 orderbooks and executed trade prints via Drift's decentralized orderbook (DLOB) WebSocket feeds without authentication bottleneck.
+- **Helius RPC Execution:** Staked priority execution via Helius RPC nodes interfacing with Drift's on-chain programs.
+- **Historical Backtesting Engine:** Backtested against high-resolution trade ticks sourced from Binance Vision aggTrade historical archives.

@@ -1,0 +1,36 @@
+---
+name: Skua
+slug: skua
+tagline: 'Atomic flash-loan arbitrage system for HyperEVM (Hyperliquid L1, Chain ID 999)'
+year: 2026
+status: active
+tech:
+  - Rust
+  - Solidity 0.8.24
+  - Foundry
+  - Docker Compose
+  - Prometheus
+github: 'https://github.com/Xtley001/skua'
+live: ''
+stats: Multi-Wallet Nonce Management · 4 Strategies
+ranking: 8
+category: MEV & Liquidations
+featured: true
+---
+
+# Skua: Atomic Flash-Loan Arbitrage for HyperEVM
+
+**Skua** is an atomic flash-loan execution and arbitrage framework tailored specifically for **HyperEVM** (the EVM-compatible execution layer of the Hyperliquid L1, Chain ID 999).
+
+## Four Core Strategies
+
+1. **EVM to HyperCore Arbitrage:** Two-phase CoreWriter-mediated arbitrage bridging EVM spot prices with HyperCore perpetual orderbooks.
+2. **HyperLend Liquidations:** Health-factor tracking and atomic liquidation execution on HyperLend pools.
+3. **Triangular Arbitrage:** 3-hop atomic DEX cycles resolving pricing inefficiencies between newly launched HyperEVM AMMs.
+4. **Stablecoin Depeg Capture:** Opportunistic arbitrage when pegged assets oscillate beyond fee boundaries.
+
+## Architecture Highlights
+
+- **Multi-Wallet Nonce Orchestration:** Concurrently manages 5 to 10 independent EOA wallets with 8 nonces each to bypass transaction queue serialization.
+- **Gas-Priority Fast Path:** Optimized for `eth_sendRawTransactionSync` with golden-section search optimal sizing, tailored for HyperEVM's deterministic ordering without standard Flashbots auctions.
+- **Fail-Safe Circuit Breakers:** Real-time rolling gas-spend kill switch and per-trade capital caps monitored by Axum telemetry and Prometheus metrics.

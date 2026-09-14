@@ -1,0 +1,42 @@
+---
+name: SmartFlow EA v2
+slug: smartflow-ea-v2
+tagline: >-
+  Systematic Volume Profile & VWAP order flow arbitrage (2-year verified tick
+  backtest)
+year: 2026
+status: active
+tech:
+  - MQL5
+  - Volume Profile
+  - Anchored VWAP
+  - Order Flow
+  - MetaTrader 5
+github: 'https://github.com/Xtley001/Multi-symbol-Vwap-Volume-Profile-EA-MT5'
+live: /Christley_Olubela_Quantitative_TearSheet.pdf
+stats: 2.72 Sharpe (2-Yr) · +93.1% Net Gain · 876 Trades
+ranking: 9
+category: Systematic Trading
+featured: true
+---
+
+# SmartFlow EA v2: Systematic Volume Profile & VWAP Order Flow Arbitrage
+
+**SmartFlow EA v2** is an institutional systematic intraday trading engine capturing structural liquidity imbalances around Volume Profile value areas and Anchored VWAP, verified across a continuous 2-year tick-by-tick backtest on Gold (`XAUUSD`) and Dow Jones (`US30`).
+
+## 2-Year Verified Performance (2024.08.01 – 2026.08.01)
+
+- **Realized Sharpe Ratio:** **2.72 on Gold (`XAUUSD`)**, with a 1-year peak efficiency sub-window of **3.92**, exceeding institutional allocation hurdles.
+- **Blended Dual-Engine Return:** **+93.10% net profit (+38.9% CAGR)** over 24 months across **876 executed trades** modeled with live floating spreads and broker commissions.
+- **Strict Drawdown Containment:** Maximum portfolio equity drawdown strictly contained to **19.40%** with a **2.85 Recovery Factor** and **1.22 Profit Factor**.
+- **Zero Overnight Gap Risk:** Average trade holding period of **1 to 6 hours** with strict intraday close; 0 overnight swap charges and 0 weekend gap risk.
+
+## Quantitative Microstructure Architecture
+
+- **Three-Pillar Confluence Filter:**
+  1. *Daily Anchored VWAP Slope:* Confirms macro institutional trend bias before evaluating entries.
+  2. *Volume Profile Distribution:* Classifies profile distribution (P-shape bullish expansion vs. B-shape bearish liquidation).
+  3. *High-Volume Node (HVN) Retest:* Requires price interaction at institutional value nodes; orders are rejected in low-volume liquidity voids.
+- **Dynamic Asymmetric Payoff:** Enforces a strict 1.0% risk per trade targeting a 3:1+ payoff ratio, with automated breakeven ratcheting at +1R (+2 pips) to eliminate adverse excursions.
+- **Cross-Asset Alpha Complementarity:** Combines US30 front-week institutional rebalancing alpha (Monday/Tuesday) with Gold end-week macro hedging alpha (Thursday/Friday) for portfolio-level P&L smoothing.
+- **Verified Tear Sheet:** Complete institutional tear sheet with equity curves, holding duration distributions, and multi-asset metrics available as [TearSheet PDF](/Christley_Olubela_Quantitative_TearSheet.pdf).

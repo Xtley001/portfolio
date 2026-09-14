@@ -45,6 +45,15 @@ const GoodreadsIcon = () => (
     <path d="M11.43 23.995c-3.608-.208-6.274-2.077-6.448-5.488.695.007 1.375-.013 2.07-.006.224 1.342 1.065 2.43 2.683 3.026 1.583.496 3.737.46 5.082-.174 2.198-1.084 2.433-3.862 2.374-6.126a11.07 11.07 0 0 1-1.096 1.735c-1.193 1.448-2.86 2.133-4.787 2.012-1.67-.09-3.145-.83-4.233-2.118C5.988 15.716 5.622 13.9 5.655 12c-.03-2.075.39-3.89 1.394-5.33 1.184-1.713 3.032-2.635 5.135-2.573 2.264.048 3.898 1.388 4.637 3.07h.053V4.285h2.013V17.33c.002 2.213-.173 4.008-1.052 5.316-1.496 2.157-4.307 2.52-6.415 2.35zm.68-20.335c-1.52-.04-2.906.65-3.744 1.878-.91 1.165-1.243 2.733-1.244 4.387-.013 1.827.284 3.51 1.275 4.65.91 1.016 2.271 1.544 3.712 1.458 1.412-.085 2.56-.694 3.363-1.733.988-1.213 1.29-2.84 1.46-4.447-.077-1.645-.364-3.29-1.352-4.524-.88-1.085-2.08-1.64-3.47-1.669z"/>
   </svg>
 )
+const ResumeIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+    <polyline points="14 2 14 8 20 8"/>
+    <line x1="16" y1="13" x2="8" y2="13"/>
+    <line x1="16" y1="17" x2="8" y2="17"/>
+    <line x1="10" y1="9" x2="8" y2="9"/>
+  </svg>
+)
 const ArrowIcon = () => (
   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <path d="M7 17L17 7M7 7h10v10"/>
@@ -66,6 +75,7 @@ export default function Contact({ contact }: { contact: SiteData['contact'] }) {
   }, [])
 
   const links = [
+    { label: 'Resume', href: '/Christley_Olubela_Resume.pdf', display: 'Christley_Olubela_Resume.pdf ↗', icon: <ResumeIcon /> },
     contact.email    && { label: 'Email',      href: `mailto:${contact.email}`,  display: contact.email,                                                                   icon: <EmailIcon />    },
     contact.github   && { label: 'GitHub',     href: contact.github,             display: contact.github.replace('https://github.com/', ''),                               icon: <GithubIcon />   },
     contact.twitter  && { label: 'X / Twitter',href: contact.twitter,            display: '@' + (contact.twitter.split('/').pop() || ''),                                  icon: <TwitterIcon />  },
@@ -115,8 +125,8 @@ export default function Contact({ contact }: { contact: SiteData['contact'] }) {
             <a
               key={link.label}
               href={link.href}
-              target={link.href.startsWith('http') ? '_blank' : undefined}
-              rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+              target={link.href.startsWith('http') || link.href.startsWith('/resume') ? '_blank' : undefined}
+              rel={link.href.startsWith('http') || link.href.startsWith('/resume') ? 'noopener noreferrer' : undefined}
               style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '16px 0', borderBottom: '1px solid var(--border)', transition: 'all 0.2s', color: 'var(--text-dim)', minWidth: 0, overflow: 'hidden', WebkitTapHighlightColor: 'transparent' }}
               onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = 'var(--accent)'; (e.currentTarget as HTMLElement).style.paddingLeft = '4px' }}
               onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = 'var(--text-dim)'; (e.currentTarget as HTMLElement).style.paddingLeft = '0' }}

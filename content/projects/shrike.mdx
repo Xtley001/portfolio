@@ -1,0 +1,32 @@
+---
+name: Shrike
+slug: shrike
+tagline: Flash-loan cross-DEX arbitrage bot for Berachain (Chain ID 80094)
+year: 2026
+status: active
+tech:
+  - Rust
+  - Solidity
+  - Foundry
+  - Kodiak
+  - WooFi
+  - BrownFi
+  - BEX
+github: 'https://github.com/Xtley001/shrike'
+live: ''
+stats: AMM Binary Search + PMM Sizing
+ranking: 12
+category: MEV & Liquidations
+featured: true
+---
+
+# Shrike: Flash-Loan Cross-DEX Arbitrage Bot for Berachain
+
+**Shrike** is an atomic flash-loan arbitrage searcher built for **Berachain** (Chain ID 80094), continuously scanning pool liquidity and executing multi-venue cycles through a dedicated owner-gated contract (`ShrikeArb.sol`).
+
+## Strategy & Pricing Mathematics
+
+- **Multi-DEX Coverage:** Actively tracks pools across Kodiak V3/V2, WooFi, BrownFi, and BEX.
+- **Position Optimizer:** Combines AMM binary search over concentrated liquidity ticks with WooFi's Proactive Market Maker (PMM) algorithmic pricing equations to pinpoint profit-maximizing trade sizes.
+- **On-Chain Slippage Enforcement:** Per-leg slippage controls and strict net-profit checks prevent miner exploitation and frontrunning.
+- **Risk System:** Persistent SQLite transaction logging (`RevertTracker`), daily gas ceiling enforcement, and automatic circuit breakers on consecutive reverts.

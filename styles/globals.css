@@ -88,13 +88,6 @@ a { color: inherit; text-decoration: none; }
   section, article { overflow-x: hidden; }
 }
 
-@media (max-height: 500px) {
-  .assessment-wrapper {
-    justify-content: flex-start !important;
-    padding-top: 70px !important;
-    padding-bottom: 24px !important;
-  }
-}
 
 @media (max-width: 480px) {
   .hero-name { font-size: 8.5vw !important; white-space: nowrap !important; word-break: keep-all !important; }
@@ -104,3 +97,72 @@ a { color: inherit; text-decoration: none; }
 }
 
 @media (hover: none) { .cursor, .cursor-ring { display: none !important; } body { cursor: auto !important; } }
+
+/* PRINT STYLES - Fix printed page alignment and eliminate overlapping elements */
+@media print {
+  nav,
+  button,
+  .cursor,
+  .cursor-ring,
+  a[href^="#"],
+  a[href*="/admin"] {
+    display: none !important;
+  }
+
+  body, html {
+    background: #0a0a0a !important;
+    color: #e5e5e5 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    font-size: 12px !important;
+  }
+
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  section {
+    padding: 28px 0 !important;
+    max-width: 100% !important;
+    break-inside: auto !important;
+    page-break-inside: auto !important;
+  }
+
+  .projects-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
+    background: transparent !important;
+    break-inside: auto !important;
+    page-break-inside: auto !important;
+  }
+
+  .projects-grid > div {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+    border: 1px solid var(--border) !important;
+    margin-bottom: 12px !important;
+  }
+
+  .stack-grid,
+  .focus-grid,
+  .timeline-grid,
+  .contact-grid {
+    break-inside: auto !important;
+    page-break-inside: auto !important;
+  }
+
+  .stack-grid > div,
+  .focus-grid > div,
+  .timeline-item,
+  h1, h2, h3 {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+}

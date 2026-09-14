@@ -1,0 +1,29 @@
+---
+name: Intraday GARCH Strategy
+slug: intraday-garch-strategy
+tagline: Rolling-window GARCH volatility forecasting & dynamic regime filter
+year: 2025
+status: completed
+tech:
+  - Python
+  - GARCH
+  - Jupyter
+  - statsmodels
+  - Sharpe Optimization
+github: 'https://github.com/Xtley001/Intraday-Strategy-Using-GARCH-Model'
+live: ''
+stats: 1-Day Ahead Volatility Filter
+ranking: 17
+category: Quant & Machine Learning
+featured: false
+---
+
+# Intraday Strategy Using GARCH Volatility Modeling
+
+A quantitative research implementation fitting rolling-window Generalized Autoregressive Conditional Heteroskedasticity (GARCH) models on daily log returns to forecast 1-day-ahead volatility and guide systematic strategy execution.
+
+## Research & Methodology
+
+- **Volatility Forecasting:** Employs GARCH(1,1) to estimate conditional variance, filtering out trades during regimes where forecast volatility exceeds risk thresholds.
+- **Signal Synergy:** Combines the GARCH regime filter with momentum and mean-reversion triggers (RSI and Bollinger Bands).
+- **Performance Evaluation:** Jupyter notebook featuring comprehensive backtest metrics including cumulative returns, maximum drawdown curves, and Sharpe ratio sensitivity visualizations.

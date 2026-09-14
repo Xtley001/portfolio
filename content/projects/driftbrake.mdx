@@ -1,0 +1,35 @@
+---
+name: Driftbrake
+slug: driftbrake
+tagline: Published Rust crate for simulation-to-reality drift detection
+year: 2026
+status: active
+tech:
+  - Rust
+  - REVM
+  - tokio
+  - mdBook
+  - GitHub Actions CI
+github: 'https://github.com/Xtley001/driftbrake'
+live: 'https://crates.io/crates/driftbrake'
+docs: 'https://docs.rs/driftbrake'
+book: 'https://xtley001.github.io/driftbrake'
+cratesIo: 'https://crates.io/crates/driftbrake'
+stats: crates.io · docs.rs · MIT Licensed
+ranking: 1
+category: Systems & Infrastructure
+featured: true
+---
+
+# Driftbrake: Published Rust Crate for Simulation-to-Reality Drift Detection
+
+**Driftbrake** is a published, production-grade Rust library (`cargo add driftbrake`) designed to pre-flight simulate transactions through REVM and halt live trading strategies the moment realized on-chain profit drifts from simulated predictions, before phantom drift compounds into real capital loss.
+
+## Architecture & Design Principles
+
+- **Published & Installable:** Available on [crates.io](https://crates.io/crates/driftbrake) with full API documentation on [docs.rs](https://docs.rs/driftbrake) and comprehensive architecture guide on [mdBook](https://xtley001.github.io/driftbrake).
+- **Trait-Based Chain-Agnostic Core:** Exposes a clean, minimal set of core traits (`ProfitDecoder`, `RealizedProfitDecoder`, `SimEngine`, `HaltPolicy`) with zero mandatory REVM or Alloy dependencies.
+- **Swappable Backends:** Concrete REVM execution ships in a dedicated, opt-in `driftbrake-revm-backend` crate, enabling zero-overhead swaps to alternative VM simulation engines (such as LiteSVM or custom state-machine forks).
+- **Dual-Guard Halt Policy:** Combines a fast-trip threshold for sudden breaks with a sliding-window accumulator for slow bleeding. Guard thresholds are derived from a synthetic parameter sweep plotting false-halt rates against missed-catch rates.
+- **Reproducible Benchmark Harness:** Includes a dedicated benchmarking suite (`cargo run -p driftbrake-benchmark`) to validate performance under microsecond-scale execution constraints.
+- **Doctested & CI Enforced:** Rigorous GitHub Actions CI enforcing full test coverage, documentation builds, clippy checks, and doctests ensuring the README and documentation never diverge from compiler truth.

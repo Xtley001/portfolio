@@ -95,14 +95,42 @@ export default function Hero({ hero }: { hero: SiteData['hero'] }) {
           <p style={{ fontFamily: 'var(--font-dm-mono)', fontSize: 'clamp(0.78rem, 2vw, 1rem)', color: 'var(--text-dim)', maxWidth: '500px', lineHeight: 1.9, whiteSpace: 'pre-line' }}>
             {hero.tagline}
           </p>
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '4px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '8px' }}>
             {hero.available && (
               <span style={{ fontFamily: 'var(--font-dm-mono)', fontSize: '12px', color: 'var(--accent)', letterSpacing: '0.15em', textTransform: 'uppercase' }}>
                 ● Available
               </span>
             )}
-            <span style={{ fontFamily: 'var(--font-dm-mono)', fontSize: '12px', color: 'var(--text-faint)', letterSpacing: '0.1em' }}>
-            </span>
+            <a
+              href="/Christley_Olubela_Resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                fontFamily: 'var(--font-dm-mono)',
+                fontSize: '11px',
+                color: 'var(--accent)',
+                letterSpacing: '0.12em',
+                textTransform: 'uppercase',
+                border: '1px solid var(--accent-dim)',
+                padding: '6px 14px',
+                borderRadius: '2px',
+                textDecoration: 'none',
+                transition: 'all 0.2s ease',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '6px',
+              }}
+              onMouseEnter={e => {
+                e.currentTarget.style.background = 'var(--accent)'
+                e.currentTarget.style.color = 'var(--bg)'
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.background = 'transparent'
+                e.currentTarget.style.color = 'var(--accent)'
+              }}
+            >
+              resume ↗
+            </a>
           </div>
         </div>
 

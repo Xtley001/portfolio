@@ -11,60 +11,77 @@
   "stack": [
     {
       "category": "Languages",
-      "items": ["Rust", "Python", "TypeScript", "Solidity"]
+      "items": ["Rust", "Python", "TypeScript", "Solidity", "MQL5", "SQL", "R"]
     },
     {
-      "category": "Chains & Protocols",
-      "items": ["Ethereum", "Solana", "Hyperliquid", "Uniswap V3", "Aave"]
+      "category": "Core Rust & Systems",
+      "items": ["Published Crates", "REVM Simulation", "LiteSVM", "Tokio", "Rayon", "Cargo Workspaces", "Zero-Copy"]
     },
     {
-      "category": "Infrastructure",
-      "items": ["FastAPI", "Docker", "PostgreSQL", "Redis", "WebSockets"]
+      "category": "Blockchain & DeFi",
+      "items": ["Flash Loans", "Protocol Liquidations", "MEV Extraction", "Foundry", "Jito Bundles", "Geyser gRPC", "Timeboost"]
     },
     {
       "category": "Quant & Math",
-      "items": ["Game Theory", "Stochastic Calculus", "Statistical Arbitrage", "Monte Carlo"]
+      "items": ["GARCH", "Statistical Arbitrage", "Stochastic Volatility", "Monte Carlo", "Delta-Neutral Hedging", "Order Flow"]
     }
   ],
-  "stats": [],
+  "stats": [
+    { "value": "$1.8M+", "label": "Modeled Net Capture" },
+    { "value": "crates.io", "label": "Published Rust Crate" },
+    { "value": "6", "label": "Lending Protocols Covered" },
+    { "value": "8", "label": "Chains Architected" }
+  ],
   "focus": [
     {
+      "area": "MEV & Liquidation Systems",
+      "subs": ["Protocol Liquidations", "Simulation Drift (Driftbrake)", "Cross-DEX Arbitrage"]
+    },
+    {
+      "area": "Systems & Core Rust",
+      "subs": ["Published Crates", "REVM / LiteSVM Simulation", "Trait-Based API Design"]
+    },
+    {
       "area": "Delta-Neutral DeFi",
-      "subs": ["Funding Rate Arbitrage", "Vault Architecture", "Hedge Rebalancing"]
+      "subs": ["Funding Rate Harvesting", "Hyperliquid Perpetuals", "Basis Risk Modeling"]
     },
     {
-      "area": "Flash Loan Systems",
-      "subs": ["Atomic Arbitrage", "Liquidation Capture", "MEV Extraction"]
-    },
-    {
-      "area": "AMM Market Making",
-      "subs": ["Liquidity Provision", "IL Mitigation", "Fee Optimization"]
-    },
-    {
-      "area": "On-Chain Microstructure",
-      "subs": ["Order Flow Analysis", "Mempool Monitoring", "Price Impact Modeling"]
+      "area": "Microstructure & Quant",
+      "subs": ["Order Flow Analysis", "GARCH Volatility", "Mempool Monitoring"]
     }
   ],
   "experience": [
     {
-      "year": "2026 →",
-      "role": "Quantitative Trader",
-      "org": "Algorealm Inc.",
-      "note": "Iowa City · Hybrid"
+      "year": "Apr 2026 → Present",
+      "role": "Rust Mentor",
+      "org": "H.E.R. DAO Rust School",
+      "note": "Remote · Systems programming, ownership models, concurrency, production DeFi crates"
     },
     {
-      "year": "2025 → 2026",
+      "year": "Jan 2026 → Mar 2026",
+      "role": "Rust Engineer",
+      "org": "Algorealm Inc.",
+      "note": "Iowa City · Hybrid · Delta-neutral execution infrastructure on Hyperliquid, GARCH modeling, order flow"
+    },
+    {
+      "year": "Mar 2025 → Jun 2025",
       "role": "Backend Engineer Intern",
       "org": "Beetle",
-      "note": "AI & trading infrastructure"
+      "note": "Hybrid · Algorithmic trading bots, automated risk controls, AI-powered event pipelines"
     }
   ],
   "education": [
     {
-      "year": "Ongoing",
-      "role": "B.Sc. Computer Science",
+      "year": "B.Sc.",
+      "role": "Computer Science",
       "org": "University of Ibadan",
-      "note": ""
+      "note": "Nigeria"
+    },
+    {
+      "year": "SSCE",
+      "role": "High School Diploma",
+      "org": "The International School, OOU",
+      "note": "Ago-Iwoye, Nigeria"
     }
   ],
   "persona": {
@@ -80,19 +97,24 @@
     ],
     "outside": [
       { "label": "Swimming", "note": "" },
-      { "label": "Reading", "note": "" },
+      { "label": "Reading", "note": "Goodreads" },
       { "label": "Movies", "note": "" },
-      { "label": "Recipes", "note": "" }
+      { "label": "Cooking", "note": "" }
     ]
   },
-  "timeline": [],
+  "timeline": [
+    { "year": "2026", "event": "Published Driftbrake crate on crates.io and docs.rs for simulation-to-reality drift detection." },
+    { "year": "2026", "event": "Architected Corvus ($1.47M modeled net profit) and Goshawk ($15.9B debt coverage) liquidation engines." },
+    { "year": "2026", "event": "Deployed Gyrfalcon Solana liquidation engine on Kamino Lend and HMBQT vault for Ranger Hackathon." },
+    { "year": "2025", "event": "Engineered Osprey delta-neutral funding rate harvest engine with 164 passing tests." }
+  ],
   "contact": {
     "email": "olubelachristley@gmail.com",
     "twitter": "https://x.com/Xtley001",
     "github": "https://github.com/Xtley001",
     "telegram": "",
     "linkedin": "https://www.linkedin.com/in/christley-olubela/",
-    "goodreads": "",
-    "note": "Open to quant roles, DeFi collaborations, and building together on on-chain systems."
+    "goodreads": "https://www.goodreads.com/user/show/184917569-christley-olubela",
+    "note": "Open to Rust/systems engineering roles, DeFi & MEV engineering, and quantitative infrastructure collaborations."
   }
 }

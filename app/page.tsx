@@ -1,6 +1,7 @@
 import { getSiteData } from '../lib/site'
 import { getAllProjects } from '../lib/projects'
 import Hero from '../components/Hero'
+import Stats from '../components/Stats'
 import Focus from '../components/Focus'
 import Projects from '../components/Projects'
 import Stack from '../components/Stack'
@@ -20,6 +21,7 @@ export default function Home() {
   return (
     <main style={{ overflowX: 'hidden', maxWidth: '100vw' }}>
       <Hero hero={site.hero} />
+      {site.stats && site.stats.length > 0 && <Stats stats={site.stats} />}
       <Focus focus={site.focus} mindBody={site.persona?.mind?.body} />
       {projects.length > 0 && <Projects projects={projects} />}
       {site.stack && site.stack.length > 0 && <Stack stack={site.stack} />}

@@ -42,7 +42,7 @@ const S = {
   subhead: { fontSize:'11px', letterSpacing:'0.15em', color:'var(--accent)', marginBottom:'16px', display:'block' } as React.CSSProperties,
 }
 
-const TABS = ['Projects','Leads','Hero','Stats','Focus','Experience','Stack','Persona','Timeline','Contact'] as const
+const TABS = ['Projects','Hero','Stats','Focus','Experience','Stack','Persona','Timeline','Contact'] as const
 type Tab = typeof TABS[number]
 
 // ─── Dirty-state guard: warns on navigate-away when form has unsaved changes ──
@@ -690,77 +690,6 @@ function ContactTab({ data, save, onDirty }:{ data:SiteData; save:(d:SiteData,cb
   )
 }
 
-// ─── Leads Tab (read-only) ──────────────────────────────────────────────────
-interface LeadRow {
-  id: string; timestamp: string; name: string; email: string; whatsapp: string
-  businessType: string; businessStage: string; intent: 'hot'|'warm'|'cold'
-  primaryResult: string; scores: Record<string, number>
-}
-
-const RESULT_LABEL: Record<string, string> = { build: 'Build', attract: 'Attract', convert: 'Convert', automate: 'Automate', scale: 'Scale' }
-const INTENT_BADGE: Record<string, React.CSSProperties> = {
-  hot:  { background: 'var(--accent)', color: 'var(--bg)' },
-  warm: { background: 'var(--accent-dim)', color: 'var(--bg)' },
-  cold: { background: 'var(--surface-2)', color: 'var(--text-faint)', border: '1px solid var(--border)' },
-}
-
-function LeadsTab() {
-  const [leads, setLeads] = useState<LeadRow[]|null>(null)
-  const [error, setError] = useState('')
-
-  useEffect(() => {
-    fetch('/api/admin/leads').then(r => r.json()).then(d => {
-      if (d.leads) setLeads(d.leads); else setError(d.error || 'Failed to load leads')
-    }).catch(() => setError('Network error loading leads.'))
-  }, [])
-
-  const scoreFor = (l: LeadRow) => {
-    const dim = { build:'foundation', attract:'leadGen', convert:'conversion', automate:'automation', scale:'foundation' }[l.primaryResult]
-    return dim ? l.scores?.[dim] ?? '—' : '—'
-  }
-
-  return (
-    <div>
-      <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:'8px' }}>
-        <span style={{ fontFamily:'var(--font-syne)', fontWeight:700, fontSize:'20px', color:'var(--text)' }}>Leads</span>
-      </div>
-      <p style={{ fontSize:'12px', color:'var(--text-faint)', marginBottom:'24px' }}>Hot intent first, then newest first. Read-only.</p>
-
-      {error && <div style={{ color:'#ff6b6b', fontSize:'13px' }}>{error}</div>}
-      {!error && leads === null && <div style={{ color:'var(--text-faint)', fontSize:'13px' }}>Loading…</div>}
-      {!error && leads && leads.length === 0 && <div style={{ color:'var(--text-faint)', fontSize:'13px' }}>No leads yet.</div>}
-
-      {!error && leads && leads.length > 0 && (
-        <div style={{ overflowX:'auto' }}>
-          <table style={{ width:'100%', borderCollapse:'collapse', fontFamily:'var(--font-dm-mono)', fontSize:'12px' }}>
-            <thead>
-              <tr style={{ textAlign:'left', color:'var(--text-faint)', borderBottom:'1px solid var(--border)' }}>
-                {['Name','Contact','Result','Score','Intent','Date'].map(h => (
-                  <th key={h} style={{ padding:'10px 12px', fontWeight:400, letterSpacing:'0.08em', textTransform:'uppercase', fontSize:'10px' }}>{h}</th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {leads.map(l => (
-                <tr key={l.id} style={{ borderBottom:'1px solid var(--border)' }}>
-                  <td style={{ padding:'10px 12px', color:'var(--text)' }}>{l.name}</td>
-                  <td style={{ padding:'10px 12px', color:'var(--text-dim)' }}>{l.email || l.whatsapp || '—'}</td>
-                  <td style={{ padding:'10px 12px', color:'var(--accent)' }}>{RESULT_LABEL[l.primaryResult] || l.primaryResult}</td>
-                  <td style={{ padding:'10px 12px', color:'var(--text-dim)' }}>{scoreFor(l)}</td>
-                  <td style={{ padding:'10px 12px' }}>
-                    <span style={{ ...INTENT_BADGE[l.intent], fontSize:'10px', letterSpacing:'0.06em', textTransform:'uppercase', padding:'3px 8px', borderRadius:'2px' }}>{l.intent}</span>
-                  </td>
-                  <td style={{ padding:'10px 12px', color:'var(--text-faint)' }}>{new Date(l.timestamp).toLocaleDateString()}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      )}
-    </div>
-  )
-}
-
 // ─── Main ─────────────────────────────────────────────────────────────────────
 export default function AdminPage() {
   const [authed,setAuthed]=useState(false)
@@ -807,12 +736,11 @@ export default function AdminPage() {
         </div>
 
         {tab==='Projects' && <ProjectsTab />}
-        {tab==='Leads' && <LeadsTab />}
 
-        {loading && tab!=='Projects' && tab!=='Leads' && (
+        {loading && tab!=='Projects' && (
           <div style={{ color:'var(--text-faint)', fontSize:'13px' }}>Loading…</div>
         )}
-        {!loading && error && tab!=='Projects' && tab!=='Leads' && (
+        {!loading && error && tab!=='Projects' && (
           <div style={{ background:'rgba(255,80,80,0.08)', border:'1px solid rgba(255,80,80,0.25)', borderRadius:'4px', padding:'16px 20px', color:'#ff6b6b', fontFamily:'var(--font-dm-mono)', fontSize:'13px' }}>
             {error}
           </div>

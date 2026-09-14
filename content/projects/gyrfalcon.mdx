@@ -1,0 +1,44 @@
+---
+name: Gyrfalcon
+slug: gyrfalcon
+tagline: 'Multi-protocol Solana liquidation engine (Kamino Lend primary, Save, MarginFi)'
+year: 2026
+status: active
+tech:
+  - Rust 1.79+
+  - Yellowstone Geyser gRPC
+  - LiteSVM
+  - Jito Bundles
+  - staked QUIC
+github: 'https://github.com/Xtley001/gyrfalcon'
+live: ''
+stats: $367K Modeled Net Profit · 613 Annual Events
+ranking: 4
+category: MEV & Liquidations
+featured: true
+---
+
+# Gyrfalcon: Multi-Protocol Solana Liquidation Engine
+
+**Gyrfalcon** is a sub-millisecond Solana liquidation engine architected around high-frequency gRPC state feeds, in-process SVM simulation, and multi-region Jito bundle submission.
+
+## Kamino Lend Primary Focus
+
+Gyrfalcon anchors on **Kamino Lend**, modeled at **$1.34B supplied and $1.03B borrowed** (76.78% utilization):
+- **Main Market:** SOL/USDC (80% LTV / 85% liquidation threshold)
+- **JitoSOL/SOL Pool:** Correlated liquidity (95% liquidation threshold)
+- **Modular Adaptability:** Shared latency-optimized pipeline (Geyser ingestion, in-memory health book, flash-source router, in-process LiteSVM simulation) extends fault-isolated adapters to **Save (Solend)** and **MarginFi**.
+
+## Historical Frequency & Revenue Projection
+
+- **12-Month Liquidation History:**
+  - **613** annual events (~51/month)
+  - **$50.55M** total liquidated debt volume ($82,463 average event size)
+  - **$367,293 modeled net annual profit** (~$30,608/month) at a 15% capture rate assumption, net of Jito tips and DEX slippage.
+
+## Microsecond Execution Stack
+
+- **Yellowstone Geyser gRPC:** Streaming account update ingestion directly into an in-memory lock-free orderbook and obligation tracker.
+- **Instruction-Introspection Flash Borrow:** Fee-free atomic principal via Kamino Lend Flash Borrow (12,000 CU) and Solend Flash Loans (15,000 CU).
+- **LiteSVM In-Process Simulation:** Every opportunity simulated within the process memory space before submission to prevent failed-transaction penalties.
+- **Multi-Region Dual Submission:** Bundles submitted across staked QUIC and Jito endpoints in Amsterdam, New York, Tokyo, and Frankfurt with dynamic CU budgeting and Address Lookup Table (ALT) compaction.

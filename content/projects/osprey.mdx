@@ -1,18 +1,31 @@
 ---
-name: "Osprey"
-slug: "osprey"
-tagline: "Hyperliquid funding rate trading system"
+name: Osprey
+slug: osprey
+tagline: Delta-neutral funding-rate harvesting on Hyperliquid perpetuals
 year: 2026
-status: "active"
-tech: ["Python", "Hyperliquid SDK", "FastAPI"]
-github: "https://github.com/Xtley001/osprey"
-live: "https://osprey-three.vercel.app/"
-image: ""
+status: active
+tech:
+  - TypeScript
+  - React/Vite
+  - Hyperliquid SDK
+  - FastAPI
+github: 'https://github.com/Xtley001/osprey'
+live: 'https://osprey-three.vercel.app/'
+stats: 164 Passing Tests · 20-100 Positions
+ranking: 5
+category: Systems & Infrastructure
 featured: true
 ---
 
-Delta-neutral funding rate capture on Hyperliquid perpetuals. Automated position sizing, hedge rebalancing, and PnL tracking.
+# Osprey: Delta-Neutral Funding-Rate Harvesting on Hyperliquid
 
-Built to capture persistent funding rate differentials between spot and perp markets while remaining directionally neutral. The system continuously monitors open interest imbalances and adjusts hedge ratios in real time.
+**Osprey** is an automated quantitative portfolio system designed to harvest hourly funding rate yield on Hyperliquid perpetual markets while systematically neutralizing directional crypto market beta.
 
-**Core mechanics**: long spot + short perp when funding is positive, inverted when negative. Position sizing respects max drawdown constraints per epoch.
+## Core System Capabilities
+
+- **Continuous Opportunity Scanning:** Scans every Hyperliquid perpetual contract minute-by-minute, scoring opportunities across both crypto and TradFi perpetuals (including NVDA, AAPL, GOLD).
+- **Multi-Position Portfolio Engine:** Manages a diversified portfolio of **20 to 100 simultaneous delta-neutral positions**, with strict open-interest caps, concentration constraints, and dynamic tier allocations.
+- **Regime Detection:** Evaluates top-20 contracts by Open Interest to classify market state into `HOT`, `NEUTRAL`, or `COLD` regimes, dynamically tuning hedge sizing and rebalance frequencies.
+- **Signal Logic:** Automated `ENTER`, `WAIT`, and `EXIT` triggers governed by funding spread persistence and basis-risk thresholds.
+- **Autonomous Key Management:** Supports browser wallets, WalletConnect, and restricted Agent Keys for autonomous trading execution without withdrawal permissions.
+- **Battle-Tested Reliability:** Verified by a **164-test suite** covering adversarial market inputs, API failure injection, and 5,000-cycle continuous soak simulations.

@@ -1,18 +1,32 @@
 ---
-name: "Kingfisher"
-slug: "kingfisher"
-tagline: "On-chain execution engine"
+name: Kingfisher
+slug: kingfisher
+tagline: Flash-loan arbitrage bot for Curve stablecoin pools on Arbitrum One
 year: 2026
-status: "active"
-tech: ["Rust"]
-github: ""
-live: ""
-image: ""
+status: active
+tech:
+  - Rust
+  - alloy-rs
+  - Solidity/Foundry
+  - Aave V3
+  - Curve
+  - Timeboost
+github: 'https://github.com/Xtley001/kingfisher'
+live: ''
+stats: ~0.1ms Nitro IPC Block Latency
+ranking: 6
+category: MEV & Liquidations
 featured: true
 ---
 
-High-throughput on-chain execution engine built in Rust. Designed for latency-sensitive DeFi strategies where milliseconds determine edge.
+# Kingfisher: Curve Stablecoin Flash-Loan Arbitrage on Arbitrum One
 
-Architecture focuses on deterministic execution paths, minimal heap allocation, and direct RPC interaction without abstraction overhead.
+**Kingfisher** is a low-latency execution bot engineered specifically to exploit temporary pricing imbalances between Curve stablecoin pools on **Arbitrum One**, backed by atomic flash-loan liquidity from Aave V3.
 
-*Details restricted — stealth development.*
+## Mechanism & Structural Edge
+
+- **Atomic Price Spread Capture:** Borrows flash-capital from Aave V3, captures StableSwap pricing deviations across imbalanced Curve pools, and atomically repays principal and fees in a single transaction.
+- **On-Chain Profit Guarantees:** Solidity callback asserts `require(netProfit >= minProfit)`. If the transaction loses a sequencer race, it reverts cleanly on-chain, risking only negligible transaction gas without ever endangering principal.
+- **Arbitrum Timeboost & Private Routing:** Exploits Arbitrum's single-sequencer architecture and Timeboost priority ordering, broadcasting pre-signed transactions directly to the lowest-latency sequencer endpoint without public mempool leakage.
+- **Nitro Node Co-Location:** Interacts directly over IPC with a local Arbitrum Nitro node achieving sub-0.1ms block-header notification latency.
+- **Hot-Reloadable Parameters:** Includes a zero-downtime control plane (`POST /params`) to adjust profit floors and sizing ceilings in production without stopping the service.
