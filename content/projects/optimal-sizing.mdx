@@ -1,69 +1,128 @@
 ---
 name: Optimal Sizing
 slug: optimal-sizing
-tagline: Published Rust workspace for profit-maximizing trade sizing across heterogeneous AMM liquidity curves
+tagline: Published multi-crate Rust workspace (v2.0.0) & Python package for profit-maximizing trade sizing across heterogeneous AMM liquidity curves
 year: 2026
 status: active
 tech:
   - Rust
   - Cargo Workspace
   - CPMM / StableSwap / PMM
-  - Numerical Optimization
-  - Streaming Daemon (tokio)
-  - CLI, WASM & Python (PyO3)
+  - Concentrated Liquidity (CLMM)
+  - Discretized Liquidity Book (DLMM)
+  - Velodrome Stable Curves
+  - Dual Water-Filling
+  - Python (PyO3)
+  - WASM
+  - Tokio WebSocket
 github: 'https://github.com/Xtley001/optimal-sizing'
-stats: 8 Crates · Provable Optimality · Zero-I/O Core
+live: 'https://crates.io/crates/sizing-core'
+docs: 'https://github.com/Xtley001/optimal-sizing/tree/main/docs'
+cratesIo: 'https://crates.io/crates/sizing-core'
+pypi: 'https://pypi.org/project/optimal-sizing/'
+stats: 10 Crates · v2.0.0 Expansion · 700+ Downloads · crates.io & PyPI
 ranking: 2
 category: Systems & Infrastructure
 featured: true
 ---
 
-# Optimal Sizing: Published Rust Workspace for Profit-Maximizing Trade Sizing
+# Optimal Sizing: Profit-Maximizing Trade Sizing Across Heterogeneous AMM Curves
 
-**optimal-sizing** is a high-performance, chain-agnostic Rust library and multi-crate workspace for profit-maximizing trade sizing against Constant Product Market Maker (CPMM), StableSwap, Proactive Market Maker (PMM), Concentrated Liquidity, Balancer, DODO, and CryptoSwap curves.
+**optimal-sizing** is a high-performance, chain-agnostic Rust library and 10-crate workspace published on [crates.io](https://crates.io/crates/sizing-core) and [PyPI](https://pypi.org/project/optimal-sizing/) for computing exact profit-maximizing trade sizes against Constant Product (CPMM), StableSwap, Concentrated Liquidity (CLMM), Discretized Liquidity Books (DLMM), Velodrome Stable, Balancer, and Proactive Market Maker (PMM) liquidity curves.
 
-## Core Problem & Engineering Philosophy
+[![Version](https://img.shields.io/badge/version-2.0.0-green.svg)](https://github.com/Xtley001/optimal-sizing)
+[![crates.io](https://img.shields.io/crates/v/sizing-core)](https://crates.io/crates/sizing-core)
+[![PyPI](https://img.shields.io/pypi/v/optimal-sizing)](https://pypi.org/project/optimal-sizing/)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/Xtley001/optimal-sizing/blob/main/LICENSE)
 
-Most trade sizing code in the wild relies on naive grid search or unexamined bisection loops, offering zero mathematical assurance of whether a computed size is actually optimal. `optimal-sizing` answers that directly by replacing heuristic guesswork with provable derivations:
+---
 
-- **Constant-Product Sizing:** Solved in closed form and provably optimal (`ProvenOptimal`).
-- **StableSwap Sizing:** Solved via Newton's method with stated convergence conditions and invariant memoization (`NumericallyGuaranteed`).
-- **Proactive Market Maker (PMM) Sizing:** Golden-section search conditional on an active runtime unimodality check (`f''(Δ) <= 0`) rather than assumed curvature.
-- **Explicit Guarantee Tiers:** Every `SizingResult` carries a strongly-typed `GuaranteeTier` (`ProvenOptimal`, `NumericallyGuaranteed`, `EmpiricallyValidated`, or `ComposedFrom`), ensuring downstream execution engines never mistake heuristic estimates for proven mathematical bounds.
+## Engineering Philosophy: Replacing Heuristics with Provable Optimality
 
-## Multi-Crate Workspace Architecture
+Most trade-sizing implementations in automated trading systems rely on naive grid searches or unexamined bisection loops, providing zero mathematical certainty regarding whether an order size is optimal or bleeding slippage. `optimal-sizing` eliminates guesswork by establishing explicit mathematical guarantee tiers:
 
-The workspace generalizes trade-sizing logic into standalone, reusable infrastructure across 8 dedicated crates:
+- **`ProvenOptimal`**: Solved in closed form with analytic derivative roots (CPMM, Concentrated Liquidity, DLMM step-aggregation).
+- **`NumericallyGuaranteed`**: Solved via Newton-Raphson solvers with rigorously verified convergence conditions, invariant memoization, and $\sqrt{\text{tolerance}}$ step scaling (StableSwap, Velodrome, Balancer).
+- **`EmpiricallyValidated`**: Golden-section search conditioned on an active runtime unimodality proof ($f''(\Delta) \le 0$) rather than assumed pool convexity (WooFi v2, DODO PMM).
+- **`ComposedFrom`**: Joint multi-variable optimization over arbitrary heterogeneous multi-hop cascades.
+
+---
+
+## 10-Crate Workspace Architecture (v2.0.0 Expansion)
+
+The workspace decouples mathematical optimization, routing, budget allocation, and transport layers across 10 specialized crates:
 
 ```
 optimal-sizing/
 ├── crates/
-│   ├── sizing-core/         # Pure mathematical optimization — zero I/O, zero chain dependencies
+│   ├── sizing-core/         # Pure math solvers — zero I/O, zero chain dependencies
 │   ├── sizing-router/       # Multi-hop heterogeneous routing across arbitrary AMM curves
-│   ├── sizing-watch/        # Real-time streaming sizing daemon across DEX liquidity pools
-│   ├── sizing-cli/          # Command-line interface for standalone sizing and scripting
-│   ├── sizing-bench/        # Wall-clock latency and accuracy benchmarks vs. naive grid search
-│   ├── sizing-integration/  # Reference integration against live Ethereum mainnet state
-│   ├── sizing-wasm/         # WebAssembly boundary wrapper via wasm-bindgen
-│   └── sizing-py/           # PyO3 Python bindings verified in Python 3.12
+│   ├── sizing-portfolio/    # Joint budget allocation via Dual Water-Filling algorithm
+│   ├── sizing-watch/        # Real-time WebSocket streaming daemon (tokio-tungstenite)
+│   ├── sizing-backtest/     # Historical pool replay harness & benchmark suite
+│   ├── sizing-cli/          # Command-line interface with route-file JSON ingestion
+│   ├── sizing-bench/        # Sub-microsecond latency and precision benchmarks
+│   ├── sizing-integration/  # Live Ethereum mainnet multicall integration (Uniswap & Curve)
+│   ├── sizing-wasm/         # WebAssembly bindings (@optimal-sizing/wasm) with TypeScript stubs
+│   └── sizing-py/           # PyO3 Python bindings verified on Python 3.9–3.12
 └── docs/
     ├── whitepaper.md        # Full mathematical derivations, proofs, and convergence bounds
     ├── ARCHITECTURE.md      # Module boundaries, data flow invariants, and non-goals
-    ├── API.md               # Public interface specifications and trait contracts
-    └── TESTING.md           # Testing contract and property-test suites
+    ├── API.md               # Trait contracts and public interface specifications
+    └── TESTING.md           # Verification contract and proptest suites
 ```
 
-## Curve Implementations & Optimization Mechanics
+---
 
-- **`Cpmm` (Constant Product / Uniswap v2):** Closed-form analytic solution with fixed gas and execution costs factored directly into the objective function.
-- **`StableSwap` (Curve Invariant):** Solves the implicit Curve invariant via Newton's method. Invariant $D$ is memoized per invocation to prevent redundant re-solves (~1.5x measured speedup), paired with a $\sqrt{\text{tolerance}}$ finite-difference derivative step to eliminate numerical cancellation against the convergence noise floor.
-- **`Pmm` (WooFi v2 Proactive Market Maker):** Golden-section search with dynamic unimodality checking that rejects non-concave intervals in the reverse regime. Search boundaries are dynamically derived from pool poles and quote-reserve capacity limits.
-- **`ConcentratedLiquidity` (Uniswap v3):** Single-tick range sizing utilizing virtual reserves to achieve closed-form optimality (`ProvenOptimal`), verified against CPMM baselines.
-- **`sizing-router` (Multi-Hop Heterogeneous Routing):** Joint multi-variable optimization over leg-1 input size across heterogeneous curves rather than post-facto per-leg composition. Reports `GuaranteeTier::ComposedFrom(Vec<GuaranteeTier>)`.
+## Major Pillars of the v2.0.0 Upgrade
 
-## Performance, Tooling & Verification
+### 1. New Curve Families & Heterogeneous Routing
+- **Velodrome / Aerodrome Stable Curve ($x^3 y + x y^3 = k$):** Implemented using normalized Newton-Raphson iteration preventing `Decimal` overflow on large reserves $\ge 10^7$. Profit maximized via bracket-contracted golden-section search (`NumericallyGuaranteed`).
+- **Discretized Liquidity Book (DLMM):** Models Trader Joe & Meteora bin-partitioned liquidity books. Features analytical closed-form aggregation across profitable tick bins (`ProvenOptimal`).
+- **Multi-Hop Routing:** `sizing-router` evaluates multi-hop swap sequences by performing a joint search over initial leg input size, eliminating compounding per-leg heuristic errors.
 
-- **Live State Integration:** `sizing-integration` pulls live state from Uniswap v2 USDC/WETH and Curve 3pool on Ethereum mainnet, leveraging multicall batching to compress 10 RPC roundtrips down to 3.
-- **Real-Time Daemon:** `sizing-watch` continuously streams updates and re-evaluates optimal capital allocation over active DEX liquidity pools.
-- **Cross-Language Support:** First-class bindings for Python (PyO3) and WebAssembly (`wasm-bindgen`) enabling seamless execution in data pipelines and browser environments.
-- **Strict Verification Contract:** Property-tested with `proptest`, zero-I/O boundary enforced on `sizing-core` via `cargo tree` audit, and CI enforced on every commit with `cargo clippy --workspace --all-targets -- -D warnings`.
+### 2. Adversarial Slippage & Rollup Blob Gas
+- **`AdversePricingCurve`:** Dynamic price impact scaling that penalizes trades consuming high percentages of marginal pool capacity.
+- **EIP-4844 Blob Gas Accounting:** Calibrated gas consumption models for Optimism, Base, and Arbitrum rollups factoring in L1 blob submission costs.
+
+### 3. Constrained Multi-Pool Capital Allocation (`sizing-portfolio`)
+- Solves the optimal joint allocation of a shared capital budget $B$ across $M$ concurrent arbitrage opportunities.
+- **Dual Water-Filling Algorithm:** Solves the Lagrange dual via bisection on marginal return $\lambda$ with exact boundary clipping. Operates entirely in fixed-point `Decimal` arithmetic with zero floating-point imprecision.
+
+### 4. Streaming Daemon & Historical Replay
+- **`sizing-watch`:** Upgraded to async WebSocket streaming with `eth_subscribe("newHeads")`, streaming block event processing, and automatic RPC polling fallback.
+- **`sizing-backtest`:** Replay harness evaluating multi-pool historical state trajectories, quantifying analytical sizing profits against naive grid-search baselines.
+
+---
+
+## Installation & Usage
+
+### Rust
+```bash
+cargo add sizing-core sizing-router sizing-portfolio rust_decimal rust_decimal_macros
+```
+
+```rust
+use rust_decimal_macros::dec;
+use sizing_core::curves::Cpmm;
+use sizing_core::traits::SizingAlgorithm;
+use sizing_core::types::SizingConstraints;
+
+let pool = Cpmm::new(dec!(1_200_000), dec!(800_000), dec!(0.997)).unwrap();
+let result = pool.optimal_size(dec!(0.60), SizingConstraints::default()).unwrap();
+println!("Optimal input: {} (Guarantee: {:?})", result.optimal_delta, result.guarantee_tier);
+```
+
+### Python
+```bash
+pip install optimal-sizing
+```
+
+```python
+from optimal_sizing import Cpmm, SizingConstraints
+from decimal import Decimal
+
+pool = Cpmm(reserve_in=Decimal("1200000"), reserve_out=Decimal("800000"), fee=Decimal("0.997"))
+res = pool.optimal_size(target_price=Decimal("0.60"), constraints=SizingConstraints())
+print(f"Optimal Delta: {res.optimal_delta} | Guarantee: {res.guarantee_tier}")
+```

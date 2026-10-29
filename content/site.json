@@ -15,34 +15,43 @@
     },
     {
       "category": "Core Rust & Systems",
-      "items": ["Published Crates", "REVM Simulation", "LiteSVM", "Tokio", "Rayon", "Cargo Workspaces", "Zero-Copy"]
+      "items": ["Published Crates", "REVM Simulation", "LiteSVM", "Tokio", "Rayon", "Cargo Workspaces", "Zero-Copy", "PyO3 Native Extensions", "Write-Ahead Log (WAL)"]
     },
     {
       "category": "Blockchain & DeFi",
-      "items": ["Flash Loans", "Protocol Liquidations", "MEV Extraction", "Foundry", "Jito Bundles", "Geyser gRPC", "Timeboost"]
+      "items": ["Flash Loans", "Protocol Liquidations", "MEV Extraction", "Foundry", "Jito Bundles", "Geyser gRPC", "Timeboost", "DLMM", "Velodrome / Curve"]
     },
     {
       "category": "Quant & Math",
-      "items": ["GARCH", "Statistical Arbitrage", "Stochastic Volatility", "Monte Carlo", "Delta-Neutral Hedging", "Order Flow"]
+      "items": ["Hierarchical Risk Parity (HRP)", "Orthogonal Decorrelation", "AST Diff Analysis", "GARCH", "Statistical Arbitrage", "Stochastic Volatility", "Monte Carlo", "Delta-Neutral Hedging"]
     }
   ],
-  "stats": [],
+  "stats": [
+    {
+      "value": "7,800+",
+      "label": "Total Open Source Downloads"
+    },
+    {
+      "value": "21",
+      "label": "Published Production Packages"
+    }
+  ],
   "focus": [
     {
       "area": "MEV & Liquidation Systems",
-      "subs": ["Protocol Liquidations", "Simulation Drift (Driftbrake)", "Cross-DEX Arbitrage"]
+      "subs": ["Protocol Liquidations", "Simulation Drift (Driftbrake v0.2.0)", "Cross-DEX Arbitrage"]
     },
     {
       "area": "Systems & Core Rust",
-      "subs": ["Published Crates", "REVM / LiteSVM Simulation", "Trait-Based API Design"]
+      "subs": ["Published Crates (crates.io)", "optimal-sizing v2.0.0", "Trait-Based API Design", "Zero-I/O Core Solvers"]
     },
     {
-      "area": "Delta-Neutral DeFi",
-      "subs": ["Funding Rate Harvesting", "Hyperliquid Perpetuals", "Basis Risk Modeling"]
+      "area": "Quantitative Alpha Research",
+      "subs": ["brain-libraries (7 PyPI Packages)", "10-Axis Orthogonal Decorrelation", "Tri-Factor Meta-Synthesis (HRP)"]
     },
     {
-      "area": "Microstructure & Quant",
-      "subs": ["Order Flow Analysis", "GARCH Volatility", "Mempool Monitoring"]
+      "area": "Delta-Neutral DeFi & Microstructure",
+      "subs": ["Funding Rate Harvesting", "Hyperliquid Perpetuals", "Basis Risk Modeling", "Order Flow Analysis"]
     }
   ],
   "experience": [
@@ -98,8 +107,9 @@
     ]
   },
   "timeline": [
-    { "year": "2026", "event": "Released optimal-sizing: published multi-crate Rust workspace for provably optimal trade sizing across heterogeneous AMM curves." },
-    { "year": "2026", "event": "Published Driftbrake crate on crates.io and docs.rs for simulation-to-reality drift detection." },
+    { "year": "2026", "event": "Released brain-libraries suite: 7 pip-installable Python packages published to PyPI for WorldQuant BRAIN alpha discovery, 10-axis orthogonal decorrelation, and tri-factor meta-synthesis." },
+    { "year": "2026", "event": "Released optimal-sizing v2.0.0: 10-crate Rust workspace with Velodrome stable curves, DLMM, dual water-filling capital allocation, and Python/WASM bindings." },
+    { "year": "2026", "event": "Published Driftbrake v0.2.0 on crates.io and PyPI: institutional multi-guard halt engine with Write-Ahead Log (WAL) and Python Stable ABI module." },
     { "year": "2026", "event": "Architected Corvus ($1.47M modeled net profit) and Goshawk ($15.9B debt coverage) liquidation engines." },
     { "year": "2026", "event": "Deployed Gyrfalcon Solana liquidation engine on Kamino Lend and HMBQT vault for Ranger Hackathon." },
     { "year": "2025", "event": "Engineered Osprey delta-neutral funding rate harvest engine with 164 passing tests." }

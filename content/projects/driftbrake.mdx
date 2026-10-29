@@ -1,35 +1,149 @@
 ---
 name: Driftbrake
 slug: driftbrake
-tagline: Published Rust crate for simulation-to-reality drift detection
+tagline: Published Rust workspace & Python native extension for simulation-to-reality drift detection and institutional execution halts
 year: 2026
 status: active
 tech:
   - Rust
   - REVM
-  - tokio
-  - mdBook
-  - GitHub Actions CI
+  - Python (PyO3 / ABI3)
+  - Tokio
+  - Write-Ahead Log (WAL)
+  - crates.io
+  - PyPI
 github: 'https://github.com/Xtley001/driftbrake'
 live: 'https://crates.io/crates/driftbrake'
 docs: 'https://docs.rs/driftbrake'
 book: 'https://xtley001.github.io/driftbrake'
 cratesIo: 'https://crates.io/crates/driftbrake'
-stats: crates.io · docs.rs · MIT Licensed
+pypi: 'https://pypi.org/project/driftbrake-py/'
+stats: 7 Crates · Python Native Extension · 800+ Total Downloads
 ranking: 1
 category: Systems & Infrastructure
 featured: true
 ---
 
-# Driftbrake: Published Rust Crate for Simulation-to-Reality Drift Detection
+# Driftbrake: Simulation-to-Reality Drift Detection & Halt Guard
 
-**Driftbrake** is a published, production-grade Rust library (`cargo add driftbrake`) designed to pre-flight simulate transactions through REVM and halt live trading strategies the moment realized on-chain profit drifts from simulated predictions, before phantom drift compounds into real capital loss.
+**Driftbrake** is a published, production-grade Rust workspace (`cargo add driftbrake`) and compiled Python native extension (`pip install driftbrake-py`) engineered to pre-flight simulate transactions against local chain state, track simulated versus realized on-chain profit upon block confirmation, and halt live trading strategies the moment realized performance drifts from prediction — before phantom drift compounds into real capital loss.
 
-## Architecture & Design Principles
+[![crates.io](https://img.shields.io/crates/v/driftbrake)](https://crates.io/crates/driftbrake)
+[![PyPI](https://img.shields.io/pypi/v/driftbrake-py)](https://pypi.org/project/driftbrake-py/)
+[![docs.rs](https://img.shields.io/docsrs/driftbrake)](https://docs.rs/driftbrake)
+[![book](https://img.shields.io/badge/book-design%20docs-3ddc84)](https://xtley001.github.io/driftbrake/)
 
-- **Published & Installable:** Available on [crates.io](https://crates.io/crates/driftbrake) with full API documentation on [docs.rs](https://docs.rs/driftbrake) and comprehensive architecture guide on [mdBook](https://xtley001.github.io/driftbrake).
-- **Trait-Based Chain-Agnostic Core:** Exposes a clean, minimal set of core traits (`ProfitDecoder`, `RealizedProfitDecoder`, `SimEngine`, `HaltPolicy`) with zero mandatory REVM or Alloy dependencies.
-- **Swappable Backends:** Concrete REVM execution ships in a dedicated, opt-in `driftbrake-revm-backend` crate, enabling zero-overhead swaps to alternative VM simulation engines (such as LiteSVM or custom state-machine forks).
-- **Dual-Guard Halt Policy:** Combines a fast-trip threshold for sudden breaks with a sliding-window accumulator for slow bleeding. Guard thresholds are derived from a synthetic parameter sweep plotting false-halt rates against missed-catch rates.
-- **Reproducible Benchmark Harness:** Includes a dedicated benchmarking suite (`cargo run -p driftbrake-benchmark`) to validate performance under microsecond-scale execution constraints.
-- **Doctested & CI Enforced:** Rigorous GitHub Actions CI enforcing full test coverage, documentation builds, clippy checks, and doctests ensuring the README and documentation never diverge from compiler truth.
+---
+
+## The Simulation-to-Reality Drift Problem
+
+In high-frequency decentralized finance (MEV extraction, protocol liquidations, and cross-DEX statistical arbitrage), searchers simulate candidate transactions against local state before broadcasting. However, between simulation and block inclusion:
+1. **State Mutation & Frontrunning:** Competing searchers or incoming retail flow alter pool reserves, causing slippage or outright reverts.
+2. **Hidden Execution Costs:** State-access gas spikes, dynamic base fees, and priority tip surges erode simulated margins.
+3. **Model Inaccuracy:** Approximated curve math or stale oracle state generates phantom profits that vanish on-chain.
+
+Without an automated, deterministic halt guard, execution bots continue firing into failing regimes, incurring severe capital bleed through burned priority gas and failed transaction reverts.
+
+---
+
+## Workspace Architecture (v0.2.0)
+
+Driftbrake is architectured as a modular, trait-driven multi-crate workspace re-exported under a facade crate with zero mandatory REVM or Alloy dependencies in its core:
+
+```
+driftbrake/
+├── driftbrake/            # Facade crate: re-exports core + reconcile + poller + journal
+│   ├── core/              # Chain-agnostic traits, zero REVM/alloy dependencies
+│   ├── reconcile/         # Institutional multi-guard halt engine
+│   ├── journal/           # Crash-resilient binary Write-Ahead Log (WAL) with CRC32
+│   └── receipt-poller/    # Block-time-aware receipt polling & gas accounting
+├── driftbrake-py/         # Python native extension (PyO3, ABI3 Stable, pip)
+├── revm-backend/          # Opt-in concrete SimEngine (fork-and-simulate with bounded RPC)
+├── benchmark/             # Parameter sweep & false-halt / missed-catch calibration CLI
+└── examples/
+    └── toy-arbitrage/     # End-to-end 2-pool arbitrage strategy against testnet fork
+```
+
+### Workspace Packages
+
+| Crate / Package | Distribution | Role |
+|---|---|---|
+| `driftbrake` | [crates.io](https://crates.io/crates/driftbrake) | Facade crate unifying core, reconcile, receipt-poller, and journal |
+| `driftbrake-core` | [crates.io](https://crates.io/crates/driftbrake-core) | Chain-agnostic trait boundaries (`ProfitDecoder`, `SimEngine`, `HaltPolicy`) |
+| `driftbrake-reconcile` | [crates.io](https://crates.io/crates/driftbrake-reconcile) | Multi-guard engine (Fast/Slow drift, Revert-Burst, VWAR, Net Drawdown) |
+| `driftbrake-journal` | [crates.io](https://crates.io/crates/driftbrake-journal) | Crash-resilient binary Write-Ahead Log (WAL) with CRC32 verification |
+| `driftbrake-receipt-poller` | [crates.io](https://crates.io/crates/driftbrake-receipt-poller) | Block-time-aware receipt polling and profit realization gating |
+| `driftbrake-revm-backend` | [crates.io](https://crates.io/crates/driftbrake-revm-backend) | In-process concrete REVM simulation backend with bounded concurrency |
+| `driftbrake-py` | [PyPI](https://pypi.org/project/driftbrake-py/) | Compiled CPython Stable ABI native module and vectorized sweep engine |
+| `driftbrake-benchmark` | [crates.io](https://crates.io/crates/driftbrake-benchmark) | Synthetic drift generator and false-halt vs. missed-catch calibration |
+
+---
+
+## Institutional Multi-Guard Halt Hierarchy
+
+The `driftbrake-reconcile` engine evaluates execution history against an institutional multi-tiered guard policy:
+
+1. **Fast-Trip Guard:** Immediately halts on acute single-event or consecutive severe drift drops below safety thresholds.
+2. **Slow-Window Mean Guard:** Accumulates rolling-window moving averages to detect insidious statistical erosion that stays above the fast threshold.
+3. **Revert-Burst Guard (`RevertBurstConfig`):** Trips when consecutive on-chain reverts occur within a sliding block window, preventing spam attacks.
+4. **Revert Gas Budget Guard (`RevertGasConfig`):** Tracks cumulative gas burned by reverted transactions (`gas_used` × `effective_gas_price`) and halts when the gas budget is exhausted.
+5. **Volume-Weighted Average Realization (VWAR: `VolumeWeightedConfig`):** Weights drift ratios by transaction capital magnitude, preventing small winning trades from masking large losing trades.
+6. **High-Watermark Net Drawdown Cap (`DrawdownConfig`):** Enforces a hard stop if cumulative net profit drops below peak historical high-watermark drawdown limits.
+
+```rust
+use driftbrake::{HaltDecision, ReconcileHistory, ReconcilePolicy};
+
+// Institutional default configuration wiring all 6 guards
+let mut policy = ReconcilePolicy::institutional_default();
+let mut history = ReconcileHistory::new();
+
+// In execution loop:
+match policy.evaluate(&history) {
+    HaltDecision::Continue => {
+        // Safe to proceed with next bundle/transaction
+    }
+    HaltDecision::Halt(reason) => {
+        // Immediate panic halt to preserve capital
+        eprintln!("Strategy execution halted: {reason:?}");
+        std::process::exit(1);
+    }
+}
+```
+
+---
+
+## Crash Resilience: Binary Write-Ahead Log (WAL)
+
+To prevent risk state amnesia during daemon restarts or container evictions, `driftbrake-journal` implements a high-throughput binary Write-Ahead Log:
+- **Zero-Copy Serialization:** Bincode-encoded fixed-header append log.
+- **Data Integrity:** IEEE 802.3 CRC32 checksums on every log frame.
+- **Torn-Write Recovery:** Automatic log truncation on startup if an uncompleted write frame is detected from an abrupt process termination.
+- **Process Locks:** Exclusive file locking (`fs2`) preventing multi-instance write collisions.
+
+---
+
+## Python Native Extension (`driftbrake-py`)
+
+Built with PyO3 targeting the CPython Stable ABI (`abi3`), `driftbrake-py` brings Rust execution speed to Python quant workflows and backtesting harnesses:
+
+```python
+from driftbrake import ReconcileHistory, ReconcilePolicy, StrategyHaltedError
+
+policy = ReconcilePolicy(
+    fast_window=3,
+    fast_threshold=0.50,
+    slow_window=20,
+    slow_threshold=0.70,
+    max_consecutive_reverts=3,
+)
+history = ReconcileHistory()
+
+# Record pre-flight prediction vs confirmed receipt
+history.append(predicted_profit=1_000_000, realized_profit=950_000)
+
+decision = policy.evaluate(history)
+if decision.is_halted:
+    raise StrategyHaltedError(f"Halted: {decision.reason}")
+```
+
+Additionally, `driftbrake-py` exposes `run_sweep_raw()`, enabling quants to backtest thousands of threshold combinations against historical simulation logs in milliseconds via vectorized native loops.

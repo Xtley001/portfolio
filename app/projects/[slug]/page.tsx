@@ -60,6 +60,13 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
             crates.io ↗
           </a>
         )}
+        {project.pypi && (
+          <a href={project.pypi} target="_blank" rel="noopener noreferrer"
+            style={{ fontFamily: 'var(--font-dm-mono)', fontSize: '11px', color: 'var(--accent)', border: '1px solid var(--accent-dim)', padding: '6px 16px', letterSpacing: '0.08em', transition: 'all 0.2s' }}
+          >
+            pypi ↗
+          </a>
+        )}
         {project.docs && (
           <a href={project.docs} target="_blank" rel="noopener noreferrer"
             style={{ fontFamily: 'var(--font-dm-mono)', fontSize: '11px', color: 'var(--text)', border: '1px solid var(--border)', padding: '6px 16px', letterSpacing: '0.08em', transition: 'all 0.2s' }}

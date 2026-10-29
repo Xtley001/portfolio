@@ -3,7 +3,7 @@ import Link from 'next/link'
 import type { Project } from '../lib/projects'
 
 export default function ProjectCard({ project, small }: { project: Project; small?: boolean }) {
-  const { name, tagline, tech, year, github, live, category, ranking, docs, cratesIo } = project
+  const { name, tagline, tech, year, github, live, category, ranking, docs, cratesIo, pypi } = project
 
   const rankStr = ranking !== undefined ? `#${ranking.toString().padStart(2, '0')}` : null
   const isTearSheet = live && live.toLowerCase().endsWith('.pdf')
@@ -74,7 +74,7 @@ export default function ProjectCard({ project, small }: { project: Project; smal
           </h3>
         </div>
 
-        {/* Tagline / Summary - clean, readable, uncongested */}
+        {/* Tagline / Summary */}
         <p style={{
           fontFamily: 'var(--font-dm-mono)',
           fontSize: 'clamp(12px, 1.3vw, 13px)',
@@ -86,7 +86,7 @@ export default function ProjectCard({ project, small }: { project: Project; smal
       </div>
 
       <div>
-        {/* Tech tags - subtle and minimalist */}
+        {/* Tech tags */}
         {tech.length > 0 && (
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '18px' }}>
             {tech.map(t => (
@@ -132,6 +132,14 @@ export default function ProjectCard({ project, small }: { project: Project; smal
               onMouseEnter={e => (e.currentTarget.style.opacity = '0.7')}
               onMouseLeave={e => (e.currentTarget.style.opacity = '1')}>
               crates.io ↗
+            </a>
+          )}
+          {pypi && (
+            <a href={pypi} target="_blank" rel="noopener noreferrer"
+              style={{ fontFamily: 'var(--font-dm-mono)', fontSize: '11px', color: 'var(--accent)', letterSpacing: '0.08em', transition: 'opacity 0.15s' }}
+              onMouseEnter={e => (e.currentTarget.style.opacity = '0.7')}
+              onMouseLeave={e => (e.currentTarget.style.opacity = '1')}>
+              pypi ↗
             </a>
           )}
           {docs && (

@@ -19,6 +19,7 @@ export interface Project {
   stats?: string
   docs?: string
   cratesIo?: string
+  pypi?: string
   book?: string
 }
 
@@ -48,6 +49,7 @@ export function getAllProjects(): Project[] {
         stats: data.stats || '',
         docs: data.docs || '',
         cratesIo: data.cratesIo || '',
+        pypi: data.pypi || '',
         book: data.book || '',
       } as Project
     })
@@ -83,6 +85,7 @@ export function getProjectBySlug(slug: string): Project | null {
     stats: data.stats || '',
     docs: data.docs || '',
     cratesIo: data.cratesIo || '',
+    pypi: data.pypi || '',
     book: data.book || '',
   }
 }

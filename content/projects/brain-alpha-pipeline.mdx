@@ -1,30 +1,35 @@
 ---
 name: Brain-Alpha-Pipeline
 slug: brain-alpha-pipeline
-tagline: WorldQuant BRAIN alpha research automation and screening pipeline
+tagline: WorldQuant BRAIN autonomous alpha research automation and simulation pipeline
 year: 2026
 status: active
 tech:
   - Python
-  - Pandas
-  - NumPy
+  - brain-libraries
   - WorldQuant BRAIN API
+  - PostgreSQL
   - Telegram Alerts
+  - Docker
 github: 'https://github.com/Xtley001/brain-alpha-pipeline'
 live: ''
-stats: Autonomous Alpha Candidate Screening
-ranking: 11
+pypi: 'https://pypi.org/project/brain-synthesis/'
+stats: Autonomous Screening · Powered by brain-libraries
+ranking: 12
 category: Quant & Machine Learning
 featured: true
 ---
 
-# Brain-Alpha-Pipeline: WorldQuant BRAIN Alpha Research Automation
+# Brain-Alpha-Pipeline: WorldQuant BRAIN Research Automation
 
-**Brain-Alpha-Pipeline** is an autonomous quantitative research system that continuously generates, screens, sweeps, and correlation-checks equity alpha candidates on the WorldQuant BRAIN platform.
+**Brain-Alpha-Pipeline** is an autonomous quantitative research and execution pipeline that continuously generates, screens, sweeps, and correlation-checks equity alpha candidates on the WorldQuant BRAIN platform. It serves as the live orchestration harness powered end-to-end by the modular [`brain-libraries`](/projects/brain-libraries) suite.
 
-## Research Pipeline Architecture
+---
 
-- **Scheduled Strategy Engine:** Autonomous worker loop that programmatically tests mathematical operators, cross-sectional rankings, time-series decays, and multi-factor expressions.
-- **Correlation & Overlap Checking:** Pre-screens candidate alphas against existing internal books and platform correlation limits, filtering out redundant signals prior to resource-heavy simulation sweeps.
+## Research Automation Architecture
+
+- **Scheduled Strategy Engine:** Autonomous worker loop programmatically testing cross-sectional rankings, time-series decay operators, and multi-factor expressions across diverse datasets.
+- **Integrated Orthogonal Decorrelation:** Automatically pipes candidate expressions through [`brain-decorrelator`](/projects/brain-libraries) to clear the platform's strict $|\rho| < 0.70$ correlation gatekeeper before running costly full simulations.
+- **Dual-Mode Persistence:** Integrates with `brain-store` for PostgreSQL connection pooling and offline file fallbacks, tracking historical submissions and correlation matrices.
 - **Fail-Loud Configuration:** Implements strict startup validation (`MissingConfigError`) ensuring API keys, database credentials, and risk boundaries are verified before execution.
 - **Human-in-the-Loop Safeguards:** Features automated Telegram alerting with statistical performance summaries (Sharpe ratio, turnover, fitness score, margin) for human review and final submission approval.
