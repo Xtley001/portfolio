@@ -20,7 +20,7 @@ export default async function Home() {
 
   const year = new Date().getFullYear()
   const logoText = site.hero.handle?.replace('@', '') || `${site.hero.firstName}${site.hero.lastName}`.trim() || 'XTLEY001'
-  const domain = site.contact.email ? site.contact.email.split('@')[1] : 'xtley001.com'
+  const domain = 'christleyolubela.tech'
 
   return (
     <main style={{ overflowX: 'hidden', maxWidth: '100vw' }}>

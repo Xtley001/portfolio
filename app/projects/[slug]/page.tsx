@@ -1,22 +1,104 @@
+import type { Metadata } from 'next'
 import { getAllProjects, getProjectBySlug } from '../../../lib/projects'
 import MarkdownContent from '../../../components/MarkdownContent'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
+
+const SITE_URL = 'https://christleyolubela.tech'
 
 export async function generateStaticParams() {
   const projects = getAllProjects()
   return projects.map(p => ({ slug: p.slug }))
 }
 
-export default async function ProjectPage({ params }: { params: Promise<{ slug: string }> | { slug: string } }) {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }> | { slug: string }
+}): Promise<Metadata> {
+  const { slug } = await Promise.resolve(params)
+  const project = getProjectBySlug(slug)
+  if (!project) return {}
+
+  const url = `${SITE_URL}/projects/${slug}`
+  const title = `${project.name} — ${project.tagline}`
+
+  return {
+    title: project.name,
+    description: project.tagline,
+    alternates: {
+      canonical: url,
+    },
+    openGraph: {
+      type: 'article',
+      locale: 'en_US',
+      url,
+      title,
+      description: project.tagline,
+      siteName: 'Christley Olubela Portfolio',
+      images: [
+        {
+          url: '/images/avatar.png',
+          width: 800,
+          height: 800,
+          alt: project.name,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description: project.tagline,
+      creator: '@Xtley001',
+      images: ['/images/avatar.png'],
+    },
+  }
+}
+
+export default async function ProjectPage({
+  params,
+}: {
+  params: Promise<{ slug: string }> | { slug: string }
+}) {
   const { slug } = await Promise.resolve(params)
   const project = getProjectBySlug(slug)
   if (!project) notFound()
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareSourceCode',
+    name: project.name,
+    description: project.tagline,
+    url: `${SITE_URL}/projects/${project.slug}`,
+    codeRepository: project.github || undefined,
+    programmingLanguage: project.tech,
+    author: {
+      '@type': 'Person',
+      name: 'Christley Olubela',
+      url: SITE_URL,
+    },
+  }
+
   return (
     <main style={{ padding: '120px 24px 80px', maxWidth: '800px', margin: '0 auto' }}>
-      <Link href="/#projects"
-        style={{ fontFamily: 'var(--font-dm-mono)', fontSize: '11px', color: 'var(--text-dim)', letterSpacing: '0.1em', display: 'inline-flex', alignItems: 'center', gap: '8px', marginBottom: '60px', transition: 'color 0.15s' }}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+
+      <Link
+        href="/#projects"
+        style={{
+          fontFamily: 'var(--font-dm-mono)',
+          fontSize: '11px',
+          color: 'var(--text-dim)',
+          letterSpacing: '0.1em',
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: '8px',
+          marginBottom: '60px',
+          transition: 'color 0.15s',
+        }}
       >
         ← back
       </Link>
@@ -47,42 +129,60 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
 
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', marginBottom: '40px' }}>
         {project.github && (
-          <a href={project.github} target="_blank" rel="noopener noreferrer"
+          <a
+            href={project.github}
+            target="_blank"
+            rel="noopener noreferrer"
             style={{ fontFamily: 'var(--font-dm-mono)', fontSize: '11px', color: 'var(--accent)', border: '1px solid var(--accent-dim)', padding: '6px 16px', letterSpacing: '0.08em', transition: 'all 0.2s' }}
           >
             github ↗
           </a>
         )}
         {project.cratesIo && (
-          <a href={project.cratesIo} target="_blank" rel="noopener noreferrer"
+          <a
+            href={project.cratesIo}
+            target="_blank"
+            rel="noopener noreferrer"
             style={{ fontFamily: 'var(--font-dm-mono)', fontSize: '11px', color: 'var(--text)', border: '1px solid var(--border)', padding: '6px 16px', letterSpacing: '0.08em', transition: 'all 0.2s' }}
           >
             crates.io ↗
           </a>
         )}
         {project.pypi && (
-          <a href={project.pypi} target="_blank" rel="noopener noreferrer"
+          <a
+            href={project.pypi}
+            target="_blank"
+            rel="noopener noreferrer"
             style={{ fontFamily: 'var(--font-dm-mono)', fontSize: '11px', color: 'var(--accent)', border: '1px solid var(--accent-dim)', padding: '6px 16px', letterSpacing: '0.08em', transition: 'all 0.2s' }}
           >
             pypi ↗
           </a>
         )}
         {project.docs && (
-          <a href={project.docs} target="_blank" rel="noopener noreferrer"
+          <a
+            href={project.docs}
+            target="_blank"
+            rel="noopener noreferrer"
             style={{ fontFamily: 'var(--font-dm-mono)', fontSize: '11px', color: 'var(--text)', border: '1px solid var(--border)', padding: '6px 16px', letterSpacing: '0.08em', transition: 'all 0.2s' }}
           >
             docs.rs ↗
           </a>
         )}
         {project.book && (
-          <a href={project.book} target="_blank" rel="noopener noreferrer"
+          <a
+            href={project.book}
+            target="_blank"
+            rel="noopener noreferrer"
             style={{ fontFamily: 'var(--font-dm-mono)', fontSize: '11px', color: 'var(--text)', border: '1px solid var(--border)', padding: '6px 16px', letterSpacing: '0.08em', transition: 'all 0.2s' }}
           >
             book ↗
           </a>
         )}
         {project.live && (
-          <a href={project.live} target="_blank" rel="noopener noreferrer"
+          <a
+            href={project.live}
+            target="_blank"
+            rel="noopener noreferrer"
             style={{ fontFamily: 'var(--font-dm-mono)', fontSize: '11px', color: 'var(--accent)', border: '1px solid var(--accent-dim)', padding: '6px 16px', letterSpacing: '0.08em', transition: 'all 0.2s' }}
           >
             {project.live.toLowerCase().endsWith('.pdf') ? 'tearsheet ↗' : 'live demo ↗'}
@@ -100,7 +200,6 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
 
       <hr style={{ marginBottom: '48px' }} />
 
-      {/* Markdown content with full formatting support */}
       <div className="mdx-content">
         <MarkdownContent content={project.content} />
       </div>
