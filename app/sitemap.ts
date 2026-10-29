@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next'
 import { getAllProjects } from '../lib/projects'
 
-const BASE_URL = 'https://christleyolubela.tech'
+const BASE_URL = 'https://olubelachristley.dev'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const projects = getAllProjects()

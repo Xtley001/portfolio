@@ -5,7 +5,7 @@ import Cursor from '../components/Cursor'
 import ScrollToTop from '../components/ScrollToTop'
 import { getSiteData } from '../lib/site'
 
-const SITE_URL = 'https://christleyolubela.tech'
+const SITE_URL = 'https://olubelachristley.dev'
 
 export async function generateMetadata(): Promise<Metadata> {
   const site = getSiteData()

@@ -4,7 +4,7 @@ import MarkdownContent from '../../../components/MarkdownContent'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
-const SITE_URL = 'https://christleyolubela.tech'
+const SITE_URL = 'https://olubelachristley.dev'
 
 export async function generateStaticParams() {
   const projects = getAllProjects()

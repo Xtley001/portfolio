@@ -9,6 +9,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ['/admin', '/api/admin/'],
       },
     ],
-    sitemap: 'https://christleyolubela.tech/sitemap.xml',
+    sitemap: 'https://olubelachristley.dev/sitemap.xml',
   }
 }
