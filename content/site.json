@@ -2,28 +2,28 @@
   "hero": {
     "firstName": "CHRISTLEY",
     "lastName": "OLUBELA",
-    "tagline": "I build systems that exploit microstructural\ninefficiencies in DeFi markets.",
-    "available": true,
+    "tagline": "I build low-latency systems and execution infrastructure in Rust — specializing in EVM state simulation, AMM curve mathematics, and atomic MEV pipelines.",
+    "available": false,
     "location": "Nigeria",
     "handle": "@Xtley001",
     "avatar": "/images/avatar.png"
   },
   "stack": [
     {
-      "category": "Languages",
-      "items": ["Rust", "Python", "TypeScript", "Solidity", "MQL5", "SQL", "R"]
+      "category": "Systems & Languages",
+      "items": ["Rust", "Python", "Solidity (Foundry)", "TypeScript", "C/C++", "MQL5", "SQL"]
     },
     {
-      "category": "Core Rust & Systems",
-      "items": ["Published Crates", "REVM Simulation", "LiteSVM", "Tokio", "Rayon", "Cargo Workspaces", "Zero-Copy", "PyO3 Native Extensions", "Write-Ahead Log (WAL)"]
+      "category": "EVM Internals & Core Systems",
+      "items": ["REVM (bluealloy/revm)", "Alloy (alloy-rs)", "LiteSVM", "Tokio", "Rayon", "Write-Ahead Log (WAL)", "Zero-Copy", "PyO3 Native Extensions"]
     },
     {
-      "category": "Blockchain & DeFi",
-      "items": ["Flash Loans", "Protocol Liquidations", "MEV Extraction", "Foundry", "Jito Bundles", "Geyser gRPC", "Timeboost", "DLMM", "Velodrome / Curve"]
+      "category": "MEV & Protocol Execution",
+      "items": ["Flash Loans", "Protocol Liquidations", "Jito Bundles", "Geyser gRPC", "Timeboost", "Morpho Blue", "Aave v3", "Uniswap v2/v3/v4"]
     },
     {
-      "category": "Quant & Math",
-      "items": ["Hierarchical Risk Parity (HRP)", "Orthogonal Decorrelation", "AST Diff Analysis", "GARCH", "Statistical Arbitrage", "Stochastic Volatility", "Monte Carlo", "Delta-Neutral Hedging"]
+      "category": "Algorithms & Numerical Math",
+      "items": ["Dual Water-Filling", "Newton-Raphson Solvers", "DLMM Bin Aggregation", "Fixed-Point Decimal", "Hierarchical Risk Parity (HRP)"]
     }
   ],
   "stats": [
@@ -38,20 +38,20 @@
   ],
   "focus": [
     {
+      "area": "Low-Latency EVM & State Simulation",
+      "subs": ["In-Process REVM Simulation", "Simulation Drift (Driftbrake v0.2.0)", "State-Machine Forking"]
+    },
+    {
+      "area": "Core Rust & Systems Tooling",
+      "subs": ["Published Crates (crates.io)", "Zero-Allocation Trait Design", "PyO3 Native CPython Bindings"]
+    },
+    {
       "area": "MEV & Liquidation Systems",
-      "subs": ["Protocol Liquidations", "Simulation Drift (Driftbrake v0.2.0)", "Cross-DEX Arbitrage"]
+      "subs": ["Atomic Flash-Loan Liquidations", "Block-Building & Bundle Ordering", "Receipt Polling & Gas Budgets"]
     },
     {
-      "area": "Systems & Core Rust",
-      "subs": ["Published Crates (crates.io)", "optimal-sizing v2.0.0", "Trait-Based API Design", "Zero-I/O Core Solvers"]
-    },
-    {
-      "area": "Quantitative Alpha Research",
-      "subs": ["brain-libraries (7 PyPI Packages)", "10-Axis Orthogonal Decorrelation", "Tri-Factor Meta-Synthesis (HRP)"]
-    },
-    {
-      "area": "Delta-Neutral DeFi & Microstructure",
-      "subs": ["Funding Rate Harvesting", "Hyperliquid Perpetuals", "Basis Risk Modeling", "Order Flow Analysis"]
+      "area": "Mathematical AMM Mechanics",
+      "subs": ["Provably Optimal Trade Sizing (v2.0.0)", "Discretized Liquidity Books (DLMM)", "Dual Water-Filling Allocation"]
     }
   ],
   "experience": [
@@ -65,13 +65,13 @@
       "year": "Jan 2026 → Mar 2026",
       "role": "Rust Engineer",
       "org": "Algorealm Inc.",
-      "note": "Iowa City · Hybrid · Delta-neutral execution infrastructure on Hyperliquid, GARCH modeling, order flow"
+      "note": "Iowa City · Hybrid · Delta-neutral execution infrastructure on Hyperliquid, low-latency execution pipelines, order flow"
     },
     {
       "year": "Mar 2025 → Jun 2025",
       "role": "Backend Engineer Intern",
       "org": "Beetle",
-      "note": "Hybrid · Algorithmic trading bots, automated risk controls, AI-powered event pipelines"
+      "note": "Hybrid · Algorithmic trading bots, automated risk controls, event-driven data pipelines"
     }
   ],
   "education": [
@@ -94,10 +94,10 @@
       "interests": []
     },
     "research": [
-      "MEV-adjacent flash loan execution flows",
-      "Cross-exchange funding rate divergence",
-      "AMM liquidity dynamics and IL models",
-      "On-chain order flow microstructure"
+      "Low-latency REVM simulation and in-process state transitions",
+      "MEV-adjacent flash loan execution and liquidation dynamics",
+      "Combinatorial trade routing across heterogeneous AMM curves",
+      "High-throughput mempool streaming and order flow microstructure"
     ],
     "outside": [
       { "label": "Swimming", "note": "" },
@@ -121,6 +121,6 @@
     "telegram": "",
     "linkedin": "https://www.linkedin.com/in/christley-olubela/",
     "goodreads": "https://www.goodreads.com/user/show/184917569-christley-olubela",
-    "note": "Open to Rust/systems engineering roles, DeFi & MEV engineering, and quantitative infrastructure collaborations."
+    "note": "Open to Rust/systems engineering roles, MEV & protocol infrastructure, and high-performance execution engineering."
   }
 }

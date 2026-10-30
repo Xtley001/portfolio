@@ -24,13 +24,18 @@ function StatCard({
   const suffix = match ? match[3] : ''
   const isNum = numeric !== '' && !isNaN(Number(numeric))
 
-  const [display, setDisplay] = useState(isNum ? `${prefix}0${suffix}` : value)
+  // CRITICAL FIX FOR MOBILE: Initialize to the actual value rather than 0
+  const [display, setDisplay] = useState(value)
   const ref = useRef<HTMLDivElement>(null)
   const animated = useRef(false)
 
   useEffect(() => {
-    if (animated.current && isNum) {
-      const target = Number(numeric)
+    if (!isNum) return
+
+    const target = Number(numeric)
+
+    // Check if IntersectionObserver is available
+    if (typeof IntersectionObserver === 'undefined') {
       setDisplay(prefix + target.toLocaleString() + suffix)
       return
     }
@@ -40,12 +45,7 @@ function StatCard({
         if (entry.isIntersecting && !animated.current) {
           animated.current = true
           if (ref.current) ref.current.classList.add('visible')
-          if (!isNum) {
-            setDisplay(value)
-            return
-          }
-          const target = Number(numeric)
-          const duration = 1200
+          const duration = 1000
           const start = performance.now()
           const tick = (now: number) => {
             const elapsed = now - start
@@ -62,19 +62,27 @@ function StatCard({
           requestAnimationFrame(tick)
         }
       },
-      { threshold: 0.25 }
+      { threshold: 0.05 }
     )
 
     if (ref.current) observer.observe(ref.current)
     return () => observer.disconnect()
+  }, [numeric, prefix, suffix, isNum])
+
+  // Smooth update when live numbers arrive from client-side API revalidation
+  useEffect(() => {
+    if (animated.current && isNum) {
+      const target = Number(numeric)
+      setDisplay(prefix + target.toLocaleString() + suffix)
+    }
   }, [value, numeric, prefix, suffix, isNum])
 
   return (
     <div
       ref={ref}
-      className="reveal stat-card"
+      className="reveal stat-card visible"
       style={{
-        padding: 'clamp(24px, 3.5vw, 32px) clamp(22px, 3vw, 28px)',
+        padding: 'clamp(20px, 3vw, 28px) clamp(18px, 2.5vw, 24px)',
         background: 'var(--surface)',
         border: '1px solid var(--border)',
         borderRadius: '4px',
@@ -82,13 +90,13 @@ function StatCard({
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-between',
-        minHeight: '168px',
+        minHeight: '160px',
         position: 'relative',
         overflow: 'hidden',
       }}
     >
       {/* Top index counter & live status indicator */}
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '18px' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '14px' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
           <span style={{ fontFamily: 'var(--font-dm-mono)', fontSize: '11px', color: 'var(--text-faint)', letterSpacing: '0.15em' }}>
             0{index + 1}
@@ -142,14 +150,14 @@ function StatCard({
           style={{
             fontFamily: 'var(--font-syne)',
             fontWeight: 800,
-            fontSize: 'clamp(2.5rem, 5vw, 4rem)',
+            fontSize: 'clamp(2.2rem, 4.5vw, 3.5rem)',
             color: 'var(--text)',
             lineHeight: 1,
             letterSpacing: '-0.02em',
             whiteSpace: 'nowrap',
             overflow: 'hidden',
             textOverflow: 'ellipsis',
-            marginBottom: '10px',
+            marginBottom: '8px',
           }}
         >
           {display}
@@ -158,7 +166,7 @@ function StatCard({
         <div
           style={{
             fontFamily: 'var(--font-dm-mono)',
-            fontSize: '12px',
+            fontSize: '11.5px',
             color: 'var(--text)',
             letterSpacing: '0.12em',
             textTransform: 'uppercase',
@@ -173,11 +181,11 @@ function StatCard({
           <div
             style={{
               fontFamily: 'var(--font-dm-mono)',
-              fontSize: '11px',
+              fontSize: '10.5px',
               color: 'var(--text-dim)',
               letterSpacing: '0.06em',
-              marginTop: '6px',
-              lineHeight: 1.5,
+              marginTop: '5px',
+              lineHeight: 1.4,
             }}
           >
             {sublabel}
@@ -185,19 +193,19 @@ function StatCard({
         )}
 
         {badges && badges.length > 0 && (
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginTop: '14px' }}>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginTop: '12px' }}>
             {badges.map(b => (
               <span
                 key={b}
                 style={{
                   fontFamily: 'var(--font-dm-mono)',
-                  fontSize: '9.5px',
+                  fontSize: '9px',
                   color: 'var(--text-faint)',
                   border: '1px solid var(--border)',
                   background: 'rgba(255, 255, 255, 0.02)',
-                  padding: '2px 8px',
+                  padding: '2px 7px',
                   borderRadius: '2px',
-                  letterSpacing: '0.08em',
+                  letterSpacing: '0.06em',
                 }}
               >
                 {b}
@@ -257,31 +265,29 @@ export default function Stats({
   if (!stats || stats.length === 0) return null
 
   return (
-    <section style={{ padding: '0 clamp(16px, 4vw, 40px) clamp(40px, 6vw, 60px)', maxWidth: '1200px', margin: '0 auto' }}>
-      <div className="stats-grid">
-        {stats.map((s, i) => {
-          const isDownloadStat = s.label.toLowerCase().includes('download')
-          const value = isDownloadStat ? `${downloadMetrics.total.toLocaleString()}+` : s.value
-          const sublabel = isDownloadStat
-            ? `${downloadMetrics.crates.toLocaleString()}+ on crates.io · ${downloadMetrics.pypi.toLocaleString()}+ on PyPI`
-            : '12 Rust Workspace Crates · 9 Python Native Packages'
-          const badges = isDownloadStat
-            ? ['crates.io', 'PyPI', 'Real-Time Telemetry']
-            : ['driftbrake (8)', 'optimal-sizing (10)', 'brain-libraries (7)']
+    <div className="stats-grid">
+      {stats.map((s, i) => {
+        const isDownloadStat = s.label.toLowerCase().includes('download')
+        const value = isDownloadStat ? `${downloadMetrics.total.toLocaleString()}+` : s.value
+        const sublabel = isDownloadStat
+          ? `${downloadMetrics.crates.toLocaleString()}+ on crates.io · ${downloadMetrics.pypi.toLocaleString()}+ on PyPI`
+          : '12 Rust Workspace Crates · 9 Python Native Packages'
+        const badges = isDownloadStat
+          ? ['crates.io', 'PyPI', 'Real-Time Telemetry']
+          : ['driftbrake (8)', 'optimal-sizing (10)', 'brain-libraries (7)']
 
-          return (
-            <StatCard
-              key={s.label}
-              value={value}
-              label={s.label}
-              index={i}
-              sublabel={sublabel}
-              badges={badges}
-              isLive={isDownloadStat}
-            />
-          )
-        })}
-      </div>
-    </section>
+        return (
+          <StatCard
+            key={s.label}
+            value={value}
+            label={s.label}
+            index={i}
+            sublabel={sublabel}
+            badges={badges}
+            isLive={isDownloadStat}
+          />
+        )
+      })}
+    </div>
   )
 }

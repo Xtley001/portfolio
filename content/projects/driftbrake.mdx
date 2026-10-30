@@ -12,12 +12,12 @@ tech:
   - Write-Ahead Log (WAL)
   - crates.io
   - PyPI
-github: 'https://github.com/Xtley001/driftbrake'
-live: 'https://crates.io/crates/driftbrake'
-docs: 'https://docs.rs/driftbrake'
-book: 'https://xtley001.github.io/driftbrake'
-cratesIo: 'https://crates.io/crates/driftbrake'
-pypi: 'https://pypi.org/project/driftbrake-py/'
+github: "https://github.com/Xtley001/driftbrake"
+live: "https://crates.io/crates/driftbrake"
+docs: "https://docs.rs/driftbrake"
+book: "https://xtley001.github.io/driftbrake"
+cratesIo: "https://crates.io/crates/driftbrake"
+pypi: "https://pypi.org/project/driftbrake-py/"
 stats: 7 Crates · Python Native Extension · 800+ Total Downloads
 ranking: 1
 category: Systems & Infrastructure
@@ -38,6 +38,7 @@ featured: true
 ## The Simulation-to-Reality Drift Problem
 
 In high-frequency decentralized finance (MEV extraction, protocol liquidations, and cross-DEX statistical arbitrage), searchers simulate candidate transactions against local state before broadcasting. However, between simulation and block inclusion:
+
 1. **State Mutation & Frontrunning:** Competing searchers or incoming retail flow alter pool reserves, causing slippage or outright reverts.
 2. **Hidden Execution Costs:** State-access gas spikes, dynamic base fees, and priority tip surges erode simulated margins.
 3. **Model Inaccuracy:** Approximated curve math or stale oracle state generates phantom profits that vanish on-chain.
@@ -66,16 +67,16 @@ driftbrake/
 
 ### Workspace Packages
 
-| Crate / Package | Distribution | Role |
-|---|---|---|
-| `driftbrake` | [crates.io](https://crates.io/crates/driftbrake) | Facade crate unifying core, reconcile, receipt-poller, and journal |
-| `driftbrake-core` | [crates.io](https://crates.io/crates/driftbrake-core) | Chain-agnostic trait boundaries (`ProfitDecoder`, `SimEngine`, `HaltPolicy`) |
-| `driftbrake-reconcile` | [crates.io](https://crates.io/crates/driftbrake-reconcile) | Multi-guard engine (Fast/Slow drift, Revert-Burst, VWAR, Net Drawdown) |
-| `driftbrake-journal` | [crates.io](https://crates.io/crates/driftbrake-journal) | Crash-resilient binary Write-Ahead Log (WAL) with CRC32 verification |
-| `driftbrake-receipt-poller` | [crates.io](https://crates.io/crates/driftbrake-receipt-poller) | Block-time-aware receipt polling and profit realization gating |
-| `driftbrake-revm-backend` | [crates.io](https://crates.io/crates/driftbrake-revm-backend) | In-process concrete REVM simulation backend with bounded concurrency |
-| `driftbrake-py` | [PyPI](https://pypi.org/project/driftbrake-py/) | Compiled CPython Stable ABI native module and vectorized sweep engine |
-| `driftbrake-benchmark` | [crates.io](https://crates.io/crates/driftbrake-benchmark) | Synthetic drift generator and false-halt vs. missed-catch calibration |
+| Crate / Package             | Distribution                                                    | Role                                                                         |
+| --------------------------- | --------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| `driftbrake`                | [crates.io](https://crates.io/crates/driftbrake)                | Facade crate unifying core, reconcile, receipt-poller, and journal           |
+| `driftbrake-core`           | [crates.io](https://crates.io/crates/driftbrake-core)           | Chain-agnostic trait boundaries (`ProfitDecoder`, `SimEngine`, `HaltPolicy`) |
+| `driftbrake-reconcile`      | [crates.io](https://crates.io/crates/driftbrake-reconcile)      | Multi-guard engine (Fast/Slow drift, Revert-Burst, VWAR, Net Drawdown)       |
+| `driftbrake-journal`        | [crates.io](https://crates.io/crates/driftbrake-journal)        | Crash-resilient binary Write-Ahead Log (WAL) with CRC32 verification         |
+| `driftbrake-receipt-poller` | [crates.io](https://crates.io/crates/driftbrake-receipt-poller) | Block-time-aware receipt polling and profit realization gating               |
+| `driftbrake-revm-backend`   | [crates.io](https://crates.io/crates/driftbrake-revm-backend)   | In-process concrete REVM simulation backend with bounded concurrency         |
+| `driftbrake-py`             | [PyPI](https://pypi.org/project/driftbrake-py/)                 | Compiled CPython Stable ABI native module and vectorized sweep engine        |
+| `driftbrake-benchmark`      | [crates.io](https://crates.io/crates/driftbrake-benchmark)      | Synthetic drift generator and false-halt vs. missed-catch calibration        |
 
 ---
 
@@ -115,6 +116,7 @@ match policy.evaluate(&history) {
 ## Crash Resilience: Binary Write-Ahead Log (WAL)
 
 To prevent risk state amnesia during daemon restarts or container evictions, `driftbrake-journal` implements a high-throughput binary Write-Ahead Log:
+
 - **Zero-Copy Serialization:** Bincode-encoded fixed-header append log.
 - **Data Integrity:** IEEE 802.3 CRC32 checksums on every log frame.
 - **Torn-Write Recovery:** Automatic log truncation on startup if an uncompleted write frame is detected from an abrupt process termination.
