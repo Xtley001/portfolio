@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState } from 'react'
 import type { SiteData } from '../lib/site'
 
-function StatCard({
+function StatItem({
   value,
   label,
   index,
@@ -75,124 +75,103 @@ function StatCard({
   return (
     <div
       ref={ref}
-      className="reveal stat-card visible"
+      className="reveal visible"
       style={{
-        padding: 'clamp(20px, 2.5vw, 28px) clamp(22px, 2.8vw, 32px)',
-        background: 'var(--surface)',
-        border: '1px solid var(--border)',
-        borderRadius: '4px',
-        transitionDelay: `${index * 0.1}s`,
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'space-between',
-        position: 'relative',
-        minHeight: '175px',
+        gap: '6px',
+        paddingTop: '16px',
+        borderTop: '1px solid var(--border)',
+        transitionDelay: `${index * 0.1}s`,
       }}
     >
-      {/* Top index counter & live status indicator */}
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '14px' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <span style={{ fontFamily: 'var(--font-dm-mono)', fontSize: '11px', color: 'var(--accent)', letterSpacing: '0.15em', fontWeight: 600 }}>
-            // 0{index + 1}
-          </span>
-          <span style={{ fontFamily: 'var(--font-dm-mono)', fontSize: '11px', color: 'var(--text-faint)', letterSpacing: '0.15em', textTransform: 'uppercase' }}>
-            {index === 0 ? '· TRACTION' : '· INFRASTRUCTURE'}
-          </span>
+      {/* Label + quiet Live indicator */}
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <div
+          style={{
+            fontFamily: 'var(--font-dm-mono)',
+            fontSize: '11px',
+            color: 'var(--text-faint)',
+            letterSpacing: '0.14em',
+            textTransform: 'uppercase',
+            fontWeight: 500,
+          }}
+        >
+          {label}
         </div>
-
         {isLive ? (
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '6px',
-              padding: '3px 9px',
-              background: 'rgba(16, 185, 129, 0.08)',
-              border: '1px solid rgba(16, 185, 129, 0.28)',
-              borderRadius: '2px',
-            }}
-          >
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '5px' }}>
             <span
               style={{
-                width: '6px',
-                height: '6px',
+                width: '5px',
+                height: '5px',
                 borderRadius: '50%',
                 background: '#10b981',
-                boxShadow: '0 0 8px #10b981',
+                boxShadow: '0 0 6px rgba(16, 185, 129, 0.6)',
                 display: 'inline-block',
               }}
             />
             <span
               style={{
                 fontFamily: 'var(--font-dm-mono)',
-                fontSize: '10px',
+                fontSize: '9px',
                 color: '#10b981',
-                letterSpacing: '0.12em',
+                letterSpacing: '0.1em',
                 fontWeight: 600,
               }}
             >
-              LIVE SYNC
+              LIVE
             </span>
           </div>
         ) : (
-          <span style={{ fontFamily: 'var(--font-dm-mono)', fontSize: '10px', color: 'var(--text-faint)', letterSpacing: '0.12em', textTransform: 'uppercase' }}>
+          <span
+            style={{
+              fontFamily: 'var(--font-dm-mono)',
+              fontSize: '9px',
+              color: 'var(--text-faint)',
+              letterSpacing: '0.1em',
+              textTransform: 'uppercase',
+            }}
+          >
             CRATES.IO & PYPI
           </span>
         )}
       </div>
 
-      {/* Hero Metric Number */}
+      {/* Clean, Refined Number */}
       <div
         style={{
           fontFamily: 'var(--font-syne)',
-          fontWeight: 800,
-          fontSize: 'clamp(2.6rem, 3.8vw, 3.6rem)',
+          fontWeight: 700,
+          fontSize: 'clamp(2rem, 3.2vw, 2.8rem)',
           color: 'var(--text)',
-          lineHeight: 1,
+          lineHeight: 1.05,
           letterSpacing: '-0.025em',
-          marginBottom: '8px',
         }}
       >
         {display}
       </div>
 
-      {/* Clear, Readable Uppercase Label */}
-      <div
-        style={{
-          fontFamily: 'var(--font-dm-mono)',
-          fontSize: '12.5px',
-          color: 'var(--accent)',
-          letterSpacing: '0.12em',
-          textTransform: 'uppercase',
-          fontWeight: 600,
-          marginBottom: '16px',
-        }}
-      >
-        {label}
-      </div>
-
-      {/* Distinct Breakdown Row */}
+      {/* Understated Breakdown Context */}
       {breakdown && breakdown.length > 0 && (
         <div
           style={{
             fontFamily: 'var(--font-dm-mono)',
-            fontSize: '12px',
+            fontSize: '11.5px',
             color: 'var(--text-dim)',
             letterSpacing: '0.04em',
-            borderTop: '1px solid var(--border)',
-            paddingTop: '12px',
             display: 'flex',
             alignItems: 'center',
-            gap: '12px',
+            gap: '8px',
             flexWrap: 'wrap',
           }}
         >
           {breakdown.map((item, idx) => (
-            <div key={item.name} style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-              {idx > 0 && <span style={{ color: 'var(--border-bright)', marginRight: '6px' }}>•</span>}
-              <span style={{ color: 'var(--text)', fontWeight: 500 }}>{item.count}</span>
-              <span style={{ color: 'var(--text-faint)' }}>{item.name}</span>
-            </div>
+            <span key={item.name} style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+              {idx > 0 && <span style={{ color: 'var(--border)', margin: '0 4px' }}>/</span>}
+              <span style={{ color: 'var(--accent-dim)', fontWeight: 500 }}>{item.count}</span>
+              <span>{item.name}</span>
+            </span>
           ))}
         </div>
       )}
@@ -247,24 +226,24 @@ export default function Stats({
   if (!stats || stats.length === 0) return null
 
   return (
-    <div className="stats-grid">
+    <div className="stats-minimal-grid">
       {stats.map((s, i) => {
         const isDownloadStat = s.label.toLowerCase().includes('download')
         const value = isDownloadStat ? `${downloadMetrics.total.toLocaleString()}+` : s.value
-        const label = isDownloadStat ? 'Total Open Source Downloads' : 'Published Production Packages'
-        
+        const label = isDownloadStat ? 'Open Source Downloads' : 'Published Production Packages'
+
         const breakdown = isDownloadStat
           ? [
               { count: `${downloadMetrics.crates.toLocaleString()}+`, name: 'crates.io' },
               { count: `${downloadMetrics.pypi.toLocaleString()}+`, name: 'PyPI' },
             ]
           : [
-              { count: '12', name: 'Rust Workspace Crates' },
-              { count: '9', name: 'Python Native Packages' },
+              { count: '12', name: 'Rust Crates' },
+              { count: '9', name: 'Python Packages' },
             ]
 
         return (
-          <StatCard
+          <StatItem
             key={s.label}
             value={value}
             label={label}
