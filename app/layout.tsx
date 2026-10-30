@@ -48,9 +48,12 @@ export async function generateMetadata(): Promise<Metadata> {
     creator: fullName,
     publisher: fullName,
     icons: {
-      icon: '/icon.svg',
-      shortcut: '/icon.svg',
-      apple: '/icon.svg',
+      icon: [
+        { url: '/favicon.ico', sizes: 'any' },
+        { url: '/icon.svg', type: 'image/svg+xml' },
+      ],
+      shortcut: '/favicon.ico',
+      apple: '/apple-touch-icon.png',
     },
     alternates: {
       canonical: SITE_URL,
@@ -104,7 +107,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     name: fullName,
     alternateName: ['Xtley001', '@Xtley001'],
     url: SITE_URL,
-    image: `${SITE_URL}/images/avatar.png`,
+    image: `${SITE_URL}/images/og-card.png`,
     jobTitle: 'Rust Systems & MEV Infrastructure Engineer',
     knowsAbout: [
       'Rust Systems Programming',
@@ -129,7 +132,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <head>
+        <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />

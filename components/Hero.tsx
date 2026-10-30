@@ -63,66 +63,45 @@ export default function Hero({
           <span style={{ textTransform: 'uppercase', letterSpacing: '0.15em' }}>RUST SYSTEMS & MEV INFRASTRUCTURE</span>
         </div>
 
-        {/* Name & Avatar */}
+        {/* Name */}
         <div
           style={{
-            marginBottom: '20px',
+            marginBottom: '24px',
             paddingBottom: '4px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            gap: 'clamp(16px, 4vw, 40px)',
           }}
         >
-          <div>
-            <h1
-              className="animate-fade-up delay-100 hero-name"
-              style={{
-                fontFamily: 'var(--font-syne)',
-                fontWeight: 800,
-                fontSize: 'clamp(2.2rem, 8vw, 6.2rem)',
-                lineHeight: 0.98,
-                letterSpacing: '-0.02em',
-                color: 'var(--text)',
-                display: 'block',
-                paddingBottom: '0.04em',
-                whiteSpace: 'nowrap',
-              }}
-            >
-              {hero.firstName}
-            </h1>
-            <h1
-              className="animate-fade-up delay-200 hero-name"
-              style={{
-                fontFamily: 'var(--font-syne)',
-                fontWeight: 800,
-                fontSize: 'clamp(2.2rem, 8vw, 6.2rem)',
-                lineHeight: 0.98,
-                letterSpacing: '-0.02em',
-                color: 'var(--accent)',
-                display: 'block',
-                paddingBottom: '0.04em',
-                whiteSpace: 'nowrap',
-              }}
-            >
-              {hero.lastName}
-            </h1>
-          </div>
-
-          <img
-            src="/images/avatar-cutout.png"
-            alt={`${hero.firstName} ${hero.lastName}`}
-            className="animate-fade-in delay-200 hero-avatar"
+          <h1
+            className="animate-fade-up delay-100 hero-name"
             style={{
-              width: 'clamp(160px, 20vw, 280px)',
-              height: 'auto',
-              flexShrink: 0,
-              marginRight: 'clamp(8px, 2vw, 24px)',
-              maskImage: 'linear-gradient(black 80%, transparent 100%)',
-              WebkitMaskImage: 'linear-gradient(black 80%, transparent 100%)',
-              opacity: 0.85,
+              fontFamily: 'var(--font-syne)',
+              fontWeight: 800,
+              fontSize: 'clamp(2.5rem, 8.5vw, 6.4rem)',
+              lineHeight: 0.96,
+              letterSpacing: '-0.025em',
+              color: 'var(--text)',
+              display: 'block',
+              paddingBottom: '0.04em',
+              whiteSpace: 'nowrap',
             }}
-          />
+          >
+            {hero.firstName}
+          </h1>
+          <h1
+            className="animate-fade-up delay-200 hero-name"
+            style={{
+              fontFamily: 'var(--font-syne)',
+              fontWeight: 800,
+              fontSize: 'clamp(2.5rem, 8.5vw, 6.4rem)',
+              lineHeight: 0.96,
+              letterSpacing: '-0.025em',
+              color: 'var(--accent)',
+              display: 'block',
+              paddingBottom: '0.04em',
+              whiteSpace: 'nowrap',
+            }}
+          >
+            {hero.lastName}
+          </h1>
         </div>
 
         <div className="draw-line" style={{ marginBottom: '24px' }} />

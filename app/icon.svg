@@ -1,4 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="14" fill="#0a0a0a" stroke="#2a2a2a" stroke-width="3"/>
-  <text x="50%" y="54%" text-anchor="middle" dominant-baseline="central" fill="#c8b89a" font-family="system-ui, -apple-system, sans-serif" font-weight="800" font-size="36">C</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <rect width="64" height="64" rx="14" fill="#0c0d0e" stroke="#c89b3c" stroke-width="3"/>
+  <path d="M16 20L32 32L16 44" stroke="#c89b3c" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <line x1="36" y1="44" x2="48" y2="44" stroke="#c89b3c" stroke-width="6" stroke-linecap="round"/>
 </svg>
