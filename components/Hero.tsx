@@ -22,10 +22,10 @@ export default function Hero({
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
-        paddingBottom: 'clamp(40px, 6vw, 80px)',
+        paddingBottom: 'clamp(24px, 3.5vh, 44px)',
         paddingLeft: 'clamp(16px, 4vw, 40px)',
         paddingRight: 'clamp(16px, 4vw, 40px)',
-        paddingTop: 'clamp(60px, 7vw, 90px)',
+        paddingTop: 'clamp(56px, 8vh, 80px)',
         position: 'relative',
         overflow: 'hidden',
         maxWidth: '100vw',
@@ -52,7 +52,7 @@ export default function Hero({
             fontSize: '11px',
             color: 'var(--text-faint)',
             letterSpacing: '0.2em',
-            marginBottom: 'clamp(16px, 3vw, 36px)',
+            marginBottom: 'clamp(10px, 1.5vh, 16px)',
             display: 'flex',
             alignItems: 'center',
             gap: '12px',
@@ -63,72 +63,56 @@ export default function Hero({
           <span style={{ textTransform: 'uppercase', letterSpacing: '0.15em' }}>RUST SYSTEMS & MEV INFRASTRUCTURE</span>
         </div>
 
-        {/* Name */}
+        {/* Refined, Architectural Name */}
         <div
+          className="animate-fade-up delay-100"
           style={{
-            marginBottom: '24px',
-            paddingBottom: '4px',
+            marginBottom: 'clamp(12px, 1.8vh, 18px)',
           }}
         >
           <h1
-            className="animate-fade-up delay-100 hero-name"
+            className="hero-name"
             style={{
               fontFamily: 'var(--font-syne)',
               fontWeight: 800,
-              fontSize: 'clamp(2.5rem, 8.5vw, 6.4rem)',
-              lineHeight: 0.96,
+              fontSize: 'clamp(2rem, 4.2vw, 3.6rem)',
+              lineHeight: 1.05,
               letterSpacing: '-0.025em',
               color: 'var(--text)',
-              display: 'block',
-              paddingBottom: '0.04em',
-              whiteSpace: 'nowrap',
+              margin: 0,
             }}
           >
-            {hero.firstName}
-          </h1>
-          <h1
-            className="animate-fade-up delay-200 hero-name"
-            style={{
-              fontFamily: 'var(--font-syne)',
-              fontWeight: 800,
-              fontSize: 'clamp(2.5rem, 8.5vw, 6.4rem)',
-              lineHeight: 0.96,
-              letterSpacing: '-0.025em',
-              color: 'var(--accent)',
-              display: 'block',
-              paddingBottom: '0.04em',
-              whiteSpace: 'nowrap',
-            }}
-          >
-            {hero.lastName}
+            {hero.firstName}{' '}
+            <span style={{ color: 'var(--accent)' }}>{hero.lastName}</span>
           </h1>
         </div>
 
-        <div className="draw-line" style={{ marginBottom: '24px' }} />
+        <div className="draw-line" style={{ marginBottom: 'clamp(12px, 1.8vh, 18px)' }} />
 
         {/* Tagline + Resume Action */}
         <div
           style={{
             display: 'flex',
             flexWrap: 'wrap',
-            alignItems: 'flex-start',
+            alignItems: 'center',
             justifyContent: 'space-between',
-            gap: '20px',
+            gap: '16px',
           }}
-          className="animate-fade-up delay-400"
+          className="animate-fade-up delay-200"
         >
           <p
             style={{
               fontFamily: 'var(--font-dm-mono)',
-              fontSize: 'clamp(0.85rem, 1.8vw, 1.05rem)',
+              fontSize: 'clamp(0.85rem, 1.12vw, 0.98rem)',
               color: 'var(--text-dim)',
               maxWidth: '680px',
-              lineHeight: 1.8,
+              lineHeight: 1.65,
+              margin: 0,
             }}
           >
             {hero.tagline}
           </p>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexShrink: 0 }}>
             <a
               href="/Christley_Olubela_Resume.pdf"
               target="_blank"
@@ -140,7 +124,7 @@ export default function Hero({
                 letterSpacing: '0.12em',
                 textTransform: 'uppercase',
                 border: '1px solid var(--accent-dim)',
-                padding: '8px 18px',
+                padding: '7px 16px',
                 borderRadius: '2px',
                 textDecoration: 'none',
                 transition: 'all 0.2s ease',
@@ -163,32 +147,32 @@ export default function Hero({
           </div>
         </div>
 
-        {/* Embedded Live Stats: Right on the First View / Hero */}
+        {/* Clean, Non-Noisy Live Stats: Perfectly Proportionate Above the Fold */}
         {stats && stats.length > 0 && (
           <div
-            className="animate-fade-up delay-500"
-            style={{ marginTop: 'clamp(28px, 3.5vw, 42px)' }}
+            className="animate-fade-up delay-300"
+            style={{ marginTop: 'clamp(14px, 2.2vh, 22px)' }}
           >
             <Stats stats={stats} initialLiveDownloads={initialLiveDownloads} />
           </div>
         )}
 
-        {/* Subtle scroll prompt */}
+        {/* Subtle scroll cue */}
         <div
-          className="animate-fade-in delay-700"
+          className="animate-fade-in delay-500"
           style={{
-            marginTop: 'clamp(24px, 3vw, 36px)',
+            marginTop: 'clamp(14px, 2vh, 20px)',
             fontFamily: 'var(--font-dm-mono)',
-            fontSize: '11px',
+            fontSize: '10px',
             color: 'var(--text-faint)',
             letterSpacing: '0.2em',
             display: 'flex',
             alignItems: 'center',
-            gap: '12px',
+            gap: '10px',
           }}
         >
-          <span style={{ width: '20px', height: '1px', background: 'var(--text-faint)', display: 'inline-block' }} />
-          EXPLORE SYSTEMS
+          <span style={{ width: '18px', height: '1px', background: 'var(--text-faint)', display: 'inline-block' }} />
+          EXPLORE CORE SYSTEMS ↓
         </div>
       </div>
     </section>

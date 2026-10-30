@@ -7,14 +7,12 @@ function StatCard({
   label,
   index,
   sublabel,
-  badges,
   isLive,
 }: {
   value: string
   label: string
   index: number
   sublabel?: string
-  badges?: string[]
   isLive?: boolean
 }) {
   const cleanVal = value.replace(/,/g, '')
@@ -24,7 +22,6 @@ function StatCard({
   const suffix = match ? match[3] : ''
   const isNum = numeric !== '' && !isNaN(Number(numeric))
 
-  // CRITICAL FIX FOR MOBILE: Initialize to the actual value rather than 0
   const [display, setDisplay] = useState(value)
   const ref = useRef<HTMLDivElement>(null)
   const animated = useRef(false)
@@ -34,7 +31,6 @@ function StatCard({
 
     const target = Number(numeric)
 
-    // Check if IntersectionObserver is available
     if (typeof IntersectionObserver === 'undefined') {
       setDisplay(prefix + target.toLocaleString() + suffix)
       return
@@ -69,7 +65,6 @@ function StatCard({
     return () => observer.disconnect()
   }, [numeric, prefix, suffix, isNum])
 
-  // Smooth update when live numbers arrive from client-side API revalidation
   useEffect(() => {
     if (animated.current && isNum) {
       const target = Number(numeric)
@@ -82,27 +77,26 @@ function StatCard({
       ref={ref}
       className="reveal stat-card visible"
       style={{
-        padding: 'clamp(20px, 3vw, 28px) clamp(18px, 2.5vw, 24px)',
+        padding: '16px 20px',
         background: 'var(--surface)',
         border: '1px solid var(--border)',
-        borderRadius: '4px',
+        borderRadius: '3px',
         transitionDelay: `${index * 0.1}s`,
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'space-between',
-        minHeight: '160px',
+        justifyContent: 'center',
         position: 'relative',
         overflow: 'hidden',
       }}
     >
       {/* Top index counter & live status indicator */}
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '14px' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <span style={{ fontFamily: 'var(--font-dm-mono)', fontSize: '11px', color: 'var(--text-faint)', letterSpacing: '0.15em' }}>
+          <span style={{ fontFamily: 'var(--font-dm-mono)', fontSize: '10px', color: 'var(--text-faint)', letterSpacing: '0.15em' }}>
             0{index + 1}
           </span>
-          <span style={{ fontFamily: 'var(--font-dm-mono)', fontSize: '10px', color: 'var(--accent-dim)', letterSpacing: '0.1em', textTransform: 'uppercase' }}>
-            {index === 0 ? '· Traction' : '· Infrastructure'}
+          <span style={{ fontFamily: 'var(--font-dm-mono)', fontSize: '10px', color: 'var(--accent-dim)', letterSpacing: '0.12em', textTransform: 'uppercase' }}>
+            // {index === 0 ? 'Traction' : 'Infrastructure'}
           </span>
         </div>
 
@@ -111,8 +105,8 @@ function StatCard({
             style={{
               display: 'flex',
               alignItems: 'center',
-              gap: '6px',
-              padding: '2px 8px',
+              gap: '5px',
+              padding: '2px 7px',
               background: 'rgba(16, 185, 129, 0.08)',
               border: '1px solid rgba(16, 185, 129, 0.25)',
               borderRadius: '2px',
@@ -120,11 +114,11 @@ function StatCard({
           >
             <span
               style={{
-                width: '6px',
-                height: '6px',
+                width: '5px',
+                height: '5px',
                 borderRadius: '50%',
                 background: '#10b981',
-                boxShadow: '0 0 6px #10b981',
+                boxShadow: '0 0 5px #10b981',
                 display: 'inline-block',
               }}
             />
@@ -133,7 +127,7 @@ function StatCard({
                 fontFamily: 'var(--font-dm-mono)',
                 fontSize: '9px',
                 color: '#10b981',
-                letterSpacing: '0.12em',
+                letterSpacing: '0.1em',
                 fontWeight: 600,
               }}
             >
@@ -141,23 +135,21 @@ function StatCard({
             </span>
           </div>
         ) : (
-          <span style={{ width: '5px', height: '5px', borderRadius: '50%', background: 'var(--accent)', opacity: 0.5 }} />
+          <span style={{ fontFamily: 'var(--font-dm-mono)', fontSize: '9px', color: 'var(--text-faint)', letterSpacing: '0.1em' }}>
+            CRATES.IO & PYPI
+          </span>
         )}
       </div>
 
-      <div>
+      <div style={{ display: 'flex', alignItems: 'baseline', gap: '12px', flexWrap: 'wrap' }}>
         <div
           style={{
             fontFamily: 'var(--font-syne)',
             fontWeight: 800,
-            fontSize: 'clamp(2.2rem, 4.5vw, 3.5rem)',
+            fontSize: 'clamp(1.75rem, 2.5vw, 2.3rem)',
             color: 'var(--text)',
             lineHeight: 1,
             letterSpacing: '-0.02em',
-            whiteSpace: 'nowrap',
-            overflow: 'hidden',
-            textOverflow: 'ellipsis',
-            marginBottom: '8px',
           }}
         >
           {display}
@@ -166,54 +158,31 @@ function StatCard({
         <div
           style={{
             fontFamily: 'var(--font-dm-mono)',
-            fontSize: '11.5px',
-            color: 'var(--text)',
-            letterSpacing: '0.12em',
+            fontSize: '11px',
+            color: 'var(--accent)',
+            letterSpacing: '0.1em',
             textTransform: 'uppercase',
             fontWeight: 500,
-            lineHeight: 1.4,
           }}
         >
           {label}
         </div>
-
-        {sublabel && (
-          <div
-            style={{
-              fontFamily: 'var(--font-dm-mono)',
-              fontSize: '10.5px',
-              color: 'var(--text-dim)',
-              letterSpacing: '0.06em',
-              marginTop: '5px',
-              lineHeight: 1.4,
-            }}
-          >
-            {sublabel}
-          </div>
-        )}
-
-        {badges && badges.length > 0 && (
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginTop: '12px' }}>
-            {badges.map(b => (
-              <span
-                key={b}
-                style={{
-                  fontFamily: 'var(--font-dm-mono)',
-                  fontSize: '9px',
-                  color: 'var(--text-faint)',
-                  border: '1px solid var(--border)',
-                  background: 'rgba(255, 255, 255, 0.02)',
-                  padding: '2px 7px',
-                  borderRadius: '2px',
-                  letterSpacing: '0.06em',
-                }}
-              >
-                {b}
-              </span>
-            ))}
-          </div>
-        )}
       </div>
+
+      {sublabel && (
+        <div
+          style={{
+            fontFamily: 'var(--font-dm-mono)',
+            fontSize: '11px',
+            color: 'var(--text-dim)',
+            letterSpacing: '0.04em',
+            marginTop: '6px',
+            lineHeight: 1.3,
+          }}
+        >
+          {sublabel}
+        </div>
+      )}
     </div>
   )
 }
@@ -272,9 +241,6 @@ export default function Stats({
         const sublabel = isDownloadStat
           ? `${downloadMetrics.crates.toLocaleString()}+ on crates.io · ${downloadMetrics.pypi.toLocaleString()}+ on PyPI`
           : '12 Rust Workspace Crates · 9 Python Native Packages'
-        const badges = isDownloadStat
-          ? ['crates.io', 'PyPI', 'Real-Time Telemetry']
-          : ['driftbrake (8)', 'optimal-sizing (10)', 'brain-libraries (7)']
 
         return (
           <StatCard
@@ -283,7 +249,6 @@ export default function Stats({
             label={s.label}
             index={i}
             sublabel={sublabel}
-            badges={badges}
             isLive={isDownloadStat}
           />
         )
