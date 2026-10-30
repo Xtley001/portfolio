@@ -6,13 +6,13 @@ function StatCard({
   value,
   label,
   index,
-  sublabel,
+  breakdown,
   isLive,
 }: {
   value: string
   label: string
   index: number
-  sublabel?: string
+  breakdown?: { name: string; count: string }[]
   isLive?: boolean
 }) {
   const cleanVal = value.replace(/,/g, '')
@@ -77,26 +77,26 @@ function StatCard({
       ref={ref}
       className="reveal stat-card visible"
       style={{
-        padding: '16px 20px',
+        padding: 'clamp(20px, 2.5vw, 28px) clamp(22px, 2.8vw, 32px)',
         background: 'var(--surface)',
         border: '1px solid var(--border)',
-        borderRadius: '3px',
+        borderRadius: '4px',
         transitionDelay: `${index * 0.1}s`,
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'center',
+        justifyContent: 'space-between',
         position: 'relative',
-        overflow: 'hidden',
+        minHeight: '175px',
       }}
     >
       {/* Top index counter & live status indicator */}
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '14px' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <span style={{ fontFamily: 'var(--font-dm-mono)', fontSize: '10px', color: 'var(--text-faint)', letterSpacing: '0.15em' }}>
-            0{index + 1}
+          <span style={{ fontFamily: 'var(--font-dm-mono)', fontSize: '11px', color: 'var(--accent)', letterSpacing: '0.15em', fontWeight: 600 }}>
+            // 0{index + 1}
           </span>
-          <span style={{ fontFamily: 'var(--font-dm-mono)', fontSize: '10px', color: 'var(--accent-dim)', letterSpacing: '0.12em', textTransform: 'uppercase' }}>
-            // {index === 0 ? 'Traction' : 'Infrastructure'}
+          <span style={{ fontFamily: 'var(--font-dm-mono)', fontSize: '11px', color: 'var(--text-faint)', letterSpacing: '0.15em', textTransform: 'uppercase' }}>
+            {index === 0 ? '· TRACTION' : '· INFRASTRUCTURE'}
           </span>
         </div>
 
@@ -105,29 +105,29 @@ function StatCard({
             style={{
               display: 'flex',
               alignItems: 'center',
-              gap: '5px',
-              padding: '2px 7px',
+              gap: '6px',
+              padding: '3px 9px',
               background: 'rgba(16, 185, 129, 0.08)',
-              border: '1px solid rgba(16, 185, 129, 0.25)',
+              border: '1px solid rgba(16, 185, 129, 0.28)',
               borderRadius: '2px',
             }}
           >
             <span
               style={{
-                width: '5px',
-                height: '5px',
+                width: '6px',
+                height: '6px',
                 borderRadius: '50%',
                 background: '#10b981',
-                boxShadow: '0 0 5px #10b981',
+                boxShadow: '0 0 8px #10b981',
                 display: 'inline-block',
               }}
             />
             <span
               style={{
                 fontFamily: 'var(--font-dm-mono)',
-                fontSize: '9px',
+                fontSize: '10px',
                 color: '#10b981',
-                letterSpacing: '0.1em',
+                letterSpacing: '0.12em',
                 fontWeight: 600,
               }}
             >
@@ -135,52 +135,65 @@ function StatCard({
             </span>
           </div>
         ) : (
-          <span style={{ fontFamily: 'var(--font-dm-mono)', fontSize: '9px', color: 'var(--text-faint)', letterSpacing: '0.1em' }}>
+          <span style={{ fontFamily: 'var(--font-dm-mono)', fontSize: '10px', color: 'var(--text-faint)', letterSpacing: '0.12em', textTransform: 'uppercase' }}>
             CRATES.IO & PYPI
           </span>
         )}
       </div>
 
-      <div style={{ display: 'flex', alignItems: 'baseline', gap: '12px', flexWrap: 'wrap' }}>
-        <div
-          style={{
-            fontFamily: 'var(--font-syne)',
-            fontWeight: 800,
-            fontSize: 'clamp(1.75rem, 2.5vw, 2.3rem)',
-            color: 'var(--text)',
-            lineHeight: 1,
-            letterSpacing: '-0.02em',
-          }}
-        >
-          {display}
-        </div>
-
-        <div
-          style={{
-            fontFamily: 'var(--font-dm-mono)',
-            fontSize: '11px',
-            color: 'var(--accent)',
-            letterSpacing: '0.1em',
-            textTransform: 'uppercase',
-            fontWeight: 500,
-          }}
-        >
-          {label}
-        </div>
+      {/* Hero Metric Number */}
+      <div
+        style={{
+          fontFamily: 'var(--font-syne)',
+          fontWeight: 800,
+          fontSize: 'clamp(2.6rem, 3.8vw, 3.6rem)',
+          color: 'var(--text)',
+          lineHeight: 1,
+          letterSpacing: '-0.025em',
+          marginBottom: '8px',
+        }}
+      >
+        {display}
       </div>
 
-      {sublabel && (
+      {/* Clear, Readable Uppercase Label */}
+      <div
+        style={{
+          fontFamily: 'var(--font-dm-mono)',
+          fontSize: '12.5px',
+          color: 'var(--accent)',
+          letterSpacing: '0.12em',
+          textTransform: 'uppercase',
+          fontWeight: 600,
+          marginBottom: '16px',
+        }}
+      >
+        {label}
+      </div>
+
+      {/* Distinct Breakdown Row */}
+      {breakdown && breakdown.length > 0 && (
         <div
           style={{
             fontFamily: 'var(--font-dm-mono)',
-            fontSize: '11px',
+            fontSize: '12px',
             color: 'var(--text-dim)',
             letterSpacing: '0.04em',
-            marginTop: '6px',
-            lineHeight: 1.3,
+            borderTop: '1px solid var(--border)',
+            paddingTop: '12px',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '12px',
+            flexWrap: 'wrap',
           }}
         >
-          {sublabel}
+          {breakdown.map((item, idx) => (
+            <div key={item.name} style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+              {idx > 0 && <span style={{ color: 'var(--border-bright)', marginRight: '6px' }}>•</span>}
+              <span style={{ color: 'var(--text)', fontWeight: 500 }}>{item.count}</span>
+              <span style={{ color: 'var(--text-faint)' }}>{item.name}</span>
+            </div>
+          ))}
         </div>
       )}
     </div>
@@ -238,17 +251,25 @@ export default function Stats({
       {stats.map((s, i) => {
         const isDownloadStat = s.label.toLowerCase().includes('download')
         const value = isDownloadStat ? `${downloadMetrics.total.toLocaleString()}+` : s.value
-        const sublabel = isDownloadStat
-          ? `${downloadMetrics.crates.toLocaleString()}+ on crates.io · ${downloadMetrics.pypi.toLocaleString()}+ on PyPI`
-          : '12 Rust Workspace Crates · 9 Python Native Packages'
+        const label = isDownloadStat ? 'Total Open Source Downloads' : 'Published Production Packages'
+        
+        const breakdown = isDownloadStat
+          ? [
+              { count: `${downloadMetrics.crates.toLocaleString()}+`, name: 'crates.io' },
+              { count: `${downloadMetrics.pypi.toLocaleString()}+`, name: 'PyPI' },
+            ]
+          : [
+              { count: '12', name: 'Rust Workspace Crates' },
+              { count: '9', name: 'Python Native Packages' },
+            ]
 
         return (
           <StatCard
             key={s.label}
             value={value}
-            label={s.label}
+            label={label}
             index={i}
-            sublabel={sublabel}
+            breakdown={breakdown}
             isLive={isDownloadStat}
           />
         )

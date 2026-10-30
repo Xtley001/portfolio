@@ -22,16 +22,16 @@ export default function Hero({
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
-        paddingBottom: 'clamp(24px, 3.5vh, 44px)',
-        paddingLeft: 'clamp(16px, 4vw, 40px)',
-        paddingRight: 'clamp(16px, 4vw, 40px)',
-        paddingTop: 'clamp(56px, 8vh, 80px)',
+        paddingTop: 'clamp(84px, 11vh, 120px)',
+        paddingBottom: 'clamp(40px, 6vh, 72px)',
+        paddingLeft: 'clamp(20px, 4.5vw, 56px)',
+        paddingRight: 'clamp(20px, 4.5vw, 56px)',
         position: 'relative',
         overflow: 'hidden',
         maxWidth: '100vw',
       }}
     >
-      {/* Grid background */}
+      {/* Subtle grid background */}
       <div
         style={{
           position: 'absolute',
@@ -39,20 +39,20 @@ export default function Hero({
           pointerEvents: 'none',
           backgroundImage: `linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px)`,
           backgroundSize: '80px 80px',
-          opacity: 0.3,
+          opacity: 0.28,
         }}
       />
 
-      <div style={{ position: 'relative', zIndex: 10, width: '100%', maxWidth: '1200px', margin: '0 auto' }}>
+      <div style={{ position: 'relative', zIndex: 10, width: '100%', maxWidth: '1360px', margin: '0 auto' }}>
         {/* Index number & role indicator */}
         <div
           className="animate-fade-in delay-100"
           style={{
             fontFamily: 'var(--font-dm-mono)',
-            fontSize: '11px',
+            fontSize: '12px',
             color: 'var(--text-faint)',
-            letterSpacing: '0.2em',
-            marginBottom: 'clamp(10px, 1.5vh, 16px)',
+            letterSpacing: '0.22em',
+            marginBottom: 'clamp(14px, 2vh, 22px)',
             display: 'flex',
             alignItems: 'center',
             gap: '12px',
@@ -60,14 +60,16 @@ export default function Hero({
         >
           <span>001</span>
           <span style={{ color: 'var(--accent-dim)' }}>//</span>
-          <span style={{ textTransform: 'uppercase', letterSpacing: '0.15em' }}>RUST SYSTEMS & MEV INFRASTRUCTURE</span>
+          <span style={{ textTransform: 'uppercase', letterSpacing: '0.18em', color: 'var(--accent-dim)' }}>
+            RUST SYSTEMS & MEV INFRASTRUCTURE
+          </span>
         </div>
 
-        {/* Refined, Architectural Name */}
+        {/* Refined, Commanding Name */}
         <div
           className="animate-fade-up delay-100"
           style={{
-            marginBottom: 'clamp(12px, 1.8vh, 18px)',
+            marginBottom: 'clamp(16px, 2.2vh, 24px)',
           }}
         >
           <h1
@@ -75,8 +77,8 @@ export default function Hero({
             style={{
               fontFamily: 'var(--font-syne)',
               fontWeight: 800,
-              fontSize: 'clamp(2rem, 4.2vw, 3.6rem)',
-              lineHeight: 1.05,
+              fontSize: 'clamp(2.4rem, 5.2vw, 4.5rem)',
+              lineHeight: 1.02,
               letterSpacing: '-0.025em',
               color: 'var(--text)',
               margin: 0,
@@ -87,51 +89,52 @@ export default function Hero({
           </h1>
         </div>
 
-        <div className="draw-line" style={{ marginBottom: 'clamp(12px, 1.8vh, 18px)' }} />
+        <div className="draw-line" style={{ marginBottom: 'clamp(18px, 2.5vh, 28px)' }} />
 
-        {/* Tagline + Resume Action */}
+        {/* Tagline + Resume Action: High legibility, no eye squeezing */}
         <div
           style={{
             display: 'flex',
             flexWrap: 'wrap',
             alignItems: 'center',
             justifyContent: 'space-between',
-            gap: '16px',
+            gap: '24px',
+            marginBottom: 'clamp(24px, 3.5vh, 36px)',
           }}
           className="animate-fade-up delay-200"
         >
           <p
             style={{
               fontFamily: 'var(--font-dm-mono)',
-              fontSize: 'clamp(0.85rem, 1.12vw, 0.98rem)',
-              color: 'var(--text-dim)',
-              maxWidth: '680px',
-              lineHeight: 1.65,
+              fontSize: 'clamp(1.02rem, 1.35vw, 1.2rem)',
+              color: '#d8d8d8',
+              maxWidth: '860px',
+              lineHeight: 1.7,
               margin: 0,
             }}
           >
             {hero.tagline}
           </p>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexShrink: 0 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '14px', flexShrink: 0 }}>
             <a
               href="/Christley_Olubela_Resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
               style={{
                 fontFamily: 'var(--font-dm-mono)',
-                fontSize: '11px',
+                fontSize: '12px',
                 color: 'var(--accent)',
                 letterSpacing: '0.12em',
                 textTransform: 'uppercase',
                 border: '1px solid var(--accent-dim)',
-                padding: '7px 16px',
-                borderRadius: '2px',
+                padding: '9px 20px',
+                borderRadius: '3px',
                 textDecoration: 'none',
                 transition: 'all 0.2s ease',
                 display: 'inline-flex',
                 alignItems: 'center',
-                gap: '6px',
-                fontWeight: 500,
+                gap: '8px',
+                fontWeight: 600,
               }}
               onMouseEnter={e => {
                 e.currentTarget.style.background = 'var(--accent)'
@@ -147,12 +150,9 @@ export default function Hero({
           </div>
         </div>
 
-        {/* Clean, Non-Noisy Live Stats: Perfectly Proportionate Above the Fold */}
+        {/* Spacious, Highly Readable Live Stats Telemetry Cards */}
         {stats && stats.length > 0 && (
-          <div
-            className="animate-fade-up delay-300"
-            style={{ marginTop: 'clamp(14px, 2.2vh, 22px)' }}
-          >
+          <div className="animate-fade-up delay-300">
             <Stats stats={stats} initialLiveDownloads={initialLiveDownloads} />
           </div>
         )}
@@ -161,17 +161,17 @@ export default function Hero({
         <div
           className="animate-fade-in delay-500"
           style={{
-            marginTop: 'clamp(14px, 2vh, 20px)',
+            marginTop: 'clamp(20px, 3vh, 32px)',
             fontFamily: 'var(--font-dm-mono)',
-            fontSize: '10px',
+            fontSize: '11px',
             color: 'var(--text-faint)',
             letterSpacing: '0.2em',
             display: 'flex',
             alignItems: 'center',
-            gap: '10px',
+            gap: '12px',
           }}
         >
-          <span style={{ width: '18px', height: '1px', background: 'var(--text-faint)', display: 'inline-block' }} />
+          <span style={{ width: '24px', height: '1px', background: 'var(--text-faint)', display: 'inline-block' }} />
           EXPLORE CORE SYSTEMS ↓
         </div>
       </div>
