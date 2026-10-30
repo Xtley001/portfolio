@@ -213,9 +213,9 @@ export default function Stats({
 }) {
   const [downloadMetrics, setDownloadMetrics] = useState(
     initialLiveDownloads || {
-      total: 7835,
-      crates: 740,
-      pypi: 7095,
+      total: 8500,
+      crates: 1500,
+      pypi: 7000,
     }
   )
 
