@@ -1,0 +1,187 @@
+\documentclass[10pt,a4paper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[empty]{fullpage}
+\usepackage{geometry}
+\geometry{top=0.55in, bottom=0.55in, left=0.6in, right=0.6in}
+\usepackage[hidelinks]{hyperref}
+\usepackage{enumitem}
+\usepackage{titlesec}
+
+% Clean line spacing for readability and breathing room
+\linespread{1.06}
+
+% Section formatting without dividing lines
+\titleformat{\section}{\large\bfseries\raggedright}{}{0em}{}
+\titlespacing*{\section}{0pt}{10pt}{3pt}
+
+% Itemize spacing - relaxed, clean, and highly readable
+\setlist[itemize]{noitemsep, topsep=2pt, partopsep=0pt, parsep=1.5pt, leftmargin=1.2em}
+
+\begin{document}
+\pagestyle{empty}
+
+%----------------------------------------------------------------------------------------
+%   HEADER
+%----------------------------------------------------------------------------------------
+\begin{center}
+    {\LARGE \textbf{Christley Olubela}} \\[5pt]
+    \href{mailto:olubelachristley@gmail.com}{olubelachristley@gmail.com} \ $|$ \ 
+    \href{https://www.olubelachristley.dev}{olubelachristley.dev} \ $|$ \ 
+    \href{https://github.com/Xtley001}{github.com/Xtley001} \ $|$ \ 
+    \href{https://linkedin.com/in/christley-olubela}{linkedin.com/in/christley-olubela} \ $|$ \ 
+    \href{https://x.com/Xtley001}{x.com/Xtley001}
+\end{center}
+\vspace{2pt}
+
+%----------------------------------------------------------------------------------------
+%   EDUCATION
+%----------------------------------------------------------------------------------------
+\section{Education}
+\textbf{University of Ibadan} \hfill \textbf{B.Sc. in Computer Science} \\[1pt]
+\textbf{The International School, Olabisi Onabanjo University} \hfill \textbf{SSCE Diploma}
+
+%----------------------------------------------------------------------------------------
+%   TECHNICAL SKILLS
+%----------------------------------------------------------------------------------------
+\section{Technical Skills}
+\begin{itemize}
+    \item \textbf{Languages:} Rust, Python (Python 3.9--3.14), TypeScript, JavaScript, Solidity (0.8.x), SQL, C/C++, MQL5
+    \item \textbf{Core Rust \& Systems Engineering:} Trait-based generic API design, multi-crate Cargo workspaces, zero-copy deserialization, async/await (Tokio, Rayon), Write-Ahead Logging (WAL) with CRC32 recovery, CPython Stable ABI native extensions (PyO3, Maturin), doctests, property testing (proptest)
+    \item \textbf{EVM Internals \& MEV Execution:} REVM in-process simulation, Alloy (alloy-rs), Reth, op-geth IPC, Foundry (forge, cast, fuzzing), Flashbots Relay, Titan Builder, Beaver Build, bundle submission (\texttt{eth\_sendBundle}, \texttt{eth\_sendRawTransactionSync}), Arbitrum Timeboost, on-chain profit gates, Gnosis Safe, TimelockController
+    \item \textbf{Solana Systems Infrastructure:} Yellowstone Geyser gRPC streaming, LiteSVM in-process simulation, Jito multi-region bundles, staked QUIC, Address Lookup Tables (ALT), compute-unit budgeting, Pyth pull oracles
+    \item \textbf{DeFi Protocols \& Liquidations:} Flash loans (Aave V3, Balancer V2, Morpho Blue, MakerDAO DssFlash, Kamino Lend, Solend), protocol liquidations across 6+ lending markets, cross-DEX atomic arbitrage, AMM curve mathematics (CPMM, StableSwap, Concentrated Liquidity, DLMM), ERC-4626 vaults
+    \item \textbf{Backend, Databases \& DevOps:} FastAPI, Axum, Actix, PostgreSQL (\texttt{psycopg\_pool}), MySQL, Redis, SQLite, Docker, Docker Compose, Linux/systemd, Git, CI/CD (GitHub Actions), Prometheus, Grafana, bare-metal deployment
+    \item \textbf{Open Source \& Packaging (8,500+ Downloads Across 21 Packages):} Published maintainer across PyPI (7,000+ downloads) and crates.io (1,500+ downloads), comprehensive documentation sites (mdBook, docs.rs)
+    \item \textbf{Certifications:} IBM Data Science Professional, IBM AI Engineering Professional, IBM AI Developer Professional
+\end{itemize}
+
+%----------------------------------------------------------------------------------------
+%   PROFESSIONAL EXPERIENCE
+%----------------------------------------------------------------------------------------
+\section{Professional Experience}
+
+\textbf{Rust \& Systems Engineer} \ $|$ \ Algorealm Inc. \hfill \textbf{Jan 2026 -- Mar 2026}
+\begin{itemize}
+    \item Engineered high-throughput automated execution infrastructure in Rust and Python for delta-neutral perpetuals on Hyperliquid, managing sub-millisecond signal pipelines and dynamic risk limits.
+    \item Built real-time market-data ingestion and mempool monitoring pipelines utilizing WebSockets, reducing order latency by 35\% and optimizing fill timing under volatile market conditions.
+    \item Implemented stochastic volatility forecasting modules to drive automated position sizing, dynamic stop-loss triggers, and automated capital protection ceilings.
+    \item Developed quantitative modeling tools for structured liquidity exposures; computed payoff and impermanent loss curves as a function of price-path variance.
+\end{itemize}
+
+\textbf{Rust \& Systems Mentor} \ $|$ \ H.E.R. DAO Rust School \hfill \textbf{Apr 2026 -- Present}
+\begin{itemize}
+    \item Mentored emerging software engineers in systems programming, memory safety models, and concurrency patterns for building resilient, high-availability distributed backend services.
+    \item Grounded curriculum in production systems architecture, using the open-source crate Driftbrake to demonstrate trait design, semantic versioning discipline, and doctested API engineering.
+    \item Demonstrated Rust for quantitative computing: safe concurrent computation, deterministic pricing execution, and performance-critical data pipelines.
+\end{itemize}
+
+\textbf{Team Lead (Volunteer)} \ $|$ \ The Standing Church International \hfill \textbf{Jun 2026 -- Oct 2026}
+\begin{itemize}
+    \item Led a team of 7 volunteers coordinating field operations and high-volume outreach reaching 200,000 individuals across 37 days; directed transit logistics across a 10-bus fleet for regional gatherings of 3,000+ attendees.
+    \item Built centralized data tracking systems in Google Sheets to analyze contact feedback, optimizing follow-up scheduling around peak engagement windows and systematizing workflows that directly drove requirements for REACH.
+\end{itemize}
+
+\textbf{Backend Engineer Intern} \ $|$ \ Beetle \hfill \textbf{Mar 2025 -- Jun 2025}
+\begin{itemize}
+    \item Built automated execution backends and market-data streaming pipelines with MySQL persistence, ensuring deterministic execution and zero data loss under peak load.
+    \item Engineered conversational query interfaces integrating OpenAI APIs with backend telemetry services, enabling engineering operators to query system states and risk metrics dynamically via natural language.
+    \item Designed and deployed robust backend workflows ensuring high reliability and deterministic execution under live market volatility.
+\end{itemize}
+
+%----------------------------------------------------------------------------------------
+%   FLAGSHIP OPEN-SOURCE ECOSYSTEM (8,500+ TOTAL DOWNLOADS)
+%----------------------------------------------------------------------------------------
+\section{Flagship Open-Source Ecosystem (8,500+ Total Downloads Across 21 Packages)}
+
+\textbf{\href{https://github.com/Xtley001/driftbrake}{Driftbrake}} \ $|$ \ \textit{Rust, Python (PyO3/ABI3), REVM, Tokio, WAL} \hfill \textbf{7 Crates \ $|$ \ 800+ Downloads \ $|$ \ crates.io \& PyPI}
+\begin{itemize}
+    \item Published dual-ecosystem simulation and drift-detection library on PyPI (\texttt{driftbrake-py}) and crates.io (800+ total downloads) utilizing CPython Stable ABI native bindings and zero-dependency core traits.
+    \item Designed a crash-resilient binary Write-Ahead Log (WAL) with IEEE 802.3 CRC32 verification, torn-write truncation recovery, and exclusive process locks.
+    \item Implemented a 6-guard institutional halt hierarchy (Fast-Trip, Slow-Window Moving Average, Revert-Burst, Cumulative Revert Gas Budget, Volume-Weighted Average Realization, and High-Watermark Drawdown Caps) stopping execution when simulation-to-reality drift exceeds bounds.
+    \item Shipped comprehensive documentation suite: mdBook architectural whitepaper, generated docs.rs reference, security policy, and doctest-verified quickstart.
+\end{itemize}
+
+\textbf{\href{https://github.com/Xtley001/optimal-sizing}{Optimal-Sizing (v2.0.0)}} \ $|$ \ \textit{Rust, Cargo Workspace, PyPI, WASM} \hfill \textbf{10 Crates \ $|$ \ 700+ Downloads \ $|$ \ crates.io \& PyPI}
+\begin{itemize}
+    \item Published 10-crate mathematical workspace on crates.io (\texttt{sizing-core}) and PyPI (\texttt{optimal-sizing}) establishing provable profit-maximizing trade sizes across Constant Product (CPMM), StableSwap, Velodrome Stable, and DLMM curves.
+    \item Replaced naive grid searches with rigorous mathematical guarantee tiers: closed-form analytic roots (\texttt{ProvenOptimal}), Newton-Raphson solvers with proven convergence bounds (\texttt{NumericallyGuaranteed}), and golden-section search with active runtime unimodality checks.
+    \item Engineered Dual Water-Filling capital allocation algorithm solving joint multi-pool budget distribution via Lagrange dual bisection in fixed-point decimal arithmetic with EIP-4844 rollup blob gas pricing.
+    \item Built real-time WebSocket streaming daemon (\texttt{sizing-watch}) with \texttt{eth\_subscribe("newHeads")} and historical multi-pool replay backtesting harness.
+\end{itemize}
+
+\textbf{\href{https://github.com/Xtley001/brain-libraries}{Brain-Libraries}} \ $|$ \ \textit{Python, PostgreSQL, AST Parsing, PyPI} \hfill \textbf{7 PyPI Packages \ $|$ \ 7,000+ Downloads}
+\begin{itemize}
+    \item Architected and published a modular suite of 7 pip-installable Python packages on PyPI decoupling quantitative research pipelines with 86 automated test cases, AST algebraic deduplication, and PostgreSQL connection pooling via \texttt{psycopg\_pool}.
+    \item Engineered a 10-axis orthogonal transformation engine enforcing decorrelation constraints ($|\rho| < 0.70$) across high-dimensional feature spaces while preserving 85\%--95\% of predictive Sharpe ratio.
+    \item Implemented tri-factor meta-synthesis combining Options surfaces, PEAD sentiment models, and systematic risk factor premia with Hierarchical Risk Parity (HRP) portfolio weighting.
+\end{itemize}
+
+%----------------------------------------------------------------------------------------
+%   MEV, LIQUIDATION & HIGH-THROUGHPUT EXECUTION SYSTEMS
+%----------------------------------------------------------------------------------------
+\section{MEV, Liquidation \& High-Throughput Execution Systems}
+
+\textbf{\href{https://github.com/Xtley001/corvus}{Corvus}} \ $|$ \ \textit{Rust, Solidity 0.8.24/Foundry, op-geth IPC} \hfill \textbf{\$1.47M Modeled Net Profit \ $|$ \ 584 Events}
+\begin{itemize}
+    \item Built high-performance two-chain liquidation engine covering Morpho Blue's \$1.89B active debt on Base and Aave V3's WBTC reserve on Arbitrum; modeled \$1.47M net annual profit (\$122.8k/month) across 584 annual liquidation events (\$90.01M volume).
+    \item Implemented clip-size-aware DEX routing (Uniswap V3/V4, Camelot, Curve, Balancer) modeled from \$50k to \$1M clips with slippage parameters ranging 0.012\% to 4.15\%.
+    \item Engineered on-chain profit gate contract (\texttt{FlashExecutor.sol}) enforcing atomic profitability, protocol whitelisting, and cold-wallet profit sweeps under immutable Gnosis Safe control; operated over local IPC in Frankfurt with sub-2.5ms sequencer ping.
+\end{itemize}
+
+\textbf{\href{https://github.com/Xtley001/goshawk}{Goshawk}} \ $|$ \ \textit{Rust, Solidity/Foundry, Reth IPC, revm} \hfill \textbf{\$15.9B Active Borrowed Debt Covered}
+\begin{itemize}
+    \item Engineered multi-protocol liquidation engine on Ethereum mainnet tracking \$15.9B active debt across 6 protocols (Aave V3 \$10.18B, Morpho Blue \$2.19B, Spark \$2.10B, Fluid \$628M, Compound V3 \$581M, Euler V2 \$230M) against \$27.2B supplied TVL.
+    \item Modeled per-protocol gas break-even economics with local revm simulation and adaptive clip-sizing thresholds scaling dynamically during network congestion cascades (\$38.50 to \$280 per transaction gas).
+    \item Formatted signed bundles for redundant low-latency submission to Flashbots Relay (88\% builder market share), Titan Builder, and Beaver Build.
+\end{itemize}
+
+\textbf{\href{https://github.com/Xtley001/gyrfalcon}{Gyrfalcon}} \ $|$ \ \textit{Rust 1.79+, Yellowstone Geyser gRPC, LiteSVM, Jito} \hfill \textbf{\$367K Modeled Net Profit \ $|$ \ 613 Events}
+\begin{itemize}
+    \item Developed sub-millisecond Solana liquidation engine targeting Kamino Lend (\$1.03B debt), Save (Solend), and MarginFi; modeled \$367k net annual profit across 613 annual events (\$50.55M volume).
+    \item Ingested streaming account state via Yellowstone Geyser gRPC into an in-memory lock-free obligation tracker; executed fee-free atomic flash borrowing via Kamino instruction introspection.
+    \item Simulated every liquidation candidate in-process via LiteSVM before broadcasting Address Lookup Table (ALT)-compacted bundles across staked QUIC and multi-region Jito block engines (Amsterdam, New York, Tokyo, Frankfurt).
+\end{itemize}
+
+\textbf{\href{https://github.com/Xtley001/skua}{Skua}} \ $|$ \ \textit{Rust (async/Tokio), Solidity 0.8.24/Foundry, Docker Compose} \hfill \textbf{HyperEVM (Chain ID 999)}
+\begin{itemize}
+    \item Engineered atomic flash-loan arbitrage and liquidation engine executing 4 strategies across HyperEVM DEXs, HyperLend, and HyperCore with on-chain profit validation callbacks.
+    \item Designed multi-wallet nonce manager handling 8 nonces per address across 5--10 executor wallets, golden-section trade sizing, and synchronous \texttt{eth\_sendRawTransactionSync} execution.
+\end{itemize}
+
+\textbf{\href{https://github.com/Xtley001/kingfisher}{Kingfisher}} \ $|$ \ \textit{Rust (alloy-rs, Tokio, Rayon), Solidity/Foundry, systemd} \hfill \textbf{Arbitrum One}
+\begin{itemize}
+    \item Built flash-loan arbitrage system capturing StableSwap price imbalances across imbalanced Curve pools, borrowing atomically from Aave V3 with zero capital risk via on-chain \texttt{require(netProfit >= minProfit)} guards.
+    \item Exploited Arbitrum single-sequencer architecture via Timeboost ordering and co-located local Nitro node over IPC with sub-0.1ms block latency.
+\end{itemize}
+
+\textbf{\href{https://github.com/Xtley001/kestrel}{Kestrel}} \ $|$ \ \textit{Rust, Solidity/Foundry, Reth IPC, revm, SQLite} \hfill \textbf{Ethereum, Arbitrum, Gnosis}
+\begin{itemize}
+    \item Monitored spreads between DEX pool prices and on-chain ERC-4626 redemption rates across yield vaults (sUSDS, sDAI, sUSDe, sxDAI), executing single-block atomic flash arbitrage with local revm pre-simulation.
+\end{itemize}
+
+%----------------------------------------------------------------------------------------
+%   QUANTITATIVE INFRASTRUCTURE & DISTRIBUTED PLATFORMS
+%----------------------------------------------------------------------------------------
+\section{Quantitative Infrastructure \& Distributed Platforms}
+
+\textbf{\href{https://github.com/Xtley001/reach}{REACH Platform}} \ $|$ \ \textit{Python 3.11, FastAPI, React 18, TypeScript, PostgreSQL} \hfill \textbf{5-Tier RBAC \ $|$ \ Real-Time Analytics}
+\begin{itemize}
+    \item Architected enterprise field-operations platform featuring a 5-tier Role-Based Access Control hierarchy, invite-only token provisioning, and mobile-first data synchronization tracking thousands of field contacts in real time.
+    \item Designed asynchronous REST APIs with FastAPI, database schema migrations with Alembic, and responsive React 18 dashboards visualizing regional outreach conversion metrics.
+\end{itemize}
+
+\textbf{\href{https://github.com/Xtley001/osprey}{Osprey}} \ $|$ \ \textit{TypeScript, React/Vite, Hyperliquid SDK, FastAPI} \hfill \textbf{164 Passing Tests \ $|$ \ 20--100 Positions}
+\begin{itemize}
+    \item Engineered automated quantitative portfolio system harvesting hourly funding rate yield on Hyperliquid perpetuals while systematically neutralizing directional market beta across 20--100 concurrent positions.
+    \item Built automated market regime classifier (HOT, NEUTRAL, COLD) tuning hedge sizing and rebalance frequencies; verified by a 164-test suite with 5,000-cycle soak simulations.
+\end{itemize}
+
+\textbf{\href{https://github.com/Xtley001/hmbqt}{HMBQT (Hummingbird Quant)}} \ $|$ \ \textit{TypeScript, Rust, Drift Protocol SDK, Helius RPC} \hfill \textbf{Ranger Finance Hackathon}
+\begin{itemize}
+    \item Built order-flow trading vault on Solana (Ranger Earn) trading perpetual futures on Drift Protocol, ingesting real-time L2 orderbooks and fills via Drift DLOB WebSocket with Helius RPC execution.
+\end{itemize}
+
+\end{document}
