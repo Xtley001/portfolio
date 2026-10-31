@@ -52,7 +52,7 @@ export default function Hero({
             fontSize: '11px',
             color: 'var(--text-faint)',
             letterSpacing: '0.22em',
-            marginBottom: '16px',
+            marginBottom: '18px',
             display: 'flex',
             alignItems: 'center',
             gap: '12px',
@@ -61,15 +61,15 @@ export default function Hero({
           <span>001</span>
           <span style={{ color: 'var(--accent-dim)' }}>//</span>
           <span style={{ textTransform: 'uppercase', letterSpacing: '0.18em', color: 'var(--accent-dim)' }}>
-            HIGH-PERFORMANCE DISTRIBUTED SYSTEMS & EXECUTION LAYER (RUST)
+            RUST SYSTEMS & MEV INFRASTRUCTURE
           </span>
         </div>
 
-        {/* Name */}
+        {/* Refined, Calm Typography */}
         <div
           className="animate-fade-up delay-100"
           style={{
-            marginBottom: '14px',
+            marginBottom: '4px',
           }}
         >
           <h1
@@ -89,161 +89,71 @@ export default function Hero({
           </h1>
         </div>
 
-        {/* Hero Headline */}
+        {/* Subtle, soft divider line */}
+        <div style={{ height: '1px', background: 'var(--border)', margin: '22px 0 26px' }} />
+
+        {/* Tagline + Action */}
         <div
-          className="animate-fade-up delay-150"
-          style={{
-            fontFamily: 'var(--font-dm-mono)',
-            fontSize: 'clamp(1rem, 1.3vw, 1.2rem)',
-            color: 'var(--accent)',
-            letterSpacing: '0.04em',
-            fontWeight: 500,
-            marginBottom: '16px',
-          }}
-        >
-          {hero.headline || 'High-Performance Distributed Systems & Execution Layer Engineer (Rust)'}
-        </div>
-
-        {/* Hero Tagline */}
-        <p
-          className="animate-fade-up delay-200"
-          style={{
-            fontFamily: 'var(--font-dm-mono)',
-            fontSize: 'clamp(0.98rem, 1.25vw, 1.12rem)',
-            color: '#e4e4e7',
-            maxWidth: '820px',
-            lineHeight: 1.65,
-            marginBottom: '12px',
-            fontWeight: 500,
-          }}
-        >
-          {hero.tagline || 'Architecting ultra-low latency execution engines, consensus primitives, and PBS block-building infrastructure.'}
-        </p>
-
-        {/* Hero Bio */}
-        <p
-          className="animate-fade-up delay-250"
-          style={{
-            fontFamily: 'var(--font-dm-mono)',
-            fontSize: 'clamp(0.88rem, 1.1vw, 0.98rem)',
-            color: 'var(--text-dim)',
-            maxWidth: '780px',
-            lineHeight: 1.7,
-            marginBottom: '28px',
-          }}
-        >
-          {hero.bio || 'Specializing in bare-metal systems, lock-free concurrency, MEV extraction pipelines, and deterministic execution environments. Author of published crates on crates.io and PyPI.'}
-        </p>
-
-        {/* CTAs */}
-        <div
-          className="animate-fade-up delay-300"
           style={{
             display: 'flex',
             flexWrap: 'wrap',
-            alignItems: 'center',
-            gap: '12px',
-            marginBottom: 'clamp(36px, 5vh, 48px)',
+            alignItems: 'flex-start',
+            justifyContent: 'space-between',
+            gap: '24px',
+            marginBottom: 'clamp(40px, 6vh, 60px)',
           }}
+          className="animate-fade-up delay-200"
         >
-          <a
-            href="#projects"
+          <p
             style={{
               fontFamily: 'var(--font-dm-mono)',
-              fontSize: '11.5px',
-              color: 'var(--bg)',
-              background: 'var(--accent)',
-              border: '1px solid var(--accent)',
-              padding: '8px 18px',
-              borderRadius: '2px',
-              textDecoration: 'none',
-              fontWeight: 600,
-              letterSpacing: '0.08em',
-              transition: 'all 0.2s ease',
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '6px',
-            }}
-            onMouseEnter={e => {
-              e.currentTarget.style.background = 'transparent'
-              e.currentTarget.style.color = 'var(--accent)'
-            }}
-            onMouseLeave={e => {
-              e.currentTarget.style.background = 'var(--accent)'
-              e.currentTarget.style.color = 'var(--bg)'
-            }}
-          >
-            View Systems & Infrastructure ↓
-          </a>
-
-          <a
-            href="https://github.com/Xtley001"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              fontFamily: 'var(--font-dm-mono)',
-              fontSize: '11.5px',
-              color: 'var(--text)',
-              background: 'transparent',
-              border: '1px solid var(--border)',
-              padding: '8px 18px',
-              borderRadius: '2px',
-              textDecoration: 'none',
-              fontWeight: 500,
-              letterSpacing: '0.08em',
-              transition: 'all 0.2s ease',
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '6px',
-            }}
-            onMouseEnter={e => {
-              e.currentTarget.style.borderColor = 'var(--accent)'
-              e.currentTarget.style.color = 'var(--accent)'
-            }}
-            onMouseLeave={e => {
-              e.currentTarget.style.borderColor = 'var(--border)'
-              e.currentTarget.style.color = 'var(--text)'
-            }}
-          >
-            GitHub (@Xtley001) ↗
-          </a>
-
-          <a
-            href="/Christley_Olubela_Resume.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              fontFamily: 'var(--font-dm-mono)',
-              fontSize: '11px',
+              fontSize: 'clamp(0.92rem, 1.15vw, 1.05rem)',
               color: 'var(--text-dim)',
-              letterSpacing: '0.1em',
-              textTransform: 'uppercase',
-              border: '1px solid var(--border)',
-              padding: '8px 14px',
-              borderRadius: '2px',
-              textDecoration: 'none',
-              transition: 'all 0.2s ease',
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '6px',
-              fontWeight: 500,
-            }}
-            onMouseEnter={e => {
-              e.currentTarget.style.borderColor = 'var(--accent)'
-              e.currentTarget.style.color = 'var(--accent)'
-            }}
-            onMouseLeave={e => {
-              e.currentTarget.style.borderColor = 'var(--border)'
-              e.currentTarget.style.color = 'var(--text-dim)'
+              maxWidth: '740px',
+              lineHeight: 1.8,
+              margin: 0,
             }}
           >
-            resume ↗
-          </a>
+            {hero.tagline}
+          </p>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexShrink: 0 }}>
+            <a
+              href="/Christley_Olubela_Resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                fontFamily: 'var(--font-dm-mono)',
+                fontSize: '11px',
+                color: 'var(--accent)',
+                letterSpacing: '0.12em',
+                textTransform: 'uppercase',
+                border: '1px solid var(--border)',
+                padding: '6px 14px',
+                borderRadius: '2px',
+                textDecoration: 'none',
+                transition: 'all 0.2s ease',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '6px',
+                fontWeight: 500,
+              }}
+              onMouseEnter={e => {
+                e.currentTarget.style.borderColor = 'var(--accent)'
+                e.currentTarget.style.color = 'var(--accent)'
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.borderColor = 'var(--border)'
+                e.currentTarget.style.color = 'var(--accent)'
+              }}
+            >
+              resume ↗
+            </a>
+          </div>
         </div>
 
         {/* Minimalist, Borderless Telemetry Row */}
         {stats && stats.length > 0 && (
-          <div className="animate-fade-up delay-350">
+          <div className="animate-fade-up delay-300">
             <Stats stats={stats} initialLiveDownloads={initialLiveDownloads} />
           </div>
         )}
@@ -252,7 +162,7 @@ export default function Hero({
         <div
           className="animate-fade-in delay-500"
           style={{
-            marginTop: 'clamp(28px, 4vh, 40px)',
+            marginTop: 'clamp(32px, 5vh, 48px)',
             fontFamily: 'var(--font-dm-mono)',
             fontSize: '10.5px',
             color: 'var(--text-faint)',
