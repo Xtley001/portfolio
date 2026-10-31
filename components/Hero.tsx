@@ -15,6 +15,8 @@ export default function Hero({
     pypi: number
   }
 }) {
+  const roleTitle = hero.role || hero.headline || 'High-Performance Distributed Systems & Execution Layer Engineer (Rust)'
+
   return (
     <section
       style={{
@@ -44,32 +46,11 @@ export default function Hero({
       />
 
       <div style={{ position: 'relative', zIndex: 10, width: '100%', maxWidth: '1180px', margin: '0 auto' }}>
-        {/* Index indicator */}
-        <div
-          className="animate-fade-in delay-100"
-          style={{
-            fontFamily: 'var(--font-dm-mono)',
-            fontSize: '11px',
-            color: 'var(--text-faint)',
-            letterSpacing: '0.22em',
-            marginBottom: '18px',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '12px',
-          }}
-        >
-          <span>001</span>
-          <span style={{ color: 'var(--accent-dim)' }}>//</span>
-          <span style={{ textTransform: 'uppercase', letterSpacing: '0.18em', color: 'var(--accent-dim)' }}>
-            RUST SYSTEMS & MEV INFRASTRUCTURE
-          </span>
-        </div>
-
-        {/* Refined, Calm Typography */}
+        {/* Name */}
         <div
           className="animate-fade-up delay-100"
           style={{
-            marginBottom: '4px',
+            marginBottom: '10px',
           }}
         >
           <h1
@@ -77,7 +58,7 @@ export default function Hero({
             style={{
               fontFamily: 'var(--font-syne)',
               fontWeight: 700,
-              fontSize: 'clamp(2.1rem, 4.4vw, 3.4rem)',
+              fontSize: 'clamp(2.4rem, 5vw, 4rem)',
               lineHeight: 1.05,
               letterSpacing: '-0.02em',
               color: 'var(--text)',
@@ -89,8 +70,24 @@ export default function Hero({
           </h1>
         </div>
 
+        {/* Bold, Well-Written Role */}
+        <div
+          className="animate-fade-up delay-150"
+          style={{
+            fontFamily: 'var(--font-dm-mono)',
+            fontSize: 'clamp(1rem, 1.4vw, 1.25rem)',
+            fontWeight: 600,
+            color: 'var(--accent)',
+            letterSpacing: '0.02em',
+            lineHeight: 1.4,
+            marginBottom: '20px',
+          }}
+        >
+          {roleTitle}
+        </div>
+
         {/* Subtle, soft divider line */}
-        <div style={{ height: '1px', background: 'var(--border)', margin: '22px 0 26px' }} />
+        <div style={{ height: '1px', background: 'var(--border)', margin: '0 0 24px' }} />
 
         {/* Tagline + Action */}
         <div
