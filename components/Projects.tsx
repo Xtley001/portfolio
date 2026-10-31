@@ -5,10 +5,10 @@ import type { Project } from '../lib/projects'
 
 const CATEGORIES = [
   'All',
-  'MEV & Liquidations',
-  'Systems & Infrastructure',
-  'Systematic Trading',
-  'Quant & Machine Learning',
+  'Published Crate',
+  'Execution Layer & MEV',
+  'Distributed Systems & Storage',
+  'Quantitative Systems & Telemetry',
 ] as const
 
 type CategoryFilter = typeof CATEGORIES[number]
@@ -39,10 +39,10 @@ export default function Projects({ projects }: { projects: Project[] }) {
       <div className="reveal" style={{ marginBottom: '28px', display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', flexWrap: 'wrap', gap: '12px' }}>
         <div>
           <span style={{ fontFamily: 'var(--font-dm-mono)', fontSize: '11px', color: 'var(--accent)', letterSpacing: '0.2em', textTransform: 'uppercase' }}>
-            03 — Selected Work & Systems
+            03 — Systems & Infrastructure
           </span>
           <p style={{ fontFamily: 'var(--font-dm-mono)', fontSize: '12px', color: 'var(--text-faint)', marginTop: '4px' }}>
-            Ranked production systems, liquidation engines, published libraries & quant infrastructure.
+            Production execution engines, consensus primitives, published crates & quantitative systems (#01 to #16).
           </p>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
@@ -107,12 +107,11 @@ export default function Projects({ projects }: { projects: Project[] }) {
         style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(2, 1fr)',
-          gap: '1px',
-          background: 'var(--border)',
+          gap: '16px',
         }}
       >
         {filteredProjects.map((p, i) => (
-          <div key={p.slug} className="reveal visible" style={{ transitionDelay: `${(i % 6) * 0.05}s` }}>
+          <div key={p.id || p.slug} className="reveal" style={{ transitionDelay: `${(i % 4) * 0.08}s` }}>
             <ProjectCard project={p} />
           </div>
         ))}

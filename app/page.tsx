@@ -38,7 +38,7 @@ export default async function Home() {
       <Timeline experience={site.experience || []} education={site.education || []} timeline={site.timeline || []} />
       <Persona persona={site.persona} goodreads={undefined} />
       <Contact contact={site.contact} />
-      <Footer copyright={`© ${year} ${logoText}`} domain={domain} />
+      <Footer copyright="© 2026 Olubela Christley. All rights reserved. Zero-latency systems & deterministic execution." domain={domain} />
     </main>
   )
 }

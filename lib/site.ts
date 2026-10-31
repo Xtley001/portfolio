@@ -5,7 +5,9 @@ export interface SiteData {
   hero: {
     firstName: string
     lastName: string
+    headline?: string
     tagline: string
+    bio?: string
     available: boolean
     location: string
     handle: string

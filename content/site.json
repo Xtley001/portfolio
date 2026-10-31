@@ -1,8 +1,10 @@
 {
   "hero": {
-    "firstName": "CHRISTLEY",
-    "lastName": "OLUBELA",
-    "tagline": "I build low-latency systems and execution infrastructure in Rust — specializing in EVM state simulation, AMM curve mathematics, and atomic MEV pipelines.",
+    "firstName": "OLUBELA",
+    "lastName": "CHRISTLEY",
+    "headline": "High-Performance Distributed Systems & Execution Layer Engineer (Rust)",
+    "tagline": "Architecting ultra-low latency execution engines, consensus primitives, and PBS block-building infrastructure.",
+    "bio": "Specializing in bare-metal systems, lock-free concurrency, MEV extraction pipelines, and deterministic execution environments. Author of published crates on crates.io and PyPI.",
     "available": false,
     "location": "Nigeria",
     "handle": "@Xtley001",
@@ -11,7 +13,7 @@
   "stack": [
     {
       "category": "Systems & Languages",
-      "items": ["Rust", "Python", "Solidity (Foundry)", "TypeScript", "C/C++", "MQL5", "SQL"]
+      "items": ["Rust", "Python", "Solidity (Foundry)", "TypeScript", "C/C++", "SQL", "Go"]
     },
     {
       "category": "EVM Internals & Core Systems",
@@ -29,7 +31,7 @@
   "stats": [
     {
       "value": "8,500+",
-      "label": "Total Open Source Downloads"
+      "label": "Open Source Downloads"
     },
     {
       "value": "21",
@@ -57,47 +59,40 @@
   "experience": [
     {
       "year": "Apr 2026 → Present",
-      "role": "Rust Mentor",
+      "role": "Rust & Systems Mentor",
       "org": "H.E.R. DAO Rust School",
-      "note": "Remote · Systems programming, ownership models, concurrency, production DeFi crates"
+      "note": "Remote · Systems programming, memory safety models, concurrency patterns, distributed backend services"
     },
     {
       "year": "Jan 2026 → Mar 2026",
-      "role": "Rust Engineer",
+      "role": "Rust & Systems Engineer",
       "org": "Algorealm Inc.",
-      "note": "Iowa City · Hybrid · Delta-neutral execution infrastructure on Hyperliquid, low-latency execution pipelines, order flow"
+      "note": "Iowa City · Hybrid · High-throughput automated execution infrastructure in Rust & Python for perpetuals on Hyperliquid, sub-millisecond signal pipelines"
     },
     {
       "year": "Mar 2025 → Jun 2025",
       "role": "Backend Engineer Intern",
       "org": "Beetle",
-      "note": "Hybrid · Algorithmic trading bots, automated risk controls, event-driven data pipelines"
+      "note": "Hybrid · Automated execution backends, real-time market-data streaming pipelines, MySQL persistence, deterministic low-latency execution"
     }
   ],
   "education": [
     {
       "year": "B.Sc.",
-      "role": "Computer Science",
+      "role": "Bachelor of Science (B.Sc.) in Computer Science",
       "org": "University of Ibadan",
-      "note": "Nigeria"
-    },
-    {
-      "year": "SSCE",
-      "role": "High School Diploma",
-      "org": "The International School, OOU",
-      "note": "Ago-Iwoye, Nigeria"
+      "note": "Focus: Distributed Systems, Operating Systems, Computer Architecture, Algorithms & Data Structures"
     }
   ],
   "persona": {
     "mind": {
-      "body": "My greatest edge is not what I know — it is how quickly I absorb, discard, and rebuild mental models. Markets change. Frameworks that worked last cycle become liabilities. I learn fast, unlearn faster.",
+      "body": "My greatest edge is not what I know — it is how quickly I absorb, discard, and rebuild mental models. Markets and distributed topologies change. Frameworks that worked last cycle become liabilities. I learn fast, unlearn faster.",
       "interests": []
     },
     "research": [
-      "Low-latency REVM simulation and in-process state transitions",
-      "MEV-adjacent flash loan execution and liquidation dynamics",
-      "Combinatorial trade routing across heterogeneous AMM curves",
-      "High-throughput mempool streaming and order flow microstructure"
+      "PBS & Reth Execution Extensions (ExEx): Secondary index synchronization latencies in Ethereum builder nodes, optimizing block assembly heuristics, and building zero-copy execution hooks.",
+      "Lock-Free Concurrency & SIMD Matching Engines: Benchmarking zero-allocation order matching pipelines using cache-aligned circular queues and SIMD vectorization for L3 order book state updates.",
+      "Decentralized Batch Auction Solvers: Modeling combinatorial ring settlements and uniform clearing price mechanisms to eliminate toxic MEV in discrete-time auction protocols (CoW Protocol)."
     ],
     "outside": [
       { "label": "Swimming", "note": "" },
@@ -107,12 +102,11 @@
     ]
   },
   "timeline": [
-    { "year": "2026", "event": "Released brain-libraries suite: 7 pip-installable Python packages published to PyPI for WorldQuant BRAIN alpha discovery, 10-axis orthogonal decorrelation, and tri-factor meta-synthesis." },
-    { "year": "2026", "event": "Released optimal-sizing v2.0.0: 10-crate Rust workspace with Velodrome stable curves, DLMM, dual water-filling capital allocation, and Python/WASM bindings." },
-    { "year": "2026", "event": "Published Driftbrake v0.2.0 on crates.io and PyPI: institutional multi-guard halt engine with Write-Ahead Log (WAL) and Python Stable ABI module." },
-    { "year": "2026", "event": "Architected Corvus ($1.47M modeled net profit) and Goshawk ($15.9B debt coverage) liquidation engines." },
-    { "year": "2026", "event": "Deployed Gyrfalcon Solana liquidation engine on Kamino Lend and HMBQT vault for Ranger Hackathon." },
-    { "year": "2025", "event": "Engineered Osprey delta-neutral funding rate harvest engine with 164 passing tests." }
+    { "year": "2026", "event": "Architected ultra-low latency Level 2 / Level 3 limit order book matching engine (RUST-LOB-ENGINE) with lock-free ring buffers and zero heap allocations on hot paths." },
+    { "year": "2026", "event": "Released optimal-sizing v2.0.0: 10-crate mathematical workspace with dual water-filling capital allocation on crates.io and PyPI." },
+    { "year": "2026", "event": "Published Driftbrake on crates.io and PyPI: zero-allocation streaming concept drift detection and real-time distribution shift monitoring with binary WAL." },
+    { "year": "2026", "event": "Engineered MEMPOOL-SNIPER-RS and SOLANA-JITO-BUNDLER for sub-millisecond EVM bytecode transaction simulation and Jito Block Engine bundle ingestion." },
+    { "year": "2026", "event": "Implemented linearizable Raft consensus key-value store (DISTRIBUTED-RAFT-KV) and Reth Execution Extension pipeline (RETH-INDEXER-PIPELINE)." }
   ],
   "contact": {
     "email": "olubelachristley@gmail.com",
@@ -121,6 +115,6 @@
     "telegram": "",
     "linkedin": "https://www.linkedin.com/in/christley-olubela/",
     "goodreads": "https://www.goodreads.com/user/show/184917569-christley-olubela",
-    "note": "Open to Rust/systems engineering roles, MEV & protocol infrastructure, and high-performance execution engineering."
+    "note": "Open to Rust systems engineering roles, execution layer & MEV infrastructure, and high-performance distributed systems engineering."
   }
 }

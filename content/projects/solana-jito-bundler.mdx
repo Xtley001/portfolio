@@ -1,0 +1,39 @@
+---
+name: SOLANA-JITO-BUNDLER
+slug: solana-jito-bundler
+tagline: Sub-millisecond Solana transaction pipeline interfacing directly with the Jito Block Engine. Employs gRPC streaming, ShredStream transaction ingestion, dynamic tip optimization, and compute unit profiling to maximize block inclusion.
+year: 2026
+status: active
+tech:
+  - Rust
+  - Solana SDK
+  - Jito gRPC
+  - ShredStream
+  - QUIC
+github: 'https://github.com/Xtley001/solana-jito-bundler'
+ranking: 5
+category: 'Execution Layer & MEV'
+featured: true
+---
+
+# SOLANA-JITO-BUNDLER
+
+Sub-millisecond Solana transaction pipeline interfacing directly with the Jito Block Engine. Employs gRPC streaming, ShredStream transaction ingestion, dynamic tip optimization, and compute unit profiling to maximize block inclusion.
+
+## System Architecture
+
+Designed for high-throughput, low-latency production environments where determinism, memory safety, and sub-microsecond execution are paramount.
+
+- **Category:** Execution Layer & MEV
+- **Project Index:** #05
+- **Repository:** [https://github.com/Xtley001/solana-jito-bundler](https://github.com/Xtley001/solana-jito-bundler)
+
+## Engineering Highlights
+
+- **Zero-Allocation Core:** Hot paths engineered to avoid heap allocation overhead through fixed-size ring buffers, cache-line aligned memory layouts, and zero-copy byte serialization.
+- **Hardware-Aware Design:** Leverages modern CPU microarchitecture optimizations, NUMA pinning, and branch prediction heuristics.
+- **Resilient Concurrency:** Implements lock-free synchronization primitives with atomic acquire-release ordering and bounded memory footprint.
+
+## Tech Stack & Tooling
+
+Rust, Solana SDK, Jito gRPC, ShredStream, QUIC

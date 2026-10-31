@@ -1,0 +1,39 @@
+---
+name: RUST-LOB-ENGINE
+slug: rust-lob-engine
+tagline: Ultra-low latency Level 2 / Level 3 limit order book matching engine. Engineered with cache-aligned price ladders, lock-free ring buffers, zero heap allocations on the hot path, and sub-microsecond price-time priority order matching.
+year: 2026
+status: active
+tech:
+  - Rust
+  - Lock-Free
+  - Cache Locality
+  - Zero-Copy
+  - High-Frequency Trading
+github: 'https://github.com/Xtley001/rust-lob-engine'
+ranking: 3
+category: 'Execution Layer & MEV'
+featured: true
+---
+
+# RUST-LOB-ENGINE
+
+Ultra-low latency Level 2 / Level 3 limit order book matching engine. Engineered with cache-aligned price ladders, lock-free ring buffers, zero heap allocations on the hot path, and sub-microsecond price-time priority order matching.
+
+## System Architecture
+
+Designed for high-throughput, low-latency production environments where determinism, memory safety, and sub-microsecond execution are paramount.
+
+- **Category:** Execution Layer & MEV
+- **Project Index:** #03
+- **Repository:** [https://github.com/Xtley001/rust-lob-engine](https://github.com/Xtley001/rust-lob-engine)
+
+## Engineering Highlights
+
+- **Zero-Allocation Core:** Hot paths engineered to avoid heap allocation overhead through fixed-size ring buffers, cache-line aligned memory layouts, and zero-copy byte serialization.
+- **Hardware-Aware Design:** Leverages modern CPU microarchitecture optimizations, NUMA pinning, and branch prediction heuristics.
+- **Resilient Concurrency:** Implements lock-free synchronization primitives with atomic acquire-release ordering and bounded memory footprint.
+
+## Tech Stack & Tooling
+
+Rust, Lock-Free, Cache Locality, Zero-Copy, High-Frequency Trading

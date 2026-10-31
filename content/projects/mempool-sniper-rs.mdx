@@ -1,0 +1,39 @@
+---
+name: MEMPOOL-SNIPER-RS
+slug: mempool-sniper-rs
+tagline: Real-time EVM mempool listener and transaction simulation engine. Monitors unconfirmed state via IPC/WebSocket, performs local revm bytecode execution to simulate atomic arbitrage/liquidation paths, and crafts private flashbots bundles.
+year: 2026
+status: active
+tech:
+  - Rust
+  - revm
+  - Alloy
+  - EVM Bytecode
+  - MEV-Boost
+github: 'https://github.com/Xtley001/mempool-sniper-rs'
+ranking: 4
+category: 'Execution Layer & MEV'
+featured: true
+---
+
+# MEMPOOL-SNIPER-RS
+
+Real-time EVM mempool listener and transaction simulation engine. Monitors unconfirmed state via IPC/WebSocket, performs local revm bytecode execution to simulate atomic arbitrage/liquidation paths, and crafts private flashbots bundles.
+
+## System Architecture
+
+Designed for high-throughput, low-latency production environments where determinism, memory safety, and sub-microsecond execution are paramount.
+
+- **Category:** Execution Layer & MEV
+- **Project Index:** #04
+- **Repository:** [https://github.com/Xtley001/mempool-sniper-rs](https://github.com/Xtley001/mempool-sniper-rs)
+
+## Engineering Highlights
+
+- **Zero-Allocation Core:** Hot paths engineered to avoid heap allocation overhead through fixed-size ring buffers, cache-line aligned memory layouts, and zero-copy byte serialization.
+- **Hardware-Aware Design:** Leverages modern CPU microarchitecture optimizations, NUMA pinning, and branch prediction heuristics.
+- **Resilient Concurrency:** Implements lock-free synchronization primitives with atomic acquire-release ordering and bounded memory footprint.
+
+## Tech Stack & Tooling
+
+Rust, revm, Alloy, EVM Bytecode, MEV-Boost

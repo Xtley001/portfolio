@@ -1,0 +1,39 @@
+---
+name: RISK-ENGINE-MICROSERVICE
+slug: risk-engine-microservice
+tagline: Sub-millisecond risk evaluation microservice. Computes real-time Value at Risk (VaR), portfolio margin requirements, and liquidation thresholds across multi-asset derivative books via low-overhead gRPC streams.
+year: 2026
+status: active
+tech:
+  - Rust
+  - gRPC
+  - Tonic
+  - Monte Carlo
+  - Risk Modeling
+github: 'https://github.com/Xtley001/risk-engine-microservice'
+ranking: 14
+category: 'Quantitative Systems & Telemetry'
+featured: true
+---
+
+# RISK-ENGINE-MICROSERVICE
+
+Sub-millisecond risk evaluation microservice. Computes real-time Value at Risk (VaR), portfolio margin requirements, and liquidation thresholds across multi-asset derivative books via low-overhead gRPC streams.
+
+## System Architecture
+
+Designed for high-throughput, low-latency production environments where determinism, memory safety, and sub-microsecond execution are paramount.
+
+- **Category:** Quantitative Systems & Telemetry
+- **Project Index:** #14
+- **Repository:** [https://github.com/Xtley001/risk-engine-microservice](https://github.com/Xtley001/risk-engine-microservice)
+
+## Engineering Highlights
+
+- **Zero-Allocation Core:** Hot paths engineered to avoid heap allocation overhead through fixed-size ring buffers, cache-line aligned memory layouts, and zero-copy byte serialization.
+- **Hardware-Aware Design:** Leverages modern CPU microarchitecture optimizations, NUMA pinning, and branch prediction heuristics.
+- **Resilient Concurrency:** Implements lock-free synchronization primitives with atomic acquire-release ordering and bounded memory footprint.
+
+## Tech Stack & Tooling
+
+Rust, gRPC, Tonic, Monte Carlo, Risk Modeling

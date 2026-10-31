@@ -1,0 +1,39 @@
+---
+name: TIME-SERIES-DB
+slug: time-series-db
+tagline: Custom embedded time-series storage engine optimized for financial tick data. Employs Gorilla float compression, delta-of-delta timestamp encoding, and an append-only log-structured merge (LSM) architecture for maximum ingestion throughput.
+year: 2026
+status: active
+tech:
+  - Rust
+  - LSM-Tree
+  - Bit Packing
+  - Gorilla Compression
+  - Storage Engines
+github: 'https://github.com/Xtley001/time-series-db'
+ranking: 10
+category: 'Distributed Systems & Storage'
+featured: true
+---
+
+# TIME-SERIES-DB
+
+Custom embedded time-series storage engine optimized for financial tick data. Employs Gorilla float compression, delta-of-delta timestamp encoding, and an append-only log-structured merge (LSM) architecture for maximum ingestion throughput.
+
+## System Architecture
+
+Designed for high-throughput, low-latency production environments where determinism, memory safety, and sub-microsecond execution are paramount.
+
+- **Category:** Distributed Systems & Storage
+- **Project Index:** #10
+- **Repository:** [https://github.com/Xtley001/time-series-db](https://github.com/Xtley001/time-series-db)
+
+## Engineering Highlights
+
+- **Zero-Allocation Core:** Hot paths engineered to avoid heap allocation overhead through fixed-size ring buffers, cache-line aligned memory layouts, and zero-copy byte serialization.
+- **Hardware-Aware Design:** Leverages modern CPU microarchitecture optimizations, NUMA pinning, and branch prediction heuristics.
+- **Resilient Concurrency:** Implements lock-free synchronization primitives with atomic acquire-release ordering and bounded memory footprint.
+
+## Tech Stack & Tooling
+
+Rust, LSM-Tree, Bit Packing, Gorilla Compression, Storage Engines

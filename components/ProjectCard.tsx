@@ -3,9 +3,19 @@ import Link from 'next/link'
 import type { Project } from '../lib/projects'
 
 export default function ProjectCard({ project, small }: { project: Project; small?: boolean }) {
-  const { name, tagline, tech, year, github, live, category, ranking, docs, cratesIo, pypi } = project
+  const rankStr = project.id ? `#${project.id}` : project.ranking !== undefined ? `#${project.ranking.toString().padStart(2, '0')}` : null
+  const title = project.title || project.name || ''
+  const description = project.description || project.tagline || ''
+  const tech = project.techStack || project.tech || []
+  const github = project.githubUrl || project.github
+  const cratesIo = project.cratesUrl || project.cratesIo
+  const pypi = project.pypiUrl || project.pypi
+  const docs = project.docs
+  const live = project.live
+  const year = project.year || 2026
+  const category = project.category
+  const slug = project.slug || title.toLowerCase().replace(/[^a-z0-9]+/g, '-')
 
-  const rankStr = ranking !== undefined ? `#${ranking.toString().padStart(2, '0')}` : null
   const isTearSheet = live && live.toLowerCase().endsWith('.pdf')
 
   return (
@@ -70,7 +80,7 @@ export default function ProjectCard({ project, small }: { project: Project; smal
             textTransform: 'uppercase',
             lineHeight: 1.3,
           }}>
-            {name}
+            {title}
           </h3>
         </div>
 
@@ -81,7 +91,7 @@ export default function ProjectCard({ project, small }: { project: Project; smal
           color: 'var(--text-dim)',
           lineHeight: 1.65,
         }}>
-          {tagline}
+          {description}
         </p>
       </div>
 
@@ -158,7 +168,7 @@ export default function ProjectCard({ project, small }: { project: Project; smal
               {isTearSheet ? 'tearsheet ↗' : 'live demo ↗'}
             </a>
           )}
-          <Link href={`/projects/${project.slug}`}
+          <Link href={`/projects/${slug}`}
             style={{ marginLeft: 'auto', fontFamily: 'var(--font-dm-mono)', fontSize: '11px', color: 'var(--accent-dim)', letterSpacing: '0.08em', transition: 'color 0.15s' }}
             onMouseEnter={e => (e.currentTarget.style.color = 'var(--accent)')}
             onMouseLeave={e => (e.currentTarget.style.color = 'var(--accent-dim)')}

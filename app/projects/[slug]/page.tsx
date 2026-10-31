@@ -64,6 +64,8 @@ export default async function ProjectPage({
   const project = getProjectBySlug(slug)
   if (!project) notFound()
 
+  const techList = project.tech || project.techStack || []
+
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'SoftwareSourceCode',
@@ -71,7 +73,7 @@ export default async function ProjectPage({
     description: project.tagline,
     url: `${SITE_URL}/projects/${project.slug}`,
     codeRepository: project.github || undefined,
-    programmingLanguage: project.tech,
+    programmingLanguage: techList,
     author: {
       '@type': 'Person',
       name: 'Christley Olubela',
@@ -191,7 +193,7 @@ export default async function ProjectPage({
       </div>
 
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginBottom: '48px' }}>
-        {project.tech.map((t: string) => (
+        {techList.map((t: string) => (
           <span key={t} style={{ fontFamily: 'var(--font-dm-mono)', fontSize: '10px', color: 'var(--text-faint)', border: '1px solid var(--border)', padding: '3px 10px', borderRadius: '2px', letterSpacing: '0.08em' }}>
             {t}
           </span>
@@ -201,7 +203,7 @@ export default async function ProjectPage({
       <hr style={{ marginBottom: '48px' }} />
 
       <div className="mdx-content">
-        <MarkdownContent content={project.content} />
+        <MarkdownContent content={project.content || ''} />
       </div>
     </main>
   )

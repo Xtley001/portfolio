@@ -1,0 +1,39 @@
+---
+name: DISTRIBUTED-RAFT-KV
+slug: distributed-raft-kv
+tagline: Linearizable distributed key-value store implementing the Raft consensus protocol from scratch. Features cluster leader election, log replication, snapshotting, and fault-tolerant log compaction under network partitions.
+year: 2026
+status: active
+tech:
+  - Rust
+  - Tokio
+  - Tonic / gRPC
+  - Raft Protocol
+  - Distributed Systems
+github: 'https://github.com/Xtley001/distributed-raft-kv'
+ranking: 8
+category: 'Distributed Systems & Storage'
+featured: true
+---
+
+# DISTRIBUTED-RAFT-KV
+
+Linearizable distributed key-value store implementing the Raft consensus protocol from scratch. Features cluster leader election, log replication, snapshotting, and fault-tolerant log compaction under network partitions.
+
+## System Architecture
+
+Designed for high-throughput, low-latency production environments where determinism, memory safety, and sub-microsecond execution are paramount.
+
+- **Category:** Distributed Systems & Storage
+- **Project Index:** #08
+- **Repository:** [https://github.com/Xtley001/distributed-raft-kv](https://github.com/Xtley001/distributed-raft-kv)
+
+## Engineering Highlights
+
+- **Zero-Allocation Core:** Hot paths engineered to avoid heap allocation overhead through fixed-size ring buffers, cache-line aligned memory layouts, and zero-copy byte serialization.
+- **Hardware-Aware Design:** Leverages modern CPU microarchitecture optimizations, NUMA pinning, and branch prediction heuristics.
+- **Resilient Concurrency:** Implements lock-free synchronization primitives with atomic acquire-release ordering and bounded memory footprint.
+
+## Tech Stack & Tooling
+
+Rust, Tokio, Tonic / gRPC, Raft Protocol, Distributed Systems

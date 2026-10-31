@@ -33,11 +33,24 @@ export default function Persona({ persona, goodreads }: { persona: SiteData['per
               Currently Researching
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-              {persona.research.map(s => (
-                <span key={s} style={{ fontFamily: 'var(--font-dm-mono)', fontSize: '13px', color: 'var(--text-dim)', lineHeight: 1.7, wordBreak: 'break-word' }}>
-                  → {s}
-                </span>
-              ))}
+              {persona.research.map(s => {
+                const colonIdx = s.indexOf(':')
+                if (colonIdx !== -1) {
+                  const title = s.slice(0, colonIdx)
+                  const desc = s.slice(colonIdx + 1).trim()
+                  return (
+                    <div key={s} style={{ fontFamily: 'var(--font-dm-mono)', fontSize: '13px', color: 'var(--text-dim)', lineHeight: 1.7, wordBreak: 'break-word' }}>
+                      <span style={{ color: 'var(--accent)', marginRight: '6px' }}>→</span>
+                      <strong style={{ color: 'var(--text)', fontWeight: 600 }}>{title}:</strong> {desc}
+                    </div>
+                  )
+                }
+                return (
+                  <span key={s} style={{ fontFamily: 'var(--font-dm-mono)', fontSize: '13px', color: 'var(--text-dim)', lineHeight: 1.7, wordBreak: 'break-word' }}>
+                    → {s}
+                  </span>
+                )
+              })}
             </div>
           </div>
         )}

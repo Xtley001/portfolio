@@ -1,0 +1,39 @@
+---
+name: SYSTEM-METRICS-DAEMON
+slug: system-metrics-daemon
+tagline: Lightweight hardware telemetry daemon for low-latency Linux trading servers. Reads hardware performance counters (perf events), CPU cache misses, context switches, and NUMA node allocation metrics with zero observer effect.
+year: 2026
+status: active
+tech:
+  - Rust
+  - Linux Perf
+  - NUMA
+  - Lock-Free
+  - Low-Level Systems
+github: 'https://github.com/Xtley001/system-metrics-daemon'
+ranking: 16
+category: 'Quantitative Systems & Telemetry'
+featured: true
+---
+
+# SYSTEM-METRICS-DAEMON
+
+Lightweight hardware telemetry daemon for low-latency Linux trading servers. Reads hardware performance counters (perf events), CPU cache misses, context switches, and NUMA node allocation metrics with zero observer effect.
+
+## System Architecture
+
+Designed for high-throughput, low-latency production environments where determinism, memory safety, and sub-microsecond execution are paramount.
+
+- **Category:** Quantitative Systems & Telemetry
+- **Project Index:** #16
+- **Repository:** [https://github.com/Xtley001/system-metrics-daemon](https://github.com/Xtley001/system-metrics-daemon)
+
+## Engineering Highlights
+
+- **Zero-Allocation Core:** Hot paths engineered to avoid heap allocation overhead through fixed-size ring buffers, cache-line aligned memory layouts, and zero-copy byte serialization.
+- **Hardware-Aware Design:** Leverages modern CPU microarchitecture optimizations, NUMA pinning, and branch prediction heuristics.
+- **Resilient Concurrency:** Implements lock-free synchronization primitives with atomic acquire-release ordering and bounded memory footprint.
+
+## Tech Stack & Tooling
+
+Rust, Linux Perf, NUMA, Lock-Free, Low-Level Systems
