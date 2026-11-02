@@ -141,24 +141,6 @@ export default function Hero({
             <Stats stats={stats} initialLiveDownloads={initialLiveDownloads} />
           </div>
         )}
-
-        {/* Subtle scroll cue */}
-        <div
-          className="animate-fade-in delay-500"
-          style={{
-            marginTop: 'clamp(32px, 5vh, 48px)',
-            fontFamily: 'var(--font-dm-mono)',
-            fontSize: '10.5px',
-            color: 'var(--text-faint)',
-            letterSpacing: '0.2em',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '12px',
-          }}
-        >
-          <span style={{ width: '20px', height: '1px', background: 'var(--border)', display: 'inline-block' }} />
-          EXPLORE CORE SYSTEMS ↓
-        </div>
       </div>
     </section>
   )
