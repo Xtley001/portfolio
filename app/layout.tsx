@@ -9,11 +9,11 @@ const SITE_URL = 'https://olubelachristley.dev'
 
 export async function generateMetadata(): Promise<Metadata> {
   const site = getSiteData()
-  const fullName = 'Olubela Christley'
+  const fullName = 'Christley Olubela'
   const handle = site.hero.handle || '@Xtley001'
   const cleanHandle = handle.replace('@', '')
-  const description = 'Architecting ultra-low latency execution engines, consensus primitives, and PBS infrastructure in Rust. Published crate author and high-throughput systems specialist.'
-  const title = 'Olubela Christley | High-Performance Distributed Systems & Execution Layer Engineer (Rust)'
+  const description = 'Building low-latency execution engines, distributed state machines, and high-performance infrastructure.'
+  const title = 'Christley Olubela — Rust Systems Engineer'
 
   return {
     metadataBase: new URL(SITE_URL),
@@ -111,7 +111,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     alternateName: ['Xtley001', '@Xtley001'],
     url: SITE_URL,
     image: `${SITE_URL}/images/og-card.png`,
-    jobTitle: 'High-Performance Distributed Systems & Execution Layer Engineer (Rust)',
+    jobTitle: 'Rust Systems Engineer',
     knowsAbout: [
       'Rust Systems Programming',
       'High-Performance Distributed Systems',

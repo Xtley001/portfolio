@@ -1,9 +1,9 @@
 {
   "hero": {
-    "firstName": "CHRISTLEY",
-    "lastName": "OLUBELA",
-    "role": "High-Performance Distributed Systems & Execution Layer Engineer (Rust)",
-    "tagline": "I build low-latency systems and execution infrastructure in Rust — specializing in EVM state simulation, AMM curve mathematics, and atomic MEV pipelines.",
+    "firstName": "Christley",
+    "lastName": "Olubela",
+    "role": "Rust Systems Engineer",
+    "tagline": "Building low-latency execution engines, distributed state machines, and high-performance infrastructure.",
     "available": false,
     "location": "Nigeria",
     "handle": "@Xtley001",

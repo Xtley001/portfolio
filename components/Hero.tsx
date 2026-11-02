@@ -15,7 +15,8 @@ export default function Hero({
     pypi: number
   }
 }) {
-  const roleTitle = hero.role || hero.headline || 'High-Performance Distributed Systems & Execution Layer Engineer (Rust)'
+  const roleTitle = hero.role || 'Rust Systems Engineer'
+  const subheader = hero.tagline || 'Building low-latency execution engines, distributed state machines, and high-performance infrastructure.'
 
   return (
     <section
@@ -46,11 +47,11 @@ export default function Hero({
       />
 
       <div style={{ position: 'relative', zIndex: 10, width: '100%', maxWidth: '1180px', margin: '0 auto' }}>
-        {/* Name */}
+        {/* Main Header */}
         <div
           className="animate-fade-up delay-100"
           style={{
-            marginBottom: '10px',
+            marginBottom: '16px',
           }}
         >
           <h1
@@ -58,38 +59,24 @@ export default function Hero({
             style={{
               fontFamily: 'var(--font-syne)',
               fontWeight: 700,
-              fontSize: 'clamp(2.4rem, 5vw, 4rem)',
-              lineHeight: 1.05,
+              fontSize: 'clamp(2.1rem, 4.4vw, 3.4rem)',
+              lineHeight: 1.15,
               letterSpacing: '-0.02em',
               color: 'var(--text)',
               margin: 0,
             }}
           >
-            {hero.firstName}{' '}
-            <span style={{ color: 'var(--accent)' }}>{hero.lastName}</span>
+            {hero.firstName} {hero.lastName}{' '}
+            <span style={{ color: 'var(--accent)', fontWeight: 600 }}>
+              — {roleTitle}
+            </span>
           </h1>
         </div>
 
-        {/* Bold, Well-Written Role */}
-        <div
-          className="animate-fade-up delay-150"
-          style={{
-            fontFamily: 'var(--font-dm-mono)',
-            fontSize: 'clamp(1rem, 1.4vw, 1.25rem)',
-            fontWeight: 600,
-            color: 'var(--accent)',
-            letterSpacing: '0.02em',
-            lineHeight: 1.4,
-            marginBottom: '20px',
-          }}
-        >
-          {roleTitle}
-        </div>
-
         {/* Subtle, soft divider line */}
-        <div style={{ height: '1px', background: 'var(--border)', margin: '0 0 24px' }} />
+        <div style={{ height: '1px', background: 'var(--border)', margin: '20px 0 24px' }} />
 
-        {/* Tagline + Action */}
+        {/* Subheader + Action */}
         <div
           style={{
             display: 'flex',
@@ -104,14 +91,14 @@ export default function Hero({
           <p
             style={{
               fontFamily: 'var(--font-dm-mono)',
-              fontSize: 'clamp(0.92rem, 1.15vw, 1.05rem)',
+              fontSize: 'clamp(0.95rem, 1.2vw, 1.08rem)',
               color: 'var(--text-dim)',
-              maxWidth: '740px',
-              lineHeight: 1.8,
+              maxWidth: '760px',
+              lineHeight: 1.75,
               margin: 0,
             }}
           >
-            {hero.tagline}
+            {subheader}
           </p>
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexShrink: 0 }}>
             <a
