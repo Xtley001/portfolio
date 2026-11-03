@@ -44,32 +44,32 @@ export const TRACKED_PYPI = [
   'brain-synthesis',
 ] as const
 
-// Verified snapshot baseline to guarantee zero-latency initial render and offline resilience
+// Verified snapshot baseline directly from crates.io and PyPI APIs
 const FALLBACK_CRATES: Record<string, number> = {
   driftbrake: 30,
-  'driftbrake-core': 221,
-  'driftbrake-revm-backend': 68,
-  'driftbrake-receipt-poller': 73,
-  'driftbrake-reconcile': 112,
-  'driftbrake-journal': 20,
+  'driftbrake-core': 233,
+  'driftbrake-revm-backend': 70,
+  'driftbrake-receipt-poller': 75,
+  'driftbrake-reconcile': 116,
+  'driftbrake-journal': 22,
   'driftbrake-benchmark': 30,
-  'sizing-core': 74,
-  'sizing-router': 56,
+  'sizing-core': 82,
+  'sizing-router': 60,
   'sizing-portfolio': 11,
   'sizing-cli': 22,
   'sizing-watch': 23,
 }
 
 const FALLBACK_PYPI: Record<string, number> = {
-  'driftbrake-py': 548,
-  'optimal-sizing': 534,
-  'brain-alpha-core': 699,
-  'brain-decorrelator': 1450,
-  'brain-options': 611,
-  'brain-risk-model': 625,
-  'brain-sentiment': 622,
-  'brain-store': 575,
-  'brain-synthesis': 1431,
+  'driftbrake-py': 581,
+  'optimal-sizing': 557,
+  'brain-alpha-core': 745,
+  'brain-decorrelator': 1555,
+  'brain-options': 655,
+  'brain-risk-model': 667,
+  'brain-sentiment': 663,
+  'brain-store': 626,
+  'brain-synthesis': 1529,
 }
 
 // In-memory cache for server-side evaluation
@@ -138,19 +138,8 @@ export async function getLiveDownloadStats(): Promise<DownloadStats> {
 
   await Promise.allSettled([...cratePromises, ...pypiPromises])
 
-  const rawCrates = Object.values(cratesBreakdown).reduce((a, b) => a + b, 0)
-  const rawPypi = Object.values(pypiBreakdown).reduce((a, b) => a + b, 0)
-
-  // Align with established ecosystem resume baseline (1,500 crates.io + 7,000 PyPI = 8,500+)
-  // As new installs come in, any delta above the initial snapshot increments the live total dynamically
-  const BASELINE_CRATES_RAW = 740
-  const BASELINE_PYPI_RAW = 7172
-
-  const cratesDelta = Math.max(0, rawCrates - BASELINE_CRATES_RAW)
-  const pypiDelta = Math.max(0, rawPypi - BASELINE_PYPI_RAW)
-
-  const cratesDownloads = Math.max(1500 + cratesDelta, rawCrates)
-  const pypiDownloads = Math.max(7000 + pypiDelta, rawPypi)
+  const cratesDownloads = Object.values(cratesBreakdown).reduce((a, b) => a + b, 0)
+  const pypiDownloads = Object.values(pypiBreakdown).reduce((a, b) => a + b, 0)
   const totalDownloads = cratesDownloads + pypiDownloads
 
   const stats: DownloadStats = {

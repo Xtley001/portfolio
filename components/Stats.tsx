@@ -1,93 +1,6 @@
 'use client'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import type { SiteData } from '../lib/site'
-
-function useCountUp(target: number, duration: number = 1300) {
-  const [count, setCount] = useState(0)
-  const isStarted = useRef(false)
-  const currentValRef = useRef(0)
-
-  useEffect(() => {
-    let animId: number | null = null
-
-    const runAnimation = (from: number, to: number, dur: number) => {
-      const start = performance.now()
-      const diff = to - from
-      if (diff === 0) {
-        setCount(to)
-        currentValRef.current = to
-        return
-      }
-
-      const step = (now: number) => {
-        const elapsed = now - start
-        const progress = Math.min(elapsed / dur, 1)
-        // Ease-out cubic: rapidly climbs then decelerates into the target
-        const easeOut = 1 - Math.pow(1 - progress, 3)
-        const val = Math.round(from + diff * easeOut)
-        setCount(val)
-        currentValRef.current = val
-
-        if (progress < 1) {
-          animId = requestAnimationFrame(step)
-        } else {
-          setCount(to)
-          currentValRef.current = to
-        }
-      }
-      animId = requestAnimationFrame(step)
-    }
-
-    if (!isStarted.current) {
-      isStarted.current = true
-      runAnimation(0, target, duration)
-    } else {
-      // If target updated dynamically after live fetch
-      if (target !== currentValRef.current) {
-        runAnimation(currentValRef.current, target, 800)
-      }
-    }
-
-    return () => {
-      if (animId) cancelAnimationFrame(animId)
-    }
-  }, [target, duration])
-
-  return count
-}
-
-function AnimatedNumber({
-  value,
-  duration = 1300,
-  style,
-}: {
-  value: string
-  duration?: number
-  style?: React.CSSProperties
-}) {
-  const clean = value.replace(/,/g, '')
-  const match = clean.match(/^([^0-9]*)([0-9]+)(.*)$/)
-  const prefix = match ? match[1] : ''
-  const target = match ? parseInt(match[2], 10) : 0
-  const suffix = match ? match[3] : ''
-
-  const count = useCountUp(target, duration)
-
-  return (
-    <span
-      style={{
-        fontVariantNumeric: 'tabular-nums',
-        fontFeatureSettings: '"tnum"',
-        display: 'inline-block',
-        ...style,
-      }}
-    >
-      {prefix}
-      {count.toLocaleString()}
-      {suffix}
-    </span>
-  )
-}
 
 function StatItem({
   value,
@@ -100,11 +13,8 @@ function StatItem({
   index: number
   breakdown?: { name: string; count: string }[]
 }) {
-  const ref = useRef<HTMLDivElement>(null)
-
   return (
     <div
-      ref={ref}
       className="reveal visible"
       style={{
         display: 'flex',
@@ -131,7 +41,7 @@ function StatItem({
         </div>
       </div>
 
-      {/* Clean, Animated Number */}
+      {/* Immediate, Rock-Solid Number (Guaranteed Never Stuck at 0) */}
       <div
         style={{
           fontFamily: 'var(--font-syne)',
@@ -142,10 +52,10 @@ function StatItem({
           letterSpacing: '-0.025em',
         }}
       >
-        <AnimatedNumber value={value} duration={1300} />
+        {value}
       </div>
 
-      {/* Understated Breakdown Context with Animated Counts */}
+      {/* Understated Breakdown Context */}
       {breakdown && breakdown.length > 0 && (
         <div
           style={{
@@ -162,9 +72,7 @@ function StatItem({
           {breakdown.map((item, idx) => (
             <span key={item.name} style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
               {idx > 0 && <span style={{ color: 'var(--border)', margin: '0 4px' }}>/</span>}
-              <span style={{ color: 'var(--accent-dim)', fontWeight: 500 }}>
-                <AnimatedNumber value={item.count} duration={1300} />
-              </span>
+              <span style={{ color: 'var(--accent-dim)', fontWeight: 500 }}>{item.count}</span>
               <span>{item.name}</span>
             </span>
           ))}
@@ -187,9 +95,9 @@ export default function Stats({
 }) {
   const [downloadMetrics, setDownloadMetrics] = useState(
     initialLiveDownloads || {
-      total: 8500,
-      crates: 1500,
-      pypi: 7000,
+      total: 8352,
+      crates: 774,
+      pypi: 7578,
     }
   )
 
